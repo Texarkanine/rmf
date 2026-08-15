@@ -108,12 +108,12 @@ All deliverables are product skills and schema/reference prose. There is no new 
 
 ## Implementation Plan
 
-1. JSONL schema reference
+1. [x] JSONL schema reference
     - Files: `skills/funnel-walk-orchestrator/references/walk-jsonl.md`
     - Tests first: N/A for prose & policy artifacts
     - Changes: one-object-per-line schema. Required keys: `step` (1-based int), `kind`, `url`, `judgements` (array of `{skill, judge}` or `{skill, error}`). Optional: `screenshot` (relative path, only if the file exists), `signals` (`overlay`, `account_wall`, `priced_offer`, `ads_present`). No extra top-level keys. Include at least one full example line (mirror `funnel-json.md`).
 
-2. Skill selection map
+2. [x] Skill selection map
     - Files: `skills/funnel-walk-orchestrator/references/skill-map.md`
     - Tests first: N/A for prose & policy artifacts
     - Changes: closed allowlist and fetch URLs on `coreyhaines31/marketingskills` `main`:
@@ -125,12 +125,12 @@ All deliverables are product skills and schema/reference prose. There is no new 
         - `blocker` / `other` — no skills. Record the hop. Do not invent judgements
       Subagent instruction: fetch the skill, apply it as a judge on the current page evidence, return one short judgement. Do not interview. Do not rewrite the page.
 
-3. Orchestrator skill
+3. [x] Orchestrator skill
     - Files: `skills/funnel-walk-orchestrator/SKILL.md`
     - Tests first: N/A for prose & policy artifacts
     - Changes: numbered walk loop. Read both reference files before walking. Open `funnel.url` in a real browser (Cursor browser, computer-use, or the operator's desktop Chrome). Do not launch Playwright / `npm run capture`. Shopper path: destination → product if needed → add to cart → cart → checkout page-load. At each hop: dismiss or note overlays, screenshot into `artifacts/`, classify `kind`, select skills, spawn one subagent per skill with the screenshot + visible copy + URL + ads context, join, append one JSONL line, then click the next intent. Stop on checkout page-load, on `blocker`, after 8 hops, or if a thank-you/paid page appears (failure). Print the workdir. Do not paste the JSONL into chat.
 
-4. Entrypoint skill
+4. [x] Entrypoint skill
     - Files: `skills/start-the-funnel/SKILL.md`
     - Tests first: N/A for prose & policy artifacts
     - Changes: resolve workdir and funnel URL, then invoke `funnel-walk-orchestrator`. Do not walk inside this skill. Do not roast in chat.
@@ -138,12 +138,12 @@ All deliverables are product skills and schema/reference prose. There is no new 
         - **Writable check:** same touch-and-delete probe as `/start-the-roast` Step 2; stop on failure.
         - **Funnel URL:** from invocation, else `funnel.json`'s `funnel.url` when the workdir already has one. If still missing, stop. Do not walk.
 
-5. README
+5. [x] README
     - Files: `README.md`
     - Tests first: N/A for prose & policy artifacts
     - Changes: short "Walk the funnel" section pointing at `/start-the-funnel` and `walk.jsonl`.
 
-6. Persistent memory-bank reconciliation
+6. [x] Persistent memory-bank reconciliation
     - Files: `memory-bank/systemPatterns.md`, `memory-bank/productContext.md`
     - Tests first: N/A for prose & policy artifacts
     - Changes: surgical. Record the agent-walk path as a **second capture path** (when Playwright cannot run), the parent-walks / subagent-judges split, and `walk.jsonl` as the step-judgement handoff. Leave the Playwright walk + offline Grok-on-bundle score path intact and still described.
@@ -179,5 +179,5 @@ No new technology — validation not required. No new npm packages. No test runn
 - [x] Technology validation complete
 - [x] Pre-Mortem complete
 - [x] Preflight
-- [ ] Build
+- [x] Build
 - [ ] QA

@@ -11,6 +11,7 @@ A business owner or performance marketer auditing **their own** paid funnel. Not
 - In one sitting, see whether ads, the click-through page, the product page, cart, and checkout tell the same story.
 - Get a short, opinionated roast of *this* funnel — with receipts — instead of a slow agency CRO deck or an ad-only spy tool.
 - Leave with a starting-point landing-page image that matches the ad they actually run, for their own team to adapt.
+- When Playwright cannot run against live bot defenses, walk the same path in a real browser and leave a JSONL of per-page skill judgements.
 
 The hackathon demo is one blessed store/ad pair. “Any URL” is the product story; that pair is the demo. Details are in `prd.md`.
 

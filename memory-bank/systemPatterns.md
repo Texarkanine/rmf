@@ -28,6 +28,8 @@ Violating the walker/judge split, the stop-before-payment guard, or “Grok work
 
 Playwright records pages, frames, copy, and artifacts. It does not assign scores. Grok reads the evidence bundle offline and does not browse. An AI helper used only to **find a button** after heuristics fail is not a judge — see `ActionLayer` in `src/types.ts`.
 
+On the agent-walk path the same split holds as **parent walks, subagents judge**. The parent classifies the page and clicks. It does not write `judge` strings. Selected marketingskills run in subagents; their results land in `walk.jsonl`.
+
 ## Evidence bundle is the only fact base
 
 Scoring treats the bundle and its screenshots as the only facts. Findings must cite artifacts that exist. Do not invent pages, CTAs, or errors that are not in the evidence.
@@ -46,8 +48,14 @@ The scoring model identity is a product contract, not a convenience default. Cha
 
 ## Product skills live under `skills/`
 
-Imported instructions stay in `.cursor/`. The roast entrypoint is `skills/start-the-roast`. Do not put product skills under `.cursor/skills/`.
+Imported instructions stay in `.cursor/`. Product entrypoints are `skills/start-the-roast` and `skills/start-the-funnel`. The walk loop lives in `skills/funnel-walk-orchestrator`. Do not put product skills under `.cursor/skills/`.
 
 ## Entrypoint runs land under `.rmf/`
 
 `/start-the-roast` writes a timestamped directory under `.rmf/` (gitignored), or an explicit `--workdir`. `funnel.json` in that directory is the structured ad/funnel handoff. Later steps consume the printed path.
+
+`/start-the-funnel` uses the same workdir (or creates one) and hands off to the orchestrator. The orchestrator appends `walk.jsonl` — one object per hop, each with `kind`, `url`, and `judgements` (`skill` + `judge` or `error`).
+
+## Agent walk is a second capture path
+
+Playwright `capture` plus offline `score` remains the CLI path. `/start-the-funnel` is the sibling path for a real-browser walk when that CLI cannot run (live bot defenses). It does not call `npm run capture`. It does not replace `bundle.json` or `report.json`. Grok still must not invent pages it never opened.

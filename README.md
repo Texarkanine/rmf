@@ -12,6 +12,10 @@ Screenshots land in `runs/<id>/artifacts/`. Chromium opens so you can watch it. 
 
 `/start-the-roast` collects a funnel URL and a Meta ads deeplink, writes a run under `.rmf/`, and prints that directory path.
 
+## Walk the funnel
+
+`/start-the-funnel` takes that run directory (or a funnel URL) and calls the walk orchestrator. Grok opens the live site in a real browser, walks to checkout page-load, applies selected [marketingskills](https://github.com/coreyhaines31/marketingskills) in subagents at each hop, and appends `walk.jsonl`. It does not submit payment. It does not launch Playwright.
+
 ## Score
 
 Grok 4.6 reads those screenshots and the capture bundle. It does not browse the live site.

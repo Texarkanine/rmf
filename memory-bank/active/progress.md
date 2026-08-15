@@ -43,3 +43,15 @@ Build a `start-the-funnel` entrypoint that calls an orchestrator. The orchestrat
 * Insights
     - `artifacts/` under the run directory matches Playwright capture's relative screenshot paths.
     - `systemPatterns.md` "Grok offline only" language must be extended, not replaced, when documenting the agent-walk path.
+
+## 2026-08-15 - BUILD - COMPLETE
+
+* Work completed
+    - Six plan steps landed: JSONL schema, skill map, orchestrator, entrypoint, README, persistent-file reconciliation.
+* Decisions made
+    - Entrypoint reads and executes the orchestrator skill (preflight advisory). No wrapper script.
+    - Standalone URL-only runs create `.rmf/<timestamp>/` and pass the URL through; they do not write a stub `funnel.json`.
+    - `signals` is an array of present flags, not a boolean object.
+* Insights
+    - Repeating stop-before-PII on open, click, and checkout is load-bearing; an agent may enter any of those steps in isolation.
+
