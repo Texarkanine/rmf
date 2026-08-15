@@ -47,3 +47,10 @@ Inspect the Playwright funnel walker and try it against `https://tonal.com/`. Re
 * Insights
     - `robots.txt`'s comment block explicitly asks agents not to script end-to-end checkout completion and to prefer UCP/MCP for buyer-authorized transactions; the plan's stop-before-payment, no-UCP/MCP approach is a page-load recording (not a completion or transaction), which reads as compliant with stated intent even though it disallows crawling those paths outright
     - No `.fill(`/`.type(` calls exist anywhere in `src/`, so AC3 (no typed PII/payment) is already structurally guaranteed by the current action layer, not just by convention
+
+## 2026-08-15 - BUILD - IN-PROGRESS
+
+* Work completed
+    - Preflight passed with advisory; entering build in plan order (steps 1, 1b, 2–6)
+* Decisions made
+    - Follow the preflight-amended plan, including `detectPaymentUi` as capture-only evidence

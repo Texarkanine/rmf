@@ -1,7 +1,7 @@
 # Active Context
 
 ## Current Task: tonal-funnel-walk
-**Phase:** PREFLIGHT - COMPLETE (PASS WITH ADVISORY)
+**Phase:** BUILD - IN-PROGRESS
 
 ## What Was Done
 - Classified as Level 2 and stubbed ephemeral files.
