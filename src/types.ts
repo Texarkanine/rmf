@@ -81,6 +81,7 @@ export interface StageEvidence {
   visibleCopy: string;
   ctas: CtaRecord[];
   forms: FormRecord[];
+  paymentUiDetected: boolean;
   consoleErrors: string[];
   networkErrors: string[];
   aiFallbackUsed: FunnelIntent[];

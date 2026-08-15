@@ -8,6 +8,21 @@ npm run capture -- https://tonal.com/
 
 Screenshots land in `runs/<id>/artifacts/`. Chromium opens so you can watch it. Pass `HEADLESS=1` to hide the window.
 
+## Walk a funnel
+
+`/walk-the-funnel` runs Playwright against a live URL (`HEADLESS=1 npm run capture -- <url>`), writes `runs/<id>/steps.json`, and prints that hop list. It does not score or roast.
+
+## Start a roast
+
+`/start-the-roast` runs the full roast in order:
+
+1. Collect a funnel URL and a Meta ads deeplink
+2. Fetch the ad (`/get-meta-ad`)
+3. Walk the live funnel (`/walk-the-funnel`) and apply the matching marketing rubric at each hop
+4. Write the report card (`/write-the-roast`)
+
+A successful run leaves a timestamped directory under `.rmf/` and prints that path plus `report.html`.
+
 ## Score
 
 Grok 4.6 reads those screenshots and the capture bundle. It does not browse the live site.

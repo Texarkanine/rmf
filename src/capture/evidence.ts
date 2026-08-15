@@ -9,6 +9,31 @@ import type {
 } from "../types.js";
 import { snapshotAndClear, type PageObservers } from "./observe.js";
 
+export const PAYMENT_IFRAME_HOST =
+  /checkout\.shopify\.com|js\.stripe\.com|paypal\.com|braintreegateway\.com|adyen\.com/i;
+
+export interface PaymentUiPage {
+  frames(): Array<{ url(): string }>;
+}
+
+/**
+ * True when any frame URL matches a known hosted-payment iframe host.
+ * This is evidence collection, not a grade.
+ */
+export async function detectPaymentUi(page: PaymentUiPage): Promise<boolean> {
+  return page.frames().some((frame) => PAYMENT_IFRAME_HOST.test(frame.url()));
+}
+
+/**
+ * True when collected form labels include card-entry fields.
+ * Shopify checkout often paints those in the main document, not a known iframe host.
+ */
+export function hasPaymentFieldLabels(labels: string[]): boolean {
+  return labels.some((label) =>
+    /credit card|card number|\bcvv\b|\bcvc\b|expiration/i.test(label),
+  );
+}
+
 export async function collectCtas(page: Page): Promise<CtaRecord[]> {
   const viewport = page.viewportSize() ?? { width: 1280, height: 720 };
   return page.evaluate((viewHeight) => {
@@ -142,6 +167,9 @@ export async function captureStage(input: {
     visibleCopy,
     ctas,
     forms,
+    paymentUiDetected:
+      (await detectPaymentUi(page)) ||
+      hasPaymentFieldLabels(forms.flatMap((form) => form.labels)),
     consoleErrors: errors.consoleErrors,
     networkErrors: errors.networkErrors,
     aiFallbackUsed: input.aiFallbackUsed,
