@@ -1,15 +1,11 @@
 # Active Context
 
 ## Current Task: start-the-funnel
-**Phase:** QA - COMPLETE (PASS)
+**Phase:** REFLECT COMPLETE
 
 ## What Was Done
-- Wrote `skills/funnel-walk-orchestrator/references/walk-jsonl.md` and `skill-map.md`.
-- Wrote `skills/funnel-walk-orchestrator/SKILL.md` (walk loop) and `skills/start-the-funnel/SKILL.md` (resolve + handoff).
-- README "Walk the funnel" section.
-- Surgical updates: `productContext.md` (agent-walk use case), `systemPatterns.md` (parent-walks / subagents-judge, second capture path, `walk.jsonl`).
-- QA review passed: verified resolution of `ads_present` recording in `skills/funnel-walk-orchestrator/SKILL.md` (4b/4c) and audited all 6 deliverables across semantic criteria.
+- Reflection written to `memory-bank/active/reflection/reflection-start-the-funnel.md`.
+- Persistent files already reconciled at build; no further edits.
 
 ## Next Step
-- QA PASSED - proceed to reflect phase (`/niko-reflect`)
-
+- Run `/niko-archive` to archive this standalone task.

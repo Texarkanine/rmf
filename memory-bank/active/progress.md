@@ -86,4 +86,15 @@ Build a `start-the-funnel` entrypoint that calls an orchestrator. The orchestrat
 * Insights
     - The JSONL contract now matches both the schema reference documentation and the runtime walk loop instructions.
 
+## 2026-08-15 - REFLECT - COMPLETE
+
+* Work completed
+    - Wrote `memory-bank/active/reflection/reflection-start-the-funnel.md`.
+    - Reconciled persistent files: no further edits (updates landed at build).
+* Decisions made
+    - Standalone task: next operator step is `/niko-archive`.
+* Insights
+    - Schema fields need a hop-loop "record when" clause, not only a resolve-time computation.
+
+
 
