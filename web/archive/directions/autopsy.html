@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Roast My Funnel — Autopsy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #f3f4f1;
+      background-image:
+        linear-gradient(rgba(27,94,74,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(27,94,74,0.04) 1px, transparent 1px);
+      background-size: 24px 24px;
+      color: #161916;
+      font-family: "IBM Plex Sans", system-ui, sans-serif;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 32px;
+      background: #1b5e4a;
+      color: #e8f4ef;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+    }
+    nav a { color: #e8f4ef; }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 36px 24px 64px; }
+    .case {
+      background: #fff;
+      border: 1px solid #c9d0c8;
+      border-top: 10px solid #1b5e4a;
+      padding: 28px 32px;
+    }
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+      color: #1b5e4a;
+      letter-spacing: 0.06em;
+      margin-bottom: 22px;
+    }
+    h1 {
+      font-size: 42px;
+      letter-spacing: -0.04em;
+      font-weight: 600;
+      line-height: 1.05;
+    }
+    .lede {
+      margin: 12px 0 28px;
+      color: #3c433e;
+      max-width: 560px;
+      line-height: 1.55;
+    }
+    form { display: flex; gap: 8px; }
+    input {
+      flex: 1;
+      border: 1px solid #b7c0b6;
+      padding: 12px 12px;
+      font: 14px "IBM Plex Mono", monospace;
+      outline: none;
+    }
+    button {
+      background: #1b5e4a;
+      color: #fff;
+      border: 0;
+      padding: 12px 16px;
+      font: 12px "IBM Plex Mono", monospace;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 36px;
+      font-size: 14px;
+    }
+    caption {
+      text-align: left;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: #1b5e4a;
+      margin-bottom: 8px;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px 10px;
+      border-bottom: 1px solid #d7ddd6;
+      vertical-align: top;
+    }
+    th { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: 0.08em; color: #5c665e; font-weight: 500; }
+    .tag {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      padding: 3px 6px;
+      display: inline-block;
+    }
+    .fatal { background: #c41e3a; color: #fff; }
+    .acute { background: #f4d35e; color: #111; }
+    .chronic { background: #d9e2dc; color: #1b5e4a; }
+    footer {
+      margin-top: 28px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+      color: #6b746c;
+      letter-spacing: 0.08em;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <span>RMF // OFFICE OF FUNNEL EXAMINERS</span>
+    <a href="../index.html">ALL DIRECTIONS</a>
+  </nav>
+  <div class="wrap">
+    <div class="case">
+      <div class="meta">
+        <span>CASE 00418 · SHOPIFY / DTC</span>
+        <span>STATUS: INTAKE</span>
+        <span>EXAMINER: RMF</span>
+      </div>
+      <h1>Funnel autopsy.<br>Cause of death pending.</h1>
+      <p class="lede">Submit the store. We pull ads, landing pages, and checkout, then issue findings. Humor is clinical. The chart is not.</p>
+      <form action="#" onsubmit="return false">
+        <input value="https://glowformula.myshopify.com" />
+        <button>BEGIN EXAM</button>
+      </form>
+      <table>
+        <caption>PRELIMINARY FINDINGS — SAMPLE</caption>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>SYSTEM</th>
+            <th>SEVERITY</th>
+            <th>NOTE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>F-01</td>
+            <td>Ad library → LP</td>
+            <td><span class="tag fatal">FATAL</span></td>
+            <td>Fourteen ad angles terminate at a single undifferentiated homepage. Continuity absent. Patient arrived in pieces.</td>
+          </tr>
+          <tr>
+            <td>F-02</td>
+            <td>Above the fold</td>
+            <td><span class="tag acute">ACUTE</span></td>
+            <td>Hero presents with eight-second lifestyle video, no offer, muted audio. Product delayed. Attention hypoxic.</td>
+          </tr>
+          <tr>
+            <td>F-03</td>
+            <td>Checkout</td>
+            <td><span class="tag chronic">CHRONIC</span></td>
+            <td>Eleven-field guest form. Shop Pay present but occluded. Company name requested for a $38 SKU. Inflamed.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <footer>DIRECTION 03 · AUTOPSY · STERILE / SURGICAL GREEN / ARTERIAL RED</footer>
+  </div>
+</body>
+</html>

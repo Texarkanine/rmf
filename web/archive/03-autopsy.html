@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Roast My Funnel — The Autopsy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root { --red: #b42318; --rule: #c9c2b3; --ink: #1c1c1c; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #e8e2d4;
+      color: var(--ink);
+      font-family: "IBM Plex Sans", sans-serif;
+    }
+    .sheet {
+      max-width: 920px;
+      margin: 32px auto 80px;
+      background: #f6f3ea;
+      border: 1px solid var(--rule);
+      padding: 32px 40px 56px;
+    }
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 16px;
+      margin-bottom: 28px;
+    }
+    .brand {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .brand strong { display: block; font-family: "IBM Plex Sans", sans-serif; font-size: 22px; letter-spacing: 0; margin-top: 6px; font-weight: 600; }
+    .top a { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--ink); }
+    .stamp {
+      border: 2px solid var(--red);
+      color: var(--red);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      padding: 8px 10px;
+      transform: rotate(8deg);
+    }
+    h1 { font-size: clamp(36px, 6vw, 56px); letter-spacing: -0.03em; font-weight: 600; line-height: 1.05; max-width: 16ch; }
+    .sub { margin: 14px 0 32px; max-width: 48ch; line-height: 1.5; color: #444; }
+    form {
+      display: grid;
+      grid-template-columns: 140px 1fr 160px;
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+      margin-bottom: 36px;
+    }
+    form span, form input, form button {
+      padding: 14px 12px;
+      font-size: 14px;
+    }
+    form span {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-right: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+    }
+    form input { border: 0; background: transparent; font-family: inherit; outline: none; }
+    form button {
+      background: var(--ink);
+      color: #f6f3ea;
+      border: 0;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .anatomy {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin-bottom: 36px;
+    }
+    .org {
+      border: 1px solid var(--rule);
+      padding: 12px;
+      min-height: 88px;
+    }
+    .org.bad { border-color: var(--red); background: rgba(180,35,24,0.04); }
+    .org .k { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #666; }
+    .org .v { font-size: 15px; font-weight: 600; margin-top: 8px; }
+    .org.bad .v { color: var(--red); }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th {
+      text-align: left;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-bottom: 2px solid var(--ink);
+      padding: 8px 8px 8px 0;
+    }
+    td { padding: 14px 8px 14px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+    .sev { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--red); }
+    footer { margin-top: 40px; font-family: "IBM Plex Mono", monospace; font-size: 11px; color: #777; }
+    @media (max-width: 760px) {
+      form, .anatomy { grid-template-columns: 1fr; }
+      .sheet { margin: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="top">
+      <div class="brand">Office of Funnel Pathology<strong>Roast My Funnel</strong></div>
+      <div style="text-align:right">
+        <div class="stamp">PRELIMINARY</div>
+        <p style="margin-top:16px"><a href="index.html">All directions</a></p>
+      </div>
+    </div>
+    <h1>Cause of death pending.</h1>
+    <p class="sub">Submit the store. We examine the ad library, landing pages, and checkout. Findings in sixty seconds. Please remain still.</p>
+    <form action="#" onsubmit="return false">
+      <span>Case / URL</span>
+      <input type="url" value="https://glowformula.com" />
+      <button>Begin examination</button>
+    </form>
+    <div class="anatomy">
+      <div class="org">
+        <div class="k">01 Ads</div>
+        <div class="v">Viable</div>
+      </div>
+      <div class="org bad">
+        <div class="k">02 Landing</div>
+        <div class="v">Acute mismatch</div>
+      </div>
+      <div class="org">
+        <div class="k">03 ATC</div>
+        <div class="v">Delayed</div>
+      </div>
+      <div class="org bad">
+        <div class="k">04 Checkout</div>
+        <div class="v">Hypertrophic</div>
+      </div>
+      <div class="org bad">
+        <div class="k">05 Thank-you</div>
+        <div class="v">Absent</div>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Finding</th><th>Site</th><th>Severity</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Fourteen ad angles feeding a single undifferentiated PDP. Creative is oxygenated. The page is not.</td>
+          <td>Ad → LP</td>
+          <td class="sev">FATAL</td>
+        </tr>
+        <tr>
+          <td>Headline presents as greeting, not offer. “Welcome to our store.” No claim, no proof, no reason to stay.</td>
+          <td>Fold</td>
+          <td class="sev">ACUTE</td>
+        </tr>
+        <tr>
+          <td>Guest checkout exhibits form hypertrophy: 12 fields. Shop Pay present but occluded. Typical of chronic over-collection.</td>
+          <td>Checkout</td>
+          <td class="sev">CHRONIC</td>
+        </tr>
+      </tbody>
+    </table>
+    <footer>Direction 03 · Autopsy · Case RM-048 · glowformula.com</footer>
+  </div>
+</body>
+</html>

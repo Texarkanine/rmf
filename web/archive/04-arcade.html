@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Roast My Funnel — High Score</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tektur:wght@500;700&family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --pink: #ff2d92;
+      --lime: #d6ff3f;
+      --cyan: #3dfff3;
+      --bg: #07070f;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: #f4f4f8;
+      font-family: "DM Sans", sans-serif;
+      min-height: 100vh;
+    }
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.03) 0 1px, transparent 1px 4px);
+      pointer-events: none;
+      z-index: 5;
+    }
+    .cab {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px 20px 80px;
+      position: relative;
+      z-index: 1;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: Tektur, sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 28px;
+    }
+    nav a { color: var(--cyan); text-decoration: none; }
+    .hud {
+      display: flex;
+      justify-content: space-between;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      color: var(--lime);
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-family: Tektur, sans-serif;
+      font-size: clamp(40px, 8vw, 72px);
+      line-height: 0.95;
+      text-transform: uppercase;
+      color: var(--pink);
+      text-shadow: 0 0 24px rgba(255,45,146,0.35);
+    }
+    .lede { margin: 16px 0 28px; max-width: 46ch; color: #c8c8d4; line-height: 1.5; }
+    form {
+      display: flex;
+      border: 2px solid var(--lime);
+      margin-bottom: 48px;
+      box-shadow: 0 0 0 4px rgba(214,255,63,0.08);
+    }
+    form input {
+      flex: 1;
+      background: #0e0e18;
+      border: 0;
+      color: var(--lime);
+      font-family: "IBM Plex Mono", monospace;
+      padding: 16px 18px;
+      font-size: 15px;
+      outline: none;
+    }
+    form button {
+      background: var(--lime);
+      color: #07070f;
+      border: 0;
+      font-family: Tektur, sans-serif;
+      letter-spacing: 0.08em;
+      padding: 0 22px;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+    .board {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 28px;
+      background: #0c0c16;
+      border: 1px solid #222236;
+      padding: 28px;
+    }
+    .score {
+      text-align: center;
+      border: 1px solid var(--pink);
+      padding: 24px 12px;
+    }
+    .score small {
+      font-family: Tektur, sans-serif;
+      letter-spacing: 0.2em;
+      color: var(--pink);
+      font-size: 11px;
+    }
+    .score strong {
+      display: block;
+      font-family: Tektur, sans-serif;
+      font-size: 80px;
+      color: var(--lime);
+      line-height: 1;
+      margin: 8px 0;
+    }
+    .score p { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--cyan); }
+    .bar { margin-bottom: 18px; }
+    .bar .row { display: flex; justify-content: space-between; font-family: "IBM Plex Mono", monospace; font-size: 11px; margin-bottom: 6px; }
+    .track { height: 10px; background: #1a1a28; }
+    .fill { height: 10px; }
+    footer { margin-top: 36px; font-family: "IBM Plex Mono", monospace; font-size: 11px; color: #666; text-align: center; }
+    @media (max-width: 760px) { .board { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="cab">
+    <nav>
+      <span>Roast My Funnel</span>
+      <a href="index.html">All directions</a>
+    </nav>
+    <div class="hud">
+      <span>PLAYER 1</span>
+      <span>CREDITS 00</span>
+      <span>STAGE 01 — SHOPIFY</span>
+    </div>
+    <h1>Insert URL<br>to continue</h1>
+    <p class="lede">We scrape the ads. We scan the pages. We grade the checkout. Then we put a number on the whole run — and tell you where you died.</p>
+    <form action="#" onsubmit="return false">
+      <input type="url" value="https://glowformula.com" />
+      <button>Insert coin</button>
+    </form>
+    <section class="board">
+      <div class="score">
+        <small>Funnel score</small>
+        <strong>47</strong>
+        <p>CONTINUE? 9</p>
+      </div>
+      <div>
+        <div class="bar">
+          <div class="row"><span>AD LIBRARY</span><span>82</span></div>
+          <div class="track"><div class="fill" style="width:82%; background:#3dfff3"></div></div>
+        </div>
+        <div class="bar">
+          <div class="row"><span>LANDING / PDP</span><span>31</span></div>
+          <div class="track"><div class="fill" style="width:31%; background:#ff2d92"></div></div>
+        </div>
+        <div class="bar">
+          <div class="row"><span>CHECKOUT</span><span>22</span></div>
+          <div class="track"><div class="fill" style="width:22%; background:#ff2d92"></div></div>
+        </div>
+        <div class="bar">
+          <div class="row"><span>POST-PURCHASE</span><span>08</span></div>
+          <div class="track"><div class="fill" style="width:8%; background:#d6ff3f"></div></div>
+        </div>
+        <p style="margin-top:8px;color:#9a9aab;font-size:14px;line-height:1.5">Killed on landing. Ads were a high combo. Page dropped the chain. Checkout is a boss fight you designed for the customer.</p>
+      </div>
+    </section>
+    <footer>Direction 04 · High Score · GAME OVER / INSERT COIN</footer>
+  </div>
+</body>
+</html>

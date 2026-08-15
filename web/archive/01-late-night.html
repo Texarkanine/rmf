@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Roast My Funnel — Late Night</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Figtree:wght@400;500;600&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #080808;
+      --gold: #e2c15a;
+      --cream: #f4ead0;
+      --red: #c4452d;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: Figtree, sans-serif;
+      min-height: 100vh;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(226,193,90,0.16), transparent 60%),
+        radial-gradient(ellipse 40% 30% at 50% 100%, rgba(196,69,45,0.12), transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .wrap { position: relative; z-index: 1; max-width: 1080px; margin: 0 auto; padding: 28px 24px 80px; }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(226,193,90,0.25);
+      padding-bottom: 16px;
+    }
+    .logo {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 22px;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+    }
+    nav a { color: var(--cream); text-decoration: none; font-size: 13px; opacity: 0.7; }
+    .marquee {
+      overflow: hidden;
+      border-top: 1px solid rgba(226,193,90,0.2);
+      border-bottom: 1px solid rgba(226,193,90,0.2);
+      margin: 0 -24px 56px;
+      padding: 8px 0;
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .marquee p { animation: slide 22s linear infinite; }
+    @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .hero { text-align: center; padding: 12px 0 64px; }
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 22px;
+    }
+    h1 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(64px, 12vw, 128px);
+      line-height: 0.85;
+      letter-spacing: 0.02em;
+    }
+    h1 span { display: block; color: var(--gold); }
+    .lede {
+      font-family: "Libre Baskerville", serif;
+      font-style: italic;
+      font-size: 18px;
+      max-width: 38ch;
+      margin: 24px auto 40px;
+      line-height: 1.5;
+      opacity: 0.88;
+    }
+    form {
+      display: flex;
+      gap: 0;
+      max-width: 640px;
+      margin: 0 auto;
+      border: 1px solid var(--gold);
+      background: rgba(0,0,0,0.4);
+    }
+    form input {
+      flex: 1;
+      background: transparent;
+      border: 0;
+      color: var(--cream);
+      padding: 18px 20px;
+      font-size: 16px;
+      font-family: inherit;
+      outline: none;
+    }
+    form button {
+      background: var(--gold);
+      color: #111;
+      border: 0;
+      padding: 0 28px;
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 20px;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+    }
+    .set {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 40px;
+      align-items: start;
+      border-top: 1px solid rgba(244,234,208,0.12);
+      padding-top: 48px;
+    }
+    .set h2 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 28px;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+    }
+    .set .meta { font-size: 13px; opacity: 0.6; margin-top: 8px; }
+    .bit {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 16px;
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(244,234,208,0.1);
+    }
+    .bit:first-child { padding-top: 0; }
+    .tag {
+      font-family: "Bebas Neue", sans-serif;
+      color: var(--red);
+      letter-spacing: 0.08em;
+      font-size: 18px;
+    }
+    .bit h3 { font-size: 16px; margin-bottom: 6px; }
+    .bit p { font-size: 15px; line-height: 1.5; opacity: 0.8; }
+    footer { margin-top: 72px; font-size: 12px; opacity: 0.45; text-align: center; }
+    @media (max-width: 720px) {
+      .set, .bit { grid-template-columns: 1fr; }
+      form { flex-direction: column; }
+      form button { padding: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav>
+      <div class="logo">Roast My Funnel</div>
+      <a href="index.html">All directions</a>
+    </nav>
+  </div>
+  <div class="marquee">
+    <p>Tonight only · Shopify funnels · Ad library · Landing pages · Checkout · Thank-you pages · Tonight only · Shopify funnels · Ad library · Landing pages · Checkout · Thank-you pages ·</p>
+  </div>
+  <div class="wrap">
+    <section class="hero">
+      <p class="eyebrow">Live from the back of the ad account</p>
+      <h1>Your funnel is<br><span>about to have a night.</span></h1>
+      <p class="lede">Paste a store. We pull the Meta ads, the pages, the checkout — then roast the whole thing under a spotlight.</p>
+      <form action="#" onsubmit="return false">
+        <input type="url" placeholder="https://yourstore.com" value="https://glowformula.com" />
+        <button type="submit">Take the stage</button>
+      </form>
+    </section>
+    <section class="set">
+      <div>
+        <h2>Tonight’s set</h2>
+        <p class="meta">Sample roast · glowformula.com<br>Runtime 00:48</p>
+      </div>
+      <div>
+        <article class="bit">
+          <div class="tag">Bit 01</div>
+          <div>
+            <h3>The ads showed up. The landing page did not.</h3>
+            <p>Fourteen angles in the ad library. One generic PDP. That’s not a funnel. That’s a cliff with good creative.</p>
+          </div>
+        </article>
+        <article class="bit">
+          <div class="tag">Bit 02</div>
+          <div>
+            <h3>Welcome to our store.</h3>
+            <p>That’s the headline. $84 product, 4K lifestyle film, and a greeting. Welcome is not an offer. Sit down.</p>
+          </div>
+        </article>
+        <article class="bit">
+          <div class="tag">Bit 03</div>
+          <div>
+            <h3>Checkout wrote a novel.</h3>
+            <p>Shop Pay is there. You buried it under a twelve-field guest form like this is a visa application. The cart is already crying.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+    <footer>Direction 01 · Late Night · Comedy-special / roast-battle</footer>
+  </div>
+</body>
+</html>

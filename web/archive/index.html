@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Roast My Funnel — 5 Directions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Anton&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Tektur:wght@500;700&family=Outfit:wght@400;500;600&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root { --ink: #111; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: Outfit, sans-serif;
+      color: var(--ink);
+      background: #0c0c0c;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 18px 24px;
+      color: #f4f1ea;
+      mix-blend-mode: difference;
+      pointer-events: none;
+    }
+    header p { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; }
+    header span { font-size: 11px; letter-spacing: 0.08em; opacity: 0.7; }
+    .board {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      min-height: 100vh;
+    }
+    a.dir {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100vh;
+      padding: 88px 28px 36px;
+      text-decoration: none;
+      color: inherit;
+      transition: filter 0.25s ease;
+    }
+    a.dir:hover { filter: brightness(1.06); }
+    a.dir:focus-visible { outline: 3px solid #fff; outline-offset: -3px; }
+    .num { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; opacity: 0.7; }
+    h2 { margin: 14px 0 10px; line-height: 0.9; }
+    .blurb { font-size: 14px; line-height: 1.45; max-width: 28ch; }
+    .open {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-top: 32px;
+    }
+
+    .late-night {
+      background: radial-gradient(120% 80% at 50% 20%, #2a2110 0%, #0a0a0a 55%);
+      color: #f3e6c4;
+    }
+    .late-night h2 { font-family: "Bebas Neue", sans-serif; font-size: 56px; letter-spacing: 0.02em; color: #e8c547; }
+    .late-night .open { color: #e8c547; }
+
+    .tabloid {
+      background: #efe6c9;
+      color: #111;
+      background-image: repeating-linear-gradient(0deg, transparent, transparent 23px, rgba(0,0,0,0.04) 24px);
+    }
+    .tabloid h2 { font-family: Anton, sans-serif; font-size: 42px; text-transform: uppercase; color: #c40000; }
+    .tabloid .open { color: #c40000; font-weight: 600; }
+
+    .autopsy {
+      background: #f3f1ea;
+      color: #1b1b1b;
+      border-left: 1px solid #d7d2c6;
+      border-right: 1px solid #d7d2c6;
+    }
+    .autopsy h2 { font-family: "IBM Plex Sans", sans-serif; font-size: 34px; font-weight: 600; letter-spacing: -0.03em; }
+    .autopsy .num, .autopsy .open { font-family: "IBM Plex Mono", monospace; font-size: 10px; }
+
+    .arcade {
+      background: #070712;
+      color: #d6ff3f;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 100% 4px;
+    }
+    .arcade h2 { font-family: Tektur, sans-serif; font-size: 36px; text-transform: uppercase; color: #ff2d92; }
+    .arcade .open { color: #3dfff3; }
+
+    .quiet {
+      background: #f6f1e8;
+      color: #161412;
+    }
+    .quiet h2 { font-family: "Instrument Serif", serif; font-size: 44px; font-weight: 400; font-style: italic; }
+    .quiet .num, .quiet .open { letter-spacing: 0.28em; font-size: 10px; }
+    .quiet .open { color: #6a8f00; }
+
+    @media (max-width: 1100px) {
+      .board { grid-template-columns: 1fr; }
+      a.dir { min-height: 70vh; }
+      header { mix-blend-mode: normal; background: rgba(12,12,12,0.72); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p>Roast My Funnel</p>
+    <span>Five branding directions · click to open</span>
+  </header>
+  <nav class="board">
+    <a class="dir late-night" href="01-late-night.html">
+      <div>
+        <p class="num">01 / Late Night</p>
+        <h2>Late Night</h2>
+        <p class="blurb">Comedy-special energy. Spotlight, gold, a roast host with a mic. The funnel walks on stage.</p>
+      </div>
+      <p class="open">Open mockup →</p>
+    </a>
+    <a class="dir tabloid" href="02-tabloid.html">
+      <div>
+        <p class="num">02 / Tabloid</p>
+        <h2>The Funnel Post</h2>
+        <p class="blurb">NY Post energy. Giant headlines, red stamps, shareable front pages of your worst funnel crimes.</p>
+      </div>
+      <p class="open">Open mockup →</p>
+    </a>
+    <a class="dir autopsy" href="03-autopsy.html">
+      <div>
+        <p class="num">03 / Autopsy</p>
+        <h2>The Autopsy</h2>
+        <p class="blurb">Clinical and a little unhinged. Case file, cause of death, red annotations on the customer journey.</p>
+      </div>
+      <p class="open">Open mockup →</p>
+    </a>
+    <a class="dir arcade" href="04-arcade.html">
+      <div>
+        <p class="num">04 / High Score</p>
+        <h2>High Score</h2>
+        <p class="blurb">Arcade cabinet meets operator dashboard. Your funnel gets a number. Continue?</p>
+      </div>
+      <p class="open">Open mockup →</p>
+    </a>
+    <a class="dir quiet" href="05-quiet-knife.html">
+      <div>
+        <p class="num">05 / Quiet Knife</p>
+        <h2>Quiet Knife</h2>
+        <p class="blurb">Editorial, expensive, almost silent. The roast is in the caption, not the chrome.</p>
+      </div>
+      <p class="open">Open mockup →</p>
+    </a>
+  </nav>
+</body>
+</html>
