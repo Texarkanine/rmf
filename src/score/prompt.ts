@@ -1,6 +1,9 @@
 import { RUBRIC_DIMENSIONS, STAGE_NAMES, type CaptureBundle } from "../types.js";
+import { MARKETING_CHECKS } from "./checks.js";
 
 export const SCORING_SYSTEM_PROMPT = `You score a conversion-funnel capture. You work offline on the evidence bundle and screenshots provided in this request. You do not browse. You do not fetch URLs. You do not open a live page.
+
+Findings are one or two sentences a marketer can act on. Sharp and specific. Not a CRO memo.
 
 ## Output
 
@@ -32,7 +35,7 @@ Dimensions: ${RUBRIC_DIMENSIONS.join(", ")}.
 1. Read the bundle JSON and the attached screenshots. Treat those as the only facts.
 2. For each stage, assign every dimension a letter grade.
 3. Use N/A only for message_match when the bundle has no ad creative, and for a dimension that cannot apply to that stage.
-4. Write findings that a marketer can act on. Each finding must set screenshot to a path that already exists on that stage (screenshot or mobileScreenshot).
+4. Write findings that a marketer can act on. Each finding must set screenshot to a path on that stage (screenshot or mobileScreenshot), or to meta.ad.screenshot when the finding is about the ad.
 5. Stop. Do not invent pages, CTAs, or errors that are not in the evidence.
 
 ## Rubric
@@ -45,6 +48,8 @@ Dimensions: ${RUBRIC_DIMENSIONS.join(", ")}.
 - mobile: layout of the mobile screenshot — clipping, overflow, tap targets.
 - performance: stage timings and load cost in the bundle.
 - errors: console and network errors recorded for the stage.
+
+${MARKETING_CHECKS}
 `;
 
 export function evidenceForScoring(bundle: CaptureBundle): unknown {

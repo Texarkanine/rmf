@@ -30,8 +30,10 @@ export type FunnelIntent =
   | "go_to_checkout";
 
 export interface AdContext {
+  libraryUrl?: string;
   creative?: string;
   destinationUrl?: string;
+  screenshot?: string;
 }
 
 export interface Box {

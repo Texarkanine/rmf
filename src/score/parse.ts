@@ -94,6 +94,9 @@ export function assembleReport(
   const screenshots = new Set(
     bundle.stages.flatMap((stage) => [stage.screenshot, stage.mobileScreenshot]),
   );
+  if (bundle.meta.ad?.screenshot) {
+    screenshots.add(bundle.meta.ad.screenshot);
+  }
   const stages = {} as Record<StageName, StageGrades>;
 
   for (const name of STAGE_NAMES) {

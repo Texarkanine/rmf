@@ -12,19 +12,22 @@ export async function scoreBundle(
   artifactRoot: string,
 ): Promise<AuditReport> {
   const images: Array<{ path: string; mimeType: string; base64: string }> = [];
-  for (const stage of bundle.stages) {
-    for (const relative of [stage.screenshot, stage.mobileScreenshot]) {
-      const abs = path.join(artifactRoot, relative);
-      try {
-        const bytes = await readFile(abs);
-        images.push({
-          path: relative,
-          mimeType: "image/png",
-          base64: bytes.toString("base64"),
-        });
-      } catch {
-        // Scoring still runs on JSON when screenshot files are absent (unit tests).
-      }
+  const adShot = bundle.meta.ad?.screenshot;
+  const relatives = [
+    ...(adShot ? [adShot] : []),
+    ...bundle.stages.flatMap((stage) => [stage.screenshot, stage.mobileScreenshot]),
+  ];
+  for (const relative of relatives) {
+    const abs = path.join(artifactRoot, relative);
+    try {
+      const bytes = await readFile(abs);
+      images.push({
+        path: relative,
+        mimeType: "image/png",
+        base64: bytes.toString("base64"),
+      });
+    } catch {
+      // Scoring still runs on JSON when screenshot files are absent (unit tests).
     }
   }
 

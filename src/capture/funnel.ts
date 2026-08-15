@@ -3,6 +3,7 @@ import path from "node:path";
 import type { Browser, Page } from "@playwright/test";
 import type { ActionLayer, AdContext, CaptureBundle, FunnelIntent, StageEvidence } from "../types.js";
 import { PINNED_MODEL } from "../score/grades.js";
+import { captureAdLibrary, mergeAdContext } from "./ad.js";
 import { captureStage } from "./evidence.js";
 import { attachObservers } from "./observe.js";
 import { dismissOverlays } from "./overlays.js";
@@ -68,6 +69,19 @@ export async function captureFunnel(
         aiFallbackUsed.push(intent);
       })
     : heuristic;
+
+  let ad = options.ad;
+  if (ad?.libraryUrl) {
+    const adPage = await context.newPage();
+    try {
+      ad = mergeAdContext(ad, await captureAdLibrary(adPage, ad.libraryUrl, artifactsDir));
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.warn(`ad library capture failed: ${message}`);
+    } finally {
+      await adPage.close();
+    }
+  }
 
   const stages: StageEvidence[] = [];
 
@@ -167,7 +181,7 @@ export async function captureFunnel(
     const bundle: CaptureBundle = {
       meta: {
         startUrl: options.startUrl,
-        ad: options.ad,
+        ad,
         capturedAt: new Date().toISOString(),
         runId: options.runId,
         userAgent: await page.evaluate(() => navigator.userAgent),
