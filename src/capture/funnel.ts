@@ -46,15 +46,15 @@ export function classifyPage(url: string): PageKind {
 }
 
 /**
- * True when the URL is a cart or checkout page, not a PDP leftover.
- */
-/**
  * Shopify cart lives at /cart on the current origin.
  */
 export function storeCartUrl(currentUrl: string): string {
   return new URL("/cart", currentUrl).href;
 }
 
+/**
+ * True when the URL is a cart or checkout page, not a PDP leftover.
+ */
 export function isReachedCart(url: string): boolean {
   const kind = classifyPage(url);
   return kind === "cart" || kind === "checkout";

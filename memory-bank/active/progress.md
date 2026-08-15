@@ -68,6 +68,20 @@ Inspect the Playwright funnel walker and try it against `https://tonal.com/`. Re
     - Tonal add-to-cart is AJAX; the shopper stays on `/products/tonal-2` until `/cart` is opened
     - Checkout already shows empty card placeholders without typing email
 
+## 2026-08-15 - REFLECT - COMPLETE
+
+* Work completed
+    - Wrote `memory-bank/active/reflection/reflection-tonal-funnel-walk.md`
+    - Fixed the QA JSDoc advisory on `storeCartUrl` / `isReachedCart`
+    - Reconciled persistent files
+* Decisions made
+    - productContext: skip — stop-before-payment was already a product constraint
+    - systemPatterns: skip — `paymentUiDetected` is capture evidence, not a system-wide contract
+    - techContext: skip — Testing Process already points at `npm test`
+* Insights
+    - Shopify cart drawers lie about navigation; URL class is the oracle
+
+
 ## 2026-08-15 - QA - COMPLETE (PASS)
 
 * Work completed
