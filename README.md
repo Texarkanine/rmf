@@ -8,6 +8,10 @@ npm run capture -- https://tonal.com/
 
 Screenshots land in `runs/<id>/artifacts/`. Chromium opens so you can watch it. Pass `HEADLESS=1` to hide the window.
 
+## Start a roast
+
+`/start-the-roast` collects a funnel URL and a Meta ads deeplink, writes a run under `.rmf/`, and prints that directory path.
+
 ## Score
 
 Grok 4.6 reads those screenshots and the capture bundle. It does not browse the live site.

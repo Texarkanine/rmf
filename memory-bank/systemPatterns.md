@@ -43,3 +43,11 @@ If two ads hit the same URL, walk and grade that page once. Ads point at the sha
 ## Model pin is grading policy
 
 The scoring model identity is a product contract, not a convenience default. Changing it is a grading-policy change. The pin lives with the scorer (`PINNED_MODEL` in `src/score/grades.ts`).
+
+## Product skills live under `skills/`
+
+Imported instructions stay in `.cursor/`. The roast entrypoint is `skills/start-the-roast`. Do not put product skills under `.cursor/skills/`.
+
+## Entrypoint runs land under `.rmf/`
+
+`/start-the-roast` writes a timestamped directory under `.rmf/` (gitignored), or an explicit `--workdir`. `funnel.json` in that directory is the structured ad/funnel handoff. Later steps consume the printed path.
