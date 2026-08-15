@@ -55,6 +55,15 @@ Build a `start-the-funnel` entrypoint that calls an orchestrator. The orchestrat
 * Insights
     - Repeating stop-before-PII on open, click, and checkout is load-bearing; an agent may enter any of those steps in isolation.
 
+## 2026-08-15 - QA - FAIL then BUILD rework
+
+* Work completed
+    - QA blocking finding: `ads_present` was computed in Step 2 and allowed in the schema, but the hop loop never recorded it.
+    - Added an explicit 4b recording clause for `ads_present` on destination when `funnel.json` has a non-empty `ads` array. 4c now names all four signals.
+* Decisions made
+    - Record `ads_present` on the destination hop only, matching the schema example and `ad-creative` selection.
+
+
 ## 2026-08-15 - QA - COMPLETE (FAIL)
 
 * Work completed

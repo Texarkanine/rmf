@@ -74,9 +74,11 @@ On `checkout`: do not type into fields. Do not create an account. Record `accoun
 
 On `product` or `cart`: record `priced_offer` when a priced package, membership, or stacked line-item offer is visible.
 
+On `destination`: record `ads_present` when `<workdir>/funnel.json` has a non-empty `ads` array.
+
 ### 4c — Select and judge
 
-Select skills from the skill map using `kind` and the signals from 4a–4b.
+Select skills from the skill map using `kind` and the signals recorded on this hop (`overlay`, `account_wall`, `priced_offer`, `ads_present`).
 
 Spawn **one subagent per selected skill**. The walker does not write judgements.
 

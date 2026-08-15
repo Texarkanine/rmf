@@ -1,7 +1,7 @@
 # Active Context
 
 ## Current Task: start-the-funnel
-**Phase:** QA - COMPLETE (FAIL)
+**Phase:** BUILD - IN-PROGRESS (QA rework)
 
 ## What Was Done
 - Wrote `skills/funnel-walk-orchestrator/references/walk-jsonl.md` and `skill-map.md`.
