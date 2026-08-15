@@ -1,12 +1,11 @@
 # Active Context
 
 ## Current Task: start-the-roast-sequence
-**Phase:** PREFLIGHT - COMPLETE (PASS WITH ADVISORY)
+**Phase:** BUILD - IN-PROGRESS
 
 ## What Was Done
-- Preflight validated plan against codebase: conventions, dependencies, conflicts, completeness.
-- TDD carve-out confirmed: all four implementation units are prose/policy; no change-detector tests scheduled.
-- Plan amended: explicit walk disk path, `write-the-roast` named in systemPatterns, new `report-layout.md` reference step.
+- Preflight PASS WITH ADVISORY. Build gate open.
+- Creative decision still valid: one-shot walk, local hop map, write-the-roast.
 
 ## Next Step
-- `/niko-build` on a feature branch off `main`.
+- Implement plan steps 1–5 in order.
