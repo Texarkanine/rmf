@@ -105,7 +105,13 @@ When it finishes, read `<workdir>/walk/steps.json` from disk. Do not use chat pa
 
 If `steps.json` is missing, **stop**. Name the missing path.
 
-When `steps.json` is on disk, continue to Step 8.
+`steps.json` on disk is necessary, not sufficient. For each hop, open the screenshot at the path in that file (relative to `<workdir>/walk/`). A hop that is not the intended page is a walk failure — bot wall, challenge, interstitial, blank chrome, leftover previous page. The URL looking right does not save it. Cloudflare is one example, not the definition.
+
+Inspect screenshots only. Do not open `bundle.json`.
+
+If any hop is not the intended page: recover or bail. Retry the walk, wait, or **stop**. Do not type email, address, or card data. Do not submit payment. Do not invent hops. Telling the operator that analysis cannot be completed is an acceptable end state, and a better one than judging the wrong page. Print the error and **stop**. Do not write hop analysis. Do not write a report.
+
+Continue to Step 8 only when every hop is the intended page.
 
 ## Step 8 — Analyze each hop
 

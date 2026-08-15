@@ -4,6 +4,8 @@ Rubric map for a roast run. Corey Haines [marketingskills](https://github.com/co
 
 If `skills/<name>/SKILL.md` is not on disk, follow this map anyway. Do not skip the hop. Do not fetch the upstream repo.
 
+If the hop artifact is not the intended page (bot wall, challenge, interstitial, blank chrome, leftover previous page), do not write that hop's analysis and do not invent a score. That is a walk failure, not a skip-with-a-score. Stop as `walk-the-funnel` and `start-the-roast` require. Telling the operator that analysis cannot be completed is better than roasting the wrong page.
+
 Findings cite artifact paths that exist under the workdir. Do not invent pages, CTAs, copy, or errors. Do not browse. Do not call `npm run score`.
 
 ## Paths
