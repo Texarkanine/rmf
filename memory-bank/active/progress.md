@@ -72,3 +72,13 @@ Build `skills/start-the-roast` so an operator can hand in a funnel and a Meta ad
 * Insights
     - Clean separation between workflow instructions in `SKILL.md` and data contract in `references/funnel-json.md` keeps the skill maintainable and robust
 
+## 2026-08-15 - REFLECT - COMPLETE
+
+* Work completed
+    - Wrote the reflection
+    - Reconciled persistent files (`systemPatterns.md` updated; productContext and techContext skipped)
+* Decisions made
+    - Recorded product-skill path (`skills/`) and run-folder contract (`.rmf/`) as standing system patterns
+* Insights
+    - A schema reference plus read-before-write is enough to lock an agent-written handoff without a test suite
+

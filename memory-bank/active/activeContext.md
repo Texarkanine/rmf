@@ -1,12 +1,11 @@
 # Active Context
 
 ## Current Task: start-the-roast
-**Phase:** QA - COMPLETE (PASS)
+**Phase:** REFLECT COMPLETE
 
 ## What Was Done
-- Verified implementation against Project Brief, Implementation Plan, and semantic QA criteria (KISS, DRY, YAGNI, Completeness, Regression, Integrity, Documentation).
-- Verified `skills/start-the-roast/SKILL.md`, `skills/start-the-roast/references/funnel-json.md`, `.gitignore`, `README.md`, and `memory-bank/productContext.md`.
-- Wrote PASS to `memory-bank/active/.qa-validation-status`.
+- Wrote `memory-bank/active/reflection/reflection-start-the-roast.md`.
+- Reconciled persistent files: surgical `systemPatterns.md` update for `skills/` and `.rmf/`; productContext already current; techContext unchanged.
 
 ## Next Step
-- Proceed to `/niko-reflect` phase.
+- Operator runs `/niko-archive`.
