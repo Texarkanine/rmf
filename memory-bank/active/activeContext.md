@@ -1,12 +1,12 @@
 # Active Context
 
 ## Current Task: tonal-funnel-walk
-**Phase:** COMPLEXITY-ANALYSIS - COMPLETE
+**Phase:** PLAN - COMPLETE
 
 ## What Was Done
-- Persistent memory-bank files already existed; no init required.
-- Fresh state: no in-flight ephemeral files.
-- Classified as Level 2: inspect and (if needed) harden the existing capture walker against Tonal. Single subsystem (`src/capture/`), no architecture change.
+- Classified as Level 2 and stubbed ephemeral files.
+- Probed Tonal: Shopify storefront, PDP at `/products/tonal-2` with "Add to cart", rental/Whim CTAs on the same page, `robots.txt` disallows `/checkout` and `/checkouts/`.
+- Planned a TDD lock on `classifyPage` + `PAYMENT_SUBMIT`, a live `npm run capture` against `https://tonal.com/`, heuristic fixes only for failed hops, and a visual explainer of the recorded sequence.
 
 ## Next Step
-- Load the Level 2 workflow and execute the plan phase.
+- Preflight validation of the Level 2 plan.
