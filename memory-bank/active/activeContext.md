@@ -1,11 +1,11 @@
 # Active Context
 
 ## Current Task: start-the-funnel
-**Phase:** PREFLIGHT - COMPLETE (PASS WITH ADVISORY)
+**Phase:** BUILD - IN-PROGRESS
 
 ## What Was Done
-- Preflight validated plan against codebase: TDD carve-out for prose-only deliverables, convention alignment with `start-the-roast`, no blocking conflicts.
-- Plan amended: explicit standalone workdir creation on entrypoint; `walk-jsonl.md` example line; clearer `systemPatterns.md` reconciliation wording for the second capture path.
+- Preflight: `PASS WITH ADVISORY`. Plan amended for standalone workdir creation, JSONL example, and second-capture-path wording.
+- Advisories: extend (do not replace) the Playwright / offline-score story; entrypoint reads and executes the orchestrator skill directly.
 
 ## Next Step
-- `/niko-build` when ready to implement.
+- Implement the six plan steps in order.
