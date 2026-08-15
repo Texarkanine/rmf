@@ -46,6 +46,14 @@ export function classifyPage(url: string): PageKind {
 }
 
 /**
+ * True when the URL is a cart or checkout page, not a PDP leftover.
+ */
+export function isReachedCart(url: string): boolean {
+  const kind = classifyPage(url);
+  return kind === "cart" || kind === "checkout";
+}
+
+/**
  * True when the URL looks like a payment-complete / paid confirmation page.
  */
 export function isPaymentCompleteUrl(url: string): boolean {
@@ -139,6 +147,12 @@ export async function captureFunnel(
       );
       kind = classifyPage(page.url());
     }
+    if (kind !== "cart" && kind !== "checkout") {
+      cartInteractions.push(
+        await interact("open_cart", "Open the cart page after adding a product"),
+      );
+      kind = classifyPage(page.url());
+    }
     await sleep(delayMs);
     await record("cart", cartInteractions);
 
@@ -162,7 +176,7 @@ export async function captureFunnel(
     const landing = stages.find((stage) => stage.name === "landing");
     const cart = stages.find((stage) => stage.name === "cart");
     const checkout = stages.at(-1);
-    if (!cart || classifyPage(cart.url) === "other") {
+    if (!cart || !isReachedCart(cart.url)) {
       throw new Error(`Never reached a cart page (last URL: ${cart?.url ?? "none"})`);
     }
     if (!checkout || classifyPage(checkout.url) === "other") {

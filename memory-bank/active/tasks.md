@@ -61,7 +61,7 @@ Prove the Playwright walker can take `https://tonal.com/` from homepage to a che
    - Tests first: N/A for prose & policy artifacts
    - Changes: `HEADLESS=1 npm run capture -- https://tonal.com/ --run-id tonal-walk --delay-ms 800`; keep the full log; record each stage URL and interaction
 
-4. Close heuristic gaps that the live run exposes
+4. [x] Close heuristic gaps that the live run exposes
    - Files: `src/capture/resolve.ts`, `src/capture/funnel.ts`, `src/capture/overlays.ts` (only the hop that failed)
    - Tests first: add a failing case in `src/capture/resolve.test.ts` or `src/capture/funnel.test.ts` for that hop (selector/URL/intent), then implement the smallest fix
    - Changes: likely candidates — prefer `/products/tonal-2` (or hardware) over accessory/rent links; dismiss Tonal-specific overlays; treat Shop.app / Shopify hosted checkout as checkout; do not fill email/address/card; do not click `PAYMENT_SUBMIT`

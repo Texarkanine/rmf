@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { detectPaymentUi } from "./evidence.js";
+import { detectPaymentUi, hasPaymentFieldLabels } from "./evidence.js";
 
 function pageWithFrames(urls: string[]): { frames: () => Array<{ url: () => string }> } {
   return {
@@ -24,6 +24,12 @@ describe("detectPaymentUi", () => {
         url,
       );
     }
+  });
+
+  it("returns true when form labels include credit-card fields", () => {
+    assert.equal(hasPaymentFieldLabels(["Email", "Credit card"]), true);
+    assert.equal(hasPaymentFieldLabels(["Card number", "Expiration", "CVV"]), true);
+    assert.equal(hasPaymentFieldLabels(["Email", "First name"]), false);
   });
 
   it("returns false when no frame matches a payment host", async () => {

@@ -3,6 +3,7 @@ import { describe, it } from "node:test";
 import {
   classifyPage,
   isPaymentCompleteUrl,
+  isReachedCart,
   isThankYouCopy,
 } from "./funnel.js";
 
@@ -27,6 +28,21 @@ describe("classifyPage", () => {
       classifyPage("https://shop.app/checkout/cn/abc"),
       "checkout",
     );
+  });
+});
+
+describe("isReachedCart", () => {
+  it("accepts cart and checkout URLs", () => {
+    assert.equal(isReachedCart("https://tonal.com/cart"), true);
+    assert.equal(isReachedCart("https://tonal.com/checkouts/cn/abc"), true);
+  });
+
+  it("rejects the Tonal PDP and homepage", () => {
+    assert.equal(
+      isReachedCart("https://tonal.com/products/tonal-2?variant=49151847006490"),
+      false,
+    );
+    assert.equal(isReachedCart("https://tonal.com/"), false);
   });
 });
 
