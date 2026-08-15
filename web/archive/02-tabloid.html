@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Funnel Post — Roast My Funnel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Oswald:wght@500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #d9d0b0;
+      color: #111;
+      font-family: Newsreader, serif;
+    }
+    .paper {
+      max-width: 980px;
+      margin: 24px auto 80px;
+      background: #efe6c9;
+      padding: 28px 36px 64px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+      background-image: repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(0,0,0,0.035) 28px);
+    }
+    .kicker {
+      display: flex;
+      justify-content: space-between;
+      font-family: Oswald, sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border-bottom: 3px solid #111;
+      padding-bottom: 8px;
+    }
+    .kicker a { color: #111; text-decoration: none; }
+    .mast {
+      text-align: center;
+      padding: 10px 0 8px;
+      border-bottom: 1px solid #111;
+    }
+    .mast h1 {
+      font-family: Anton, sans-serif;
+      font-size: clamp(48px, 10vw, 92px);
+      letter-spacing: 0.02em;
+      line-height: 0.9;
+    }
+    .mast p { font-style: italic; font-size: 15px; margin-top: 4px; }
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      font-family: Oswald, sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 3px solid #111;
+      padding: 8px 0 10px;
+      margin-bottom: 22px;
+    }
+    .hero-hed {
+      font-family: Anton, sans-serif;
+      font-size: clamp(36px, 7vw, 72px);
+      line-height: 0.92;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .hero-hed em { color: #c40000; font-style: normal; }
+    .deck {
+      text-align: center;
+      font-size: 20px;
+      font-style: italic;
+      max-width: 46ch;
+      margin: 0 auto 28px;
+    }
+    .tip {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0;
+      border: 3px solid #111;
+      margin-bottom: 36px;
+    }
+    .tip label {
+      font-family: Oswald, sans-serif;
+      background: #c40000;
+      color: #fff;
+      padding: 14px 16px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+    }
+    .tip input {
+      border: 0;
+      background: #fffdf5;
+      padding: 14px 16px;
+      font-size: 16px;
+      font-family: Newsreader, serif;
+      outline: none;
+    }
+    .tip button {
+      font-family: Oswald, sans-serif;
+      background: #111;
+      color: #efe6c9;
+      border: 0;
+      padding: 0 22px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 24px;
+      border-top: 1px solid #111;
+      padding-top: 24px;
+    }
+    article h3 {
+      font-family: Anton, sans-serif;
+      font-size: 28px;
+      line-height: 0.95;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    article h3.red { color: #c40000; }
+    article p { font-size: 16px; line-height: 1.45; }
+    .stamp {
+      display: inline-block;
+      border: 3px solid #c40000;
+      color: #c40000;
+      font-family: Oswald, sans-serif;
+      letter-spacing: 0.14em;
+      padding: 4px 8px;
+      transform: rotate(-8deg);
+      margin-bottom: 10px;
+      font-size: 12px;
+    }
+    .rule { border-right: 1px solid #111; padding-right: 20px; }
+    footer { margin-top: 40px; text-align: center; font-size: 12px; font-family: Oswald, sans-serif; letter-spacing: 0.12em; text-transform: uppercase; }
+    @media (max-width: 800px) {
+      .grid, .tip { grid-template-columns: 1fr; }
+      .rule { border: 0; padding: 0; }
+      .paper { margin: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="paper">
+    <div class="kicker">
+      <span>Vol. 01 No. 4 · Saturday</span>
+      <a href="index.html">All directions</a>
+    </div>
+    <header class="mast">
+      <h1>THE FUNNEL POST</h1>
+      <p>All the funnel dirt that’s fit to print. Some that isn’t.</p>
+    </header>
+    <div class="meta-row">
+      <span>Shopify Exclusive</span>
+      <span>Ads · Pages · Checkout</span>
+      <span>Price: your dignity</span>
+    </div>
+    <h2 class="hero-hed">Local brand’s checkout <em>caught in 4K</em></h2>
+    <p class="deck">Fourteen Meta ads. One landing page. A guest form that asked for a childhood street. Sources say the cart “just wanted to go home.”</p>
+    <form class="tip" action="#" onsubmit="return false">
+      <label>Tip line</label>
+      <input type="url" value="https://glowformula.com" />
+      <button>Leak it</button>
+    </form>
+    <div class="grid">
+      <article class="rule">
+        <div class="stamp">EXCLUSIVE</div>
+        <h3 class="red">Ad library full. Page empty.</h3>
+        <p>Investigators found 14 active angles pointing at a single PDP that says “Welcome to our store.” Insiders call it “a cliff with good UGC.” Brand declined to comment. The headline declined to try.</p>
+      </article>
+      <article class="rule">
+        <h3>Reviews hiding in a carousel nobody clicks</h3>
+        <p>The $84 serum is doing founder-story cosplay above the fold. Social proof is three swipes deep. Customers, when reached, said they “assumed it was a lifestyle magazine.”</p>
+      </article>
+      <article>
+        <h3>Shop Pay held hostage</h3>
+        <p>Express checkout was present at the scene, then buried under twelve fields. Analysts grade the form “Victorian novel.” Thank-you page is a dead end. No upsell. No review ask. No sequel.</p>
+      </article>
+    </div>
+    <footer>Direction 02 · Tabloid · Shareable front page</footer>
+  </div>
+</body>
+</html>

@@ -7,3 +7,5 @@ dist/
 runs/
 .env
 .DS_Store
+.venv/
+_ref/

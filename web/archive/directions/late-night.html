@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Roast My Funnel — Late Night</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #070707;
+      color: #f4ead8;
+      font-family: Inter, system-ui, sans-serif;
+      min-height: 100vh;
+    }
+    .spot {
+      position: fixed;
+      inset: -20% 10% auto;
+      height: 70vh;
+      background: radial-gradient(ellipse at center, rgba(212,175,55,0.18), transparent 62%);
+      pointer-events: none;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 40px;
+      border-bottom: 1px solid rgba(212,175,55,0.22);
+      position: relative;
+      z-index: 1;
+    }
+    nav a { color: #d4af37; text-decoration: none; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; }
+    .wordmark {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 28px;
+      letter-spacing: 0.12em;
+    }
+    .wordmark span { color: #d4af37; }
+    main { position: relative; z-index: 1; }
+    .hero {
+      padding: 72px 40px 40px;
+      max-width: 980px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .kicker {
+      color: #d4af37;
+      letter-spacing: 0.28em;
+      font-size: 12px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    h1 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(56px, 9vw, 104px);
+      line-height: 0.86;
+      letter-spacing: 0.02em;
+    }
+    h1 em {
+      font-family: "Instrument Serif", serif;
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: 0;
+      color: #d4af37;
+      text-transform: none;
+      font-size: 0.62em;
+    }
+    .sub {
+      margin: 22px auto 36px;
+      max-width: 560px;
+      color: #cbbfa6;
+      line-height: 1.6;
+      font-size: 17px;
+    }
+    form {
+      display: flex;
+      gap: 10px;
+      max-width: 640px;
+      margin: 0 auto;
+      background: #111;
+      border: 1px solid rgba(212,175,55,0.35);
+      padding: 8px;
+    }
+    input {
+      flex: 1;
+      background: transparent;
+      border: 0;
+      color: #f4ead8;
+      font: 16px Inter, sans-serif;
+      padding: 14px 16px;
+      outline: none;
+    }
+    button {
+      background: #d4af37;
+      color: #111;
+      border: 0;
+      padding: 14px 22px;
+      font-family: "Bebas Neue", sans-serif;
+      letter-spacing: 0.12em;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .setlist {
+      max-width: 860px;
+      margin: 64px auto 80px;
+      padding: 0 40px;
+    }
+    .setlist h2 {
+      font-family: "Bebas Neue", sans-serif;
+      letter-spacing: 0.16em;
+      color: #d4af37;
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+    .bit {
+      display: grid;
+      grid-template-columns: 88px 1fr;
+      gap: 18px;
+      padding: 22px 0;
+      border-top: 1px solid rgba(244,234,216,0.12);
+    }
+    .bit strong {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 22px;
+      letter-spacing: 0.08em;
+      color: #d4af37;
+    }
+    .bit h3 { font-size: 18px; margin-bottom: 6px; }
+    .bit p { color: #cbbfa6; line-height: 1.55; }
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: #7a7264;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="spot"></div>
+  <nav>
+    <div class="wordmark">ROAST <span>MY</span> FUNNEL</div>
+    <a href="../index.html">All directions</a>
+  </nav>
+  <main>
+    <section class="hero">
+      <p class="kicker">Tonight only · Shopify brands</p>
+      <h1>YOUR FUNNEL<br>WALKED IN.<br><em>the crowd already left.</em></h1>
+      <p class="sub">Paste the store URL. We pull the Meta ads, the landing pages, the checkout — then we do twenty minutes on all of it.</p>
+      <form action="#" onsubmit="return false">
+        <input value="https://glowformula.myshopify.com" />
+        <button>ROAST IT</button>
+      </form>
+    </section>
+    <section class="setlist">
+      <h2>Opening bits — sample roast</h2>
+      <article class="bit">
+        <strong>BIT 01</strong>
+        <div>
+          <h3>The ads are a variety show. The page is a eulogy.</h3>
+          <p>Fourteen Meta variants. UGC, founder, “wait it’s actually…” — and they all land on a homepage that says Welcome. That’s not a funnel. That’s a trapdoor with branding.</p>
+        </div>
+      </article>
+      <article class="bit">
+        <strong>BIT 02</strong>
+        <div>
+          <h3>Your hero video is stalling for time.</h3>
+          <p>Eight seconds of steam and linen before a product appears. On mute. On mobile. The offer is in the caption like it’s embarrassed to be there.</p>
+        </div>
+      </article>
+      <article class="bit">
+        <strong>BIT 03</strong>
+        <div>
+          <h3>Checkout asked for a childhood street name.</h3>
+          <p>Shop Pay is on the page. You buried it under a guest form that wants a company name for a $38 serum. The cart is trying to leave. You’re taking attendance.</p>
+        </div>
+      </article>
+    </section>
+  </main>
+  <footer>Direction 01 · Late Night · gold / black / spotlight</footer>
+</body>
+</html>
