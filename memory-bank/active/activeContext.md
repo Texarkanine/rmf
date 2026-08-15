@@ -1,11 +1,13 @@
 # Active Context
 
 ## Current Task: pin-ad-library-id
-**Phase:** COMPLEXITY-ANALYSIS - COMPLETE
+**Phase:** BUILD - COMPLETE
 
 ## What Was Done
-- Classified as Level 1: a bug in one skill. Step 4 currently says extract every ad the page yields, which over-collects on a direct `?id=` Ad Library URL when HTTP is bot-blocked and a browser subagent clicks sibling cards.
-- Preflight is not part of Level 1. QA will use Grok as requested.
+- Pinned `/start-the-roast` collection when the ads deeplink has a non-empty `id` query parameter.
+- Browser / subagent fallback may open that same URL only; it must not click sibling library cards.
+- Schema note: a pinned deeplink yields at most one ad.
+- Set URLs (no `id`) still extract every ad the page yields.
 
 ## Next Step
-- Load the Level 1 workflow and enter the build phase.
+- `/niko-qa` with Grok.

@@ -10,7 +10,7 @@ The structured handoff at the run directory root. One object. No extra top-level
 | `funnel.url` | string | Absolute HTTP(S) URL. |
 | `source` | object | Where the ads were collected from. |
 | `source.ads_deeplink` | string | The operator's Meta/Facebook ads deeplink, stored as given. |
-| `ads` | array | Ad objects. Empty if nothing could be extracted. |
+| `ads` | array | Ad objects. Empty if nothing could be extracted. At most one object when `source.ads_deeplink` has a non-empty `id` query parameter. |
 
 ## Ad object
 
