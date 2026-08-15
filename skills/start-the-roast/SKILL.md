@@ -44,29 +44,14 @@ Read [`references/funnel-json.md`](references/funnel-json.md). That file is the 
 
 ## Step 4 — Fetch ads
 
-Parse the ads deeplink first. If it has a non-empty `id` query parameter, the run is **pinned** to that id. Otherwise the run is a **set**.
+Invoke [`../get-meta-ad/SKILL.md`](../get-meta-ad/SKILL.md) with:
 
-Open or fetch the exact deeplink with ordinary agent tools (HTTP fetch or a browser). Do not call the Meta Marketing API or the Graph API. Do not add a scraper package or helper script.
+1. The ads deeplink from Step 1
+2. The workdir from Step 2
 
-### Pinned
+Do not open, fetch, or parse the Ad Library yourself. That skill writes `<workdir>/ads.json` and any media files.
 
-Extract only the ad whose platform id equals the `id` query value: id, permalink, advertiser, body, headline, description, CTA, and creative URLs.
-
-If the page lists other ads, ignore them. If the matching ad is not found, extract nothing (`ads` will be `[]`). Do not substitute a sibling, related, or advertiser-page ad.
-
-If HTTP is blocked and a browser (or a browser subagent) is used: open that same URL only. Stay on it. Do not click other library cards, "See more ads", advertiser pages, or search results. Any helper you spawn must be told the target id and this stay-on-URL rule.
-
-### Set
-
-Extract every ad the page yields: id, permalink, advertiser, body, headline, description, CTA, and creative URLs.
-
-### Media
-
-For each creative URL on an extracted ad, try to download the file into `<workdir>/media/`. Name files `media/<ad-id>-<index>.<ext>` using the ad id when known, a zero-based index, and an extension from the URL or `Content-Type`. Create `media/` only when at least one file lands.
-
-A failed page fetch or a failed download does not fail the run. Continue to Step 5 with whatever was retrieved.
-
-Do not write a `path` for a file that is not on disk.
+When it finishes, continue to Step 5. A missing `ads.json` or an empty `ads` array is not a failure.
 
 ## Step 5 — Write funnel.json
 
@@ -74,7 +59,7 @@ Write `<workdir>/funnel.json` to the schema from Step 3.
 
 - `funnel.url` is the funnel from Step 1.
 - `source.ads_deeplink` is the deeplink from Step 1, stored as given.
-- `ads` is the extracted list. Use `[]` when nothing was extracted. A pinned deeplink yields at most one ad.
+- `ads` is the `ads` array from `<workdir>/ads.json`. Use `[]` when that file is missing or `ads` is empty.
 - For each media object, include `path` only after confirming that file exists under the workdir. Omit `path` when the file is missing.
 
 Do not invent ads, copy, or media paths.
