@@ -30,3 +30,16 @@ Build a `start-the-funnel` entrypoint that calls an orchestrator. The orchestrat
 * Insights
     - Parent-walks / subagents-judge keeps a split even though Grok is in the browser.
     - A closed five-skill allowlist is the only way the "select the correct set" requirement stays implementable.
+
+## 2026-08-15 - PREFLIGHT - COMPLETE (PASS WITH ADVISORY)
+
+* Work completed
+    - Validated prerequisites, TDD carve-out, conventions, dependencies, conflicts, and completeness against `skills/start-the-roast`, `systemPatterns.md`, and capture layout.
+    - Wrote `memory-bank/active/.preflight-status` as `PASS WITH ADVISORY`.
+    - Amended plan: entrypoint workdir creation for standalone runs, `walk-jsonl.md` example, explicit second-capture-path wording for memory-bank reconciliation.
+* Decisions made
+    - No creative phase required; open questions were resolved in plan.
+    - Prose-only scope correctly exempt from per-unit TDD ordering; no change-detector tests scheduled.
+* Insights
+    - `artifacts/` under the run directory matches Playwright capture's relative screenshot paths.
+    - `systemPatterns.md` "Grok offline only" language must be extended, not replaced, when documenting the agent-walk path.

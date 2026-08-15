@@ -1,13 +1,11 @@
 # Active Context
 
 ## Current Task: start-the-funnel
-**Phase:** PLAN - COMPLETE
+**Phase:** PREFLIGHT - COMPLETE (PASS WITH ADVISORY)
 
 ## What Was Done
-- Level 3 plan written. No creative phase: approach follows `start-the-roast` (prose product skills, disk handoff) plus the operator's walk + subagent-judge + JSONL spec.
-- Two skills: `start-the-funnel` (resolve inputs, invoke) and `funnel-walk-orchestrator` (walk, select, judge, append).
-- Closed skill allowlist: `cro`, `ad-creative`, `popups`, `offers`, `signup`.
-- Playwright CLI and offline `score` stay. This is a second walker.
+- Preflight validated plan against codebase: TDD carve-out for prose-only deliverables, convention alignment with `start-the-roast`, no blocking conflicts.
+- Plan amended: explicit standalone workdir creation on entrypoint; `walk-jsonl.md` example line; clearer `systemPatterns.md` reconciliation wording for the second capture path.
 
 ## Next Step
-- Preflight phase to validate the plan.
+- `/niko-build` when ready to implement.

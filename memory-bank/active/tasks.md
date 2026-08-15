@@ -111,7 +111,7 @@ All deliverables are product skills and schema/reference prose. There is no new 
 1. JSONL schema reference
     - Files: `skills/funnel-walk-orchestrator/references/walk-jsonl.md`
     - Tests first: N/A for prose & policy artifacts
-    - Changes: one-object-per-line schema. Required keys: `step` (1-based int), `kind`, `url`, `judgements` (array of `{skill, judge}` or `{skill, error}`). Optional: `screenshot` (relative path, only if the file exists), `signals` (`overlay`, `account_wall`, `priced_offer`, `ads_present`). No extra top-level keys.
+    - Changes: one-object-per-line schema. Required keys: `step` (1-based int), `kind`, `url`, `judgements` (array of `{skill, judge}` or `{skill, error}`). Optional: `screenshot` (relative path, only if the file exists), `signals` (`overlay`, `account_wall`, `priced_offer`, `ads_present`). No extra top-level keys. Include at least one full example line (mirror `funnel-json.md`).
 
 2. Skill selection map
     - Files: `skills/funnel-walk-orchestrator/references/skill-map.md`
@@ -133,7 +133,10 @@ All deliverables are product skills and schema/reference prose. There is no new 
 4. Entrypoint skill
     - Files: `skills/start-the-funnel/SKILL.md`
     - Tests first: N/A for prose & policy artifacts
-    - Changes: resolve workdir (`--workdir` or `.rmf/<timestamp>/`) and funnel URL (invocation, or `funnel.json`'s `funnel.url`). Writable-dir check. If URL still missing, stop. Then invoke `funnel-walk-orchestrator`. Do not walk inside this skill. Do not roast in chat.
+    - Changes: resolve workdir and funnel URL, then invoke `funnel-walk-orchestrator`. Do not walk inside this skill. Do not roast in chat.
+        - **Workdir:** if `--workdir <path>` is present, use it (create if missing). Otherwise create `.rmf/<timestamp>/` in the operator's cwd (same UTC timestamp format as `/start-the-roast`; create `.rmf/` if needed).
+        - **Writable check:** same touch-and-delete probe as `/start-the-roast` Step 2; stop on failure.
+        - **Funnel URL:** from invocation, else `funnel.json`'s `funnel.url` when the workdir already has one. If still missing, stop. Do not walk.
 
 5. README
     - Files: `README.md`
@@ -143,7 +146,7 @@ All deliverables are product skills and schema/reference prose. There is no new 
 6. Persistent memory-bank reconciliation
     - Files: `memory-bank/systemPatterns.md`, `memory-bank/productContext.md`
     - Tests first: N/A for prose & policy artifacts
-    - Changes: surgical. Record the agent-walk path, the walker/subagent-judge split, and `walk.jsonl` as the step-judgement handoff. Do not delete the Playwright / offline-score path.
+    - Changes: surgical. Record the agent-walk path as a **second capture path** (when Playwright cannot run), the parent-walks / subagent-judges split, and `walk.jsonl` as the step-judgement handoff. Leave the Playwright walk + offline Grok-on-bundle score path intact and still described.
 
 ## Technology Validation
 
@@ -175,6 +178,6 @@ No new technology — validation not required. No new npm packages. No test runn
 - [x] Implementation plan complete
 - [x] Technology validation complete
 - [x] Pre-Mortem complete
-- [ ] Preflight
+- [x] Preflight
 - [ ] Build
 - [ ] QA
