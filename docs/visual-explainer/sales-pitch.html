@@ -1,0 +1,1859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roast My Funnel — Sales Pitch</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a120e'/%3E%3Cpath d='M32 14c6 9 3 14 3 20a11 11 0 1 1-22 0c0-6 7-13 11-20 2 7 8 9 8 0z' fill='%23e07a3d'/%3E%3Ccircle cx='32' cy='40' r='4' fill='%23e8b86d'/%3E%3C/svg%3E">
+<!--
+  Roast My Funnel sales pitch.
+  Sources: prd.md, memory-bank/productContext.md, memory-bank/systemPatterns.md, memory-bank/techContext.md.
+  Aesthetic: Ember Stage — charcoal club, cream type, terracotta/amber heat.
+  Fonts: Bricolage Grotesque + IBM Plex Mono.
+  surf unavailable; CSS gradients and SVG decorations only.
+-->
+<script>document.documentElement.classList.add('js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --font-body: 'Bricolage Grotesque', 'Avenir Next', 'Segoe UI', sans-serif;
+    --font-mono: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+    --bg: #1a120e;
+    --surface: #261c16;
+    --surface2: #32261e;
+    --surface-elevated: #3c2e24;
+    --border: rgba(232, 184, 109, 0.10);
+    --border-bright: rgba(232, 184, 109, 0.22);
+    --text: #f3ebe3;
+    --text-dim: #b5a89a;
+    --accent: #e07a3d;
+    --accent-dim: rgba(224, 122, 61, 0.14);
+    --gold: #e8b86d;
+    --gold-dim: rgba(232, 184, 109, 0.12);
+    --code-bg: #120c09;
+    --code-text: #f0e4d6;
+    --green: #8fb07a;
+    --green-dim: rgba(143, 176, 122, 0.12);
+    --red: #d45c4a;
+    --red-dim: rgba(212, 92, 74, 0.12);
+    --blue: #c4a574;
+    --blue-dim: rgba(196, 165, 116, 0.12);
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #faf4ec;
+      --surface: #fffdf8;
+      --surface2: #f3e8d8;
+      --surface-elevated: #ffffff;
+      --border: rgba(60, 36, 20, 0.10);
+      --border-bright: rgba(60, 36, 20, 0.18);
+      --text: #2a1f18;
+      --text-dim: #6e5f52;
+      --accent: #c2410c;
+      --accent-dim: rgba(194, 65, 12, 0.08);
+      --gold: #a16207;
+      --gold-dim: rgba(161, 98, 7, 0.10);
+      --code-bg: #2a1f18;
+      --code-text: #f3ebe3;
+      --green: #3f6b38;
+      --green-dim: rgba(63, 107, 56, 0.10);
+      --red: #b42318;
+      --red-dim: rgba(180, 35, 24, 0.08);
+      --blue: #8a5a2b;
+      --blue-dim: rgba(138, 90, 43, 0.10);
+    }
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--text);
+    background: var(--bg);
+    overflow: hidden;
+  }
+
+  a { color: var(--accent); text-underline-offset: 0.15em; }
+
+  .deck {
+    height: 100dvh;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .slide {
+    height: 100dvh;
+    scroll-snap-align: start;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(40px, 6vh, 80px) clamp(40px, 8vw, 120px);
+    isolation: isolate;
+    min-width: 0;
+    transition:
+      opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .js .slide {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+  }
+
+  .slide.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .js .slide .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .slide.visible .reveal { opacity: 1; transform: none; }
+  .slide.visible .reveal:nth-child(1) { transition-delay: 0.1s; }
+  .slide.visible .reveal:nth-child(2) { transition-delay: 0.2s; }
+  .slide.visible .reveal:nth-child(3) { transition-delay: 0.3s; }
+  .slide.visible .reveal:nth-child(4) { transition-delay: 0.4s; }
+  .slide.visible .reveal:nth-child(5) { transition-delay: 0.5s; }
+  .slide.visible .reveal:nth-child(6) { transition-delay: 0.6s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .slide, .slide .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+
+  .deck-progress {
+    position: fixed; top: 0; left: 0; height: 3px;
+    background: var(--accent); z-index: 100;
+    transition: width 0.3s ease; pointer-events: none;
+  }
+
+  .deck-dots {
+    position: fixed; right: clamp(12px, 2vw, 24px); top: 50%;
+    transform: translateY(-50%); display: flex; flex-direction: column;
+    align-items: flex-end; gap: 6px; z-index: 100; padding: 8px;
+    width: 36px; max-height: min(70dvh, 560px); overflow-y: auto;
+    background: color-mix(in srgb, var(--bg) 60%, transparent 40%);
+    border-radius: 20px;
+    backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+    transition: width 0.2s ease, border-radius 0.2s ease;
+  }
+  .deck-dots:hover,
+  .deck-dots:focus-within {
+    align-items: stretch;
+    width: min(240px, calc(100vw - 32px));
+    border-radius: 18px;
+  }
+
+  .deck-dot {
+    display: grid; grid-template-columns: 8px minmax(0, 1fr); align-items: center;
+    gap: 0; width: 20px; min-height: 24px; padding: 7px 6px;
+    border: none; border-radius: 999px; background: transparent; color: var(--text-dim);
+    cursor: pointer; font: 500 11px/1.2 var(--font-mono); text-align: left;
+    opacity: 0.72; transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease, width 0.2s ease, gap 0.2s ease;
+  }
+  .deck-dot::before {
+    content: ''; width: 8px; height: 8px; border-radius: 50%;
+    background: currentColor; opacity: 0.5; transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .deck-dot-label {
+    min-width: 0; max-width: 0; overflow: hidden; opacity: 0;
+    white-space: nowrap; text-overflow: ellipsis;
+    transition: max-width 0.2s ease, opacity 0.2s ease;
+  }
+  .deck-dots:hover .deck-dot,
+  .deck-dots:focus-within .deck-dot { gap: 10px; width: 100%; }
+  .deck-dots:hover .deck-dot-label,
+  .deck-dots:focus-within .deck-dot-label { max-width: 180px; opacity: 0.9; }
+  .deck-dot:hover { opacity: 1; }
+  .deck-dot.active,
+  .deck-dot[aria-current="true"] { background: var(--accent-dim); color: var(--accent); opacity: 1; }
+  .deck-dot.active::before,
+  .deck-dot[aria-current="true"]::before { opacity: 1; transform: scale(1.35); }
+  .deck-dot:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .deck-counter {
+    position: fixed; bottom: clamp(12px, 2vh, 24px); right: clamp(12px, 2vw, 24px);
+    font-family: var(--font-mono); font-size: 12px; color: var(--text-dim);
+    z-index: 100; font-variant-numeric: tabular-nums;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .deck-arrow {
+    position: fixed; bottom: clamp(12px, 2vh, 24px); z-index: 100;
+    width: 40px; height: 40px; border-radius: 999px;
+    border: 1px solid var(--border-bright);
+    background: color-mix(in srgb, var(--bg) 70%, transparent);
+    color: var(--text); cursor: pointer;
+    font: 600 18px/1 var(--font-body);
+    backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  }
+  .deck-arrow:hover { color: var(--accent); border-color: var(--accent); }
+  .deck-arrow:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .deck-arrow--prev { left: clamp(12px, 2vw, 24px); }
+  .deck-arrow--next { left: clamp(60px, 8vw, 72px); }
+
+  .deck-hints {
+    position: fixed; bottom: clamp(12px, 2vh, 24px); left: 50%;
+    transform: translateX(-50%); font-family: var(--font-mono);
+    font-size: 11px; color: var(--text-dim); opacity: 0.6; z-index: 100;
+    transition: opacity 0.5s ease; white-space: nowrap;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  .deck-hints.faded { opacity: 0; pointer-events: none; }
+
+  .deck-overlay {
+    position: fixed; inset: 0; z-index: 200; display: none;
+    align-items: center; justify-content: center; padding: 24px;
+    background: rgba(0, 0, 0, 0.55); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+  }
+  .deck-overlay.open { display: flex; }
+  .deck-panel {
+    width: min(560px, 86vw); max-height: 80dvh; overflow: auto;
+    background: var(--surface); color: var(--text);
+    border: 1px solid var(--border-bright); border-radius: 14px;
+    padding: 18px 14px; font-family: var(--font-mono);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+  }
+  .deck-panel:focus { outline: none; }
+  .deck-panel__header {
+    margin: 2px 8px 12px; font-size: 12px; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--text-dim);
+  }
+  .deck-panel__button {
+    display: flex; gap: 10px; width: 100%; padding: 8px 10px; border: none;
+    border-radius: 8px; background: transparent; color: inherit; cursor: pointer;
+    font: inherit; font-size: 13px; line-height: 1.3; text-align: left;
+  }
+  .deck-panel__button:hover,
+  .deck-panel__button[aria-current="true"] { background: var(--accent-dim); color: var(--accent); }
+  .deck-panel__number { min-width: 22px; opacity: 0.5; }
+  .deck-help-row {
+    display: flex; justify-content: space-between; gap: 24px;
+    padding: 7px 10px; font-size: 13px;
+  }
+  .deck-help-row span { opacity: 0.7; }
+  .deck-help-row kbd {
+    background: var(--surface2); border-radius: 5px; padding: 2px 8px;
+    font: inherit; color: var(--text);
+  }
+
+  .slide__display {
+    font-size: clamp(48px, 10vw, 120px);
+    font-weight: 700;
+    letter-spacing: -2px;
+    line-height: 0.95;
+    text-wrap: balance;
+  }
+  .slide__heading {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+  .slide__body {
+    font-size: clamp(16px, 2.2vw, 22px);
+    line-height: 1.6;
+    color: var(--text-dim);
+    text-wrap: pretty;
+  }
+  .slide__subtitle {
+    font-family: var(--font-mono);
+    font-size: clamp(12px, 1.5vw, 18px);
+    color: var(--text-dim);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .slide__label {
+    font-family: var(--font-mono);
+    font-size: clamp(10px, 1.2vw, 13px);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .slide__decor { position: absolute; pointer-events: none; z-index: 0; }
+
+  .slide--title {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: radial-gradient(ellipse at 50% 30%, var(--accent-dim) 0%, transparent 50%);
+  }
+  .slide--title .slide__display { color: var(--accent); }
+
+  .slide--divider { justify-content: center; }
+  .slide--divider .slide__number {
+    font-size: clamp(100px, 22vw, 260px);
+    font-weight: 200;
+    line-height: 0.85;
+    opacity: 0.08;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -55%);
+    pointer-events: none;
+    font-variant-numeric: tabular-nums;
+    color: var(--accent);
+  }
+
+  .slide--content .slide__inner {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: clamp(24px, 4vw, 60px);
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+  }
+  .slide--content.is-right .slide__inner { grid-template-columns: 2fr 3fr; }
+  .slide__bullets { list-style: none; padding: 0; }
+  .slide__bullets li {
+    padding: 10px 0 10px 24px;
+    position: relative;
+    font-size: clamp(16px, 2vw, 22px);
+    line-height: 1.5;
+    color: var(--text-dim);
+    overflow-wrap: break-word;
+  }
+  .slide__bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 20px;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .slide__aside {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    min-width: 0;
+  }
+
+  .slide--split { padding: 0; }
+  .slide--split .slide__panels {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    height: 100%;
+    min-width: 0;
+  }
+  .slide--split.is-even .slide__panels { grid-template-columns: 1fr 1fr; }
+  .slide--split .slide__panel {
+    padding: clamp(40px, 6vh, 80px) clamp(32px, 4vw, 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+  .slide--split .slide__panel--primary { background: var(--surface); }
+  .slide--split .slide__panel--secondary {
+    background: var(--surface2);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .slide--diagram { padding: clamp(24px, 4vh, 48px) clamp(24px, 4vw, 60px); }
+  .slide--diagram .slide__heading { margin-bottom: clamp(8px, 1.5vh, 20px); }
+
+  .diagram-shell {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .diagram-shell__hint {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+    opacity: 0.7;
+  }
+  .mermaid-wrap {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    overflow: hidden;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: grab;
+  }
+  .mermaid-wrap.is-panning { cursor: grabbing; user-select: none; }
+  .mermaid-viewport {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+  }
+  .mermaid-canvas { position: absolute; top: 0; left: 0; }
+  .zoom-controls {
+    position: absolute; top: 8px; right: 8px;
+    display: flex; gap: 2px; z-index: 10;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 6px; padding: 2px;
+  }
+  .zoom-controls button {
+    width: 28px; height: 28px; border: none; background: transparent;
+    color: var(--text-dim); font-family: var(--font-mono); font-size: 14px;
+    cursor: pointer; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .zoom-controls button:hover { background: var(--border); color: var(--text); }
+  .zoom-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    padding: 0 6px;
+    white-space: nowrap;
+    align-self: center;
+  }
+  .mermaid .nodeLabel { color: var(--text) !important; font-family: var(--font-body) !important; }
+  .mermaid .edgeLabel { color: var(--text-dim) !important; background-color: var(--bg) !important; font-family: var(--font-mono) !important; }
+  .mermaid .edgeLabel rect { fill: var(--bg) !important; }
+  .slide--diagram .mermaid svg { width: 100% !important; height: auto !important; max-width: 100% !important; }
+  .slide--diagram .mermaid .nodeLabel { font-size: 18px !important; }
+  .slide--diagram .mermaid .edgeLabel { font-size: 14px !important; }
+  .slide--diagram .mermaid .node rect,
+  .slide--diagram .mermaid .node circle,
+  .slide--diagram .mermaid .node polygon { stroke-width: 2px; }
+  .slide--diagram .mermaid .edge-pattern-solid { stroke-width: 2px; }
+
+  .slide--dashboard .slide__kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(140px, 20vw, 220px), 1fr));
+    gap: clamp(12px, 2vw, 24px);
+  }
+  .slide__kpi {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: clamp(16px, 3vh, 32px) clamp(16px, 2vw, 24px);
+    min-width: 0;
+    overflow: hidden;
+  }
+  .slide__kpi-val {
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .slide__kpi-label {
+    font-family: var(--font-mono);
+    font-size: clamp(9px, 1.2vw, 13px);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-dim);
+    margin-top: 8px;
+  }
+  .slide__kpi-trend {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    margin-top: 4px;
+    color: var(--text-dim);
+  }
+
+  .slide--table { padding: clamp(24px, 4vh, 48px) clamp(24px, 4vw, 60px); }
+  .table-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    flex: 1;
+    min-height: 0;
+    min-width: 0;
+  }
+  .table-scroll { overflow-x: auto; }
+  .data-table { width: 100%; border-collapse: collapse; }
+  .data-table th {
+    background: var(--surface2);
+    font-family: var(--font-mono);
+    font-size: clamp(10px, 1.3vw, 14px);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    text-align: left;
+    padding: clamp(10px, 1.5vh, 16px) clamp(14px, 2vw, 24px);
+    border-bottom: 2px solid var(--border-bright);
+    white-space: nowrap;
+  }
+  .data-table td {
+    padding: clamp(10px, 1.5vh, 16px) clamp(14px, 2vw, 24px);
+    border-bottom: 1px solid var(--border);
+    font-size: clamp(14px, 1.8vw, 20px);
+    vertical-align: top;
+    overflow-wrap: break-word;
+  }
+  .data-table tbody tr:last-child td { border-bottom: none; }
+  .data-table tbody tr:nth-child(even) { background: var(--surface2); }
+  .data-table tbody tr:hover { background: var(--accent-dim); }
+  .data-table code {
+    font-family: var(--font-mono); font-size: 0.85em;
+    background: var(--accent-dim); color: var(--accent);
+    padding: 1px 5px; border-radius: 3px;
+  }
+
+  .slide--code { align-items: center; }
+  .slide__code-block {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: clamp(24px, 4vh, 48px) clamp(24px, 4vw, 48px);
+    max-width: 900px;
+    width: 100%;
+    position: relative;
+    min-width: 0;
+  }
+  .slide__code-filename {
+    position: absolute;
+    top: -12px; left: 24px;
+    font-family: var(--font-mono);
+    font-size: 11px; font-weight: 600;
+    padding: 4px 12px; border-radius: 4px;
+    background: var(--accent); color: var(--bg);
+  }
+  .slide__code-block pre { margin: 0; overflow-x: auto; }
+  .slide__code-block code {
+    font-family: var(--font-mono);
+    font-size: clamp(14px, 1.6vw, 18px);
+    line-height: 1.7;
+    color: var(--code-text);
+  }
+  .slide__code-block .hl { color: var(--gold); }
+  .slide__code-block .cm { color: var(--text-dim); }
+
+  .slide--quote {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: clamp(60px, 10vh, 120px) clamp(60px, 12vw, 200px);
+  }
+  .slide__quote-mark {
+    font-size: clamp(80px, 14vw, 180px);
+    line-height: 0.5;
+    opacity: 0.08;
+    font-family: Georgia, serif;
+    pointer-events: none;
+    margin-bottom: -20px;
+    color: var(--accent);
+  }
+  .slide--quote blockquote {
+    font-size: clamp(24px, 4vw, 48px);
+    font-weight: 400;
+    line-height: 1.35;
+    font-style: italic;
+  }
+  .slide--quote cite {
+    font-family: var(--font-mono);
+    font-size: clamp(11px, 1.4vw, 14px);
+    font-style: normal;
+    margin-top: clamp(16px, 3vh, 32px);
+    display: block;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .slide--bleed { padding: 0; justify-content: flex-end; }
+  .slide__bg { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 0; }
+  .slide__bg--gradient {
+    background:
+      radial-gradient(ellipse at 20% 80%, rgba(224, 122, 61, 0.35) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(232, 184, 109, 0.18) 0%, transparent 45%),
+      linear-gradient(160deg, #2a160e 0%, #1a120e 45%, #3a1c12 100%);
+  }
+  .slide__scrim {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 40%, transparent 100%);
+    z-index: 1;
+  }
+  .slide--bleed .slide__content {
+    position: relative; z-index: 2;
+    padding: clamp(40px, 6vh, 80px) clamp(40px, 8vw, 120px);
+    color: #ffffff;
+  }
+  .slide--bleed .slide__heading { color: #ffffff; }
+  .slide--bleed .slide__subtitle { color: rgba(255,255,255,0.7); }
+
+  .pipeline {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    flex: 1;
+    min-height: 0;
+    margin-top: clamp(12px, 2vh, 24px);
+  }
+  .pipeline__step {
+    flex: 1;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    border-radius: 10px;
+    padding: clamp(14px, 2.5vh, 28px) clamp(12px, 1.5vw, 22px);
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+  .pipeline__num {
+    font-family: var(--font-mono);
+    font-size: clamp(10px, 1.2vw, 13px);
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 1px;
+  }
+  .pipeline__name {
+    font-size: clamp(16px, 2vw, 24px);
+    font-weight: 700;
+    margin: clamp(4px, 0.8vh, 8px) 0;
+  }
+  .pipeline__desc {
+    font-size: clamp(12px, 1.3vw, 16px);
+    color: var(--text-dim);
+    line-height: 1.5;
+    flex: 1;
+  }
+  .pipeline__file {
+    font-family: var(--font-mono);
+    font-size: clamp(10px, 1.1vw, 12px);
+    color: var(--accent);
+    background: var(--accent-dim);
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-top: clamp(8px, 1.5vh, 16px);
+    align-self: flex-start;
+  }
+  .pipeline__arrow {
+    display: flex;
+    align-items: center;
+    padding: 0 clamp(3px, 0.4vw, 6px);
+    color: var(--accent);
+    flex-shrink: 0;
+    opacity: 0.4;
+  }
+
+  .ve-stat {
+    text-align: center;
+    min-width: 0;
+  }
+  .ve-stat__n {
+    font-size: clamp(40px, 7vw, 72px);
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+  .ve-stat__l {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-top: 8px;
+  }
+
+  @media (max-height: 700px) {
+    .slide { padding: clamp(24px, 4vh, 40px) clamp(32px, 6vw, 80px); }
+    .slide__display { font-size: clamp(36px, 8vw, 72px); }
+    .slide--divider .slide__number { font-size: clamp(80px, 16vw, 160px); }
+  }
+  @media (max-height: 600px) {
+    .slide__decor { display: none; }
+    .slide--quote { padding: clamp(32px, 6vh, 60px) clamp(40px, 8vw, 100px); }
+    .slide__quote-mark { display: none; }
+  }
+  @media (max-height: 500px) {
+    .slide { padding: clamp(16px, 3vh, 24px) clamp(24px, 5vw, 48px); }
+    .deck-dots, .deck-arrow { display: none; }
+    .slide__display { font-size: clamp(28px, 7vw, 48px); }
+  }
+  @media (max-width: 768px) {
+    .slide--content .slide__inner,
+    .slide--content.is-right .slide__inner { grid-template-columns: 1fr; }
+    .slide--content .slide__aside { display: none; }
+    .slide--split .slide__panels,
+    .slide--split.is-even .slide__panels { grid-template-columns: 1fr; }
+    .slide--dashboard .slide__kpis { grid-template-columns: repeat(2, 1fr); }
+    .pipeline { flex-direction: column; }
+    .pipeline__arrow { justify-content: center; padding: 4px 0; transform: rotate(90deg); }
+  }
+</style>
+</head>
+<body>
+
+<div class="deck">
+
+  <!-- 1 TITLE -->
+  <section class="slide slide--title">
+    <svg class="slide__decor" style="top:0;right:0;" width="120" height="120" viewBox="0 0 120 120" aria-hidden="true">
+      <line x1="120" y1="0" x2="120" y2="40" stroke="var(--accent)" stroke-width="2" opacity="0.15"/>
+      <line x1="80" y1="0" x2="120" y2="0" stroke="var(--accent)" stroke-width="2" opacity="0.15"/>
+    </svg>
+    <svg class="slide__decor" style="bottom:0;left:0;" width="120" height="120" viewBox="0 0 120 120" aria-hidden="true">
+      <line x1="0" y1="80" x2="0" y2="120" stroke="var(--accent)" stroke-width="2" opacity="0.15"/>
+      <line x1="0" y1="120" x2="40" y2="120" stroke="var(--accent)" stroke-width="2" opacity="0.15"/>
+    </svg>
+    <p class="slide__subtitle reveal" style="margin-bottom:clamp(16px,2vh,32px);">A sales pitch for the people paying the ads</p>
+    <h1 class="slide__display reveal">Roast My Funnel</h1>
+    <p class="slide__subtitle reveal" style="margin-top:clamp(16px,2vh,32px);">One sitting. One score. Receipts.</p>
+  </section>
+
+  <!-- 2 QUOTE -->
+  <section class="slide slide--quote" style="background-image:radial-gradient(ellipse at 50% 50%, var(--accent-dim) 0%, transparent 35%);">
+    <div class="slide__quote-mark reveal">&ldquo;</div>
+    <blockquote class="reveal">Spy tools show the ad. Agencies show a deck. Nobody shows the path after the click.</blockquote>
+    <cite class="reveal">The problem, from the PRD</cite>
+  </section>
+
+  <!-- 3 DIVIDER -->
+  <section class="slide slide--divider" style="background-image:radial-gradient(ellipse at 80% 60%, var(--accent-dim) 0%, transparent 40%);">
+    <span class="slide__number">01</span>
+    <div>
+      <h2 class="slide__heading reveal">The leak</h2>
+      <p class="slide__subtitle reveal" style="margin-top:12px;">Paid social is live. The story is not.</p>
+    </div>
+  </section>
+
+  <!-- 4 CONTENT -->
+  <section class="slide slide--content" style="background-image:radial-gradient(ellipse at 20% 80%, var(--accent-dim) 0%, transparent 45%);">
+    <div class="slide__inner">
+      <div>
+        <p class="slide__label reveal">The sitting they never get</p>
+        <h2 class="slide__heading reveal">Ads, page, cart, and checkout tell four different stories</h2>
+        <ul class="slide__bullets">
+          <li class="reveal">A DTC founder is spending real money on paid social.</li>
+          <li class="reveal">They cannot see, in one sitting, whether the path matches the promise.</li>
+          <li class="reveal">The click-through page is often a leftover homepage.</li>
+          <li class="reveal">They need a roast of <em>their</em> funnel — with receipts.</li>
+        </ul>
+      </div>
+      <div class="slide__aside reveal">
+        <div class="ve-stat">
+          <div class="ve-stat__n">5</div>
+          <div class="ve-stat__l">hops that must agree</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 SPLIT -->
+  <section class="slide slide--split is-even">
+    <div class="slide__panels">
+      <div class="slide__panel slide__panel--primary">
+        <p class="slide__label reveal" style="color:var(--red);">Agency CRO</p>
+        <h2 class="slide__heading reveal" style="font-size:clamp(22px,3.5vw,36px);">Slow and polite</h2>
+        <ul class="slide__bullets" style="margin-top:16px;">
+          <li class="reveal">A 20-page memo arrives after the spend is gone.</li>
+          <li class="reveal">The roast is sanded down for the client relationship.</li>
+          <li class="reveal">Useful later. Useless tonight.</li>
+        </ul>
+      </div>
+      <div class="slide__panel slide__panel--secondary">
+        <p class="slide__label reveal" style="color:var(--gold);">Spy tools</p>
+        <h2 class="slide__heading reveal" style="font-size:clamp(22px,3.5vw,36px);">Ads, then silence</h2>
+        <ul class="slide__bullets" style="margin-top:16px;">
+          <li class="reveal">They show creative. They do not walk the store.</li>
+          <li class="reveal">No cart surprises. No checkout field load.</li>
+          <li class="reveal">The leak is after the click.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 SPLIT who -->
+  <section class="slide slide--split">
+    <div class="slide__panels">
+      <div class="slide__panel slide__panel--primary">
+        <p class="slide__label reveal">Who it is for</p>
+        <h2 class="slide__heading reveal" style="font-size:clamp(22px,3.5vw,36px);">The person paying the ads</h2>
+        <ul class="slide__bullets" style="margin-top:16px;">
+          <li class="reveal">A business owner or performance marketer.</li>
+          <li class="reveal">Auditing <strong>their own</strong> paid funnel.</li>
+          <li class="reveal">One blessed store/ad pair for the demo. Any URL is the product story.</li>
+        </ul>
+      </div>
+      <div class="slide__panel slide__panel--secondary">
+        <p class="slide__label reveal" style="color:var(--text-dim);">Who it is not</p>
+        <h2 class="slide__heading reveal" style="font-size:clamp(22px,3.5vw,36px);">Not a roast-for-hire desk</h2>
+        <ul class="slide__bullets" style="margin-top:16px;">
+          <li class="reveal">Not an agency operator roasting a client.</li>
+          <li class="reveal">Not a random visitor of roastmyfunnel.com.</li>
+          <li class="reveal">That public site is a later product story.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 CONTENT use cases -->
+  <section class="slide slide--content is-right" style="background-image:radial-gradient(ellipse at 80% 20%, var(--gold-dim) 0%, transparent 45%);">
+    <div class="slide__inner">
+      <div class="slide__aside reveal">
+        <svg viewBox="0 0 180 180" width="180" height="180" aria-hidden="true">
+          <circle cx="90" cy="90" r="70" fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.25"/>
+          <circle cx="90" cy="90" r="48" fill="none" stroke="var(--gold)" stroke-width="1.5" opacity="0.3" stroke-dasharray="4 6"/>
+          <text x="90" y="86" text-anchor="middle" font-family="var(--font-body)" font-size="22" fill="var(--accent)" font-weight="700">1 sit</text>
+          <text x="90" y="110" text-anchor="middle" font-family="var(--font-mono)" font-size="11" fill="var(--text-dim)">WHOLE PATH</text>
+        </svg>
+      </div>
+      <div>
+        <p class="slide__label reveal">Use cases</p>
+        <h2 class="slide__heading reveal">What they came to do</h2>
+        <ul class="slide__bullets">
+          <li class="reveal">See whether ads, destination, product, cart, and checkout tell the same story.</li>
+          <li class="reveal">Get a short, opinionated roast of this funnel — with receipts.</li>
+          <li class="reveal">Leave with a starting-point landing-page image their team can adapt.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 DIVIDER -->
+  <section class="slide slide--divider" style="background-image:radial-gradient(ellipse at 30% 40%, var(--gold-dim) 0%, transparent 40%);">
+    <span class="slide__number">02</span>
+    <div>
+      <h2 class="slide__heading reveal">The offer</h2>
+      <p class="slide__subtitle reveal" style="margin-top:12px;">One number. Four buckets. A mock they can share.</p>
+    </div>
+  </section>
+
+  <!-- 9 DASHBOARD success -->
+  <section class="slide slide--dashboard" style="background-image:radial-gradient(ellipse at 70% 30%, var(--accent-dim) 0%, transparent 40%);">
+    <p class="slide__label reveal">What success looks like</p>
+    <h2 class="slide__heading reveal">After one run they can</h2>
+    <div class="slide__kpis" style="margin-top:clamp(16px,3vh,32px);">
+      <div class="slide__kpi reveal">
+        <div class="slide__kpi-val" style="color:var(--accent);">0–100</div>
+        <div class="slide__kpi-label">Funnel Score</div>
+        <div class="slide__kpi-trend">Four weighted buckets</div>
+      </div>
+      <div class="slide__kpi reveal">
+        <div class="slide__kpi-val" style="color:var(--gold);">Roast</div>
+        <div class="slide__kpi-label">Kill Tony of the gaps</div>
+        <div class="slide__kpi-trend">Funnel, not the brand</div>
+      </div>
+      <div class="slide__kpi reveal">
+        <div class="slide__kpi-val" style="color:var(--green);">Break</div>
+        <div class="slide__kpi-label">Where story dies</div>
+        <div class="slide__kpi-trend">Ad promise vs destination</div>
+      </div>
+      <div class="slide__kpi reveal">
+        <div class="slide__kpi-val" style="color:var(--text);">v1</div>
+        <div class="slide__kpi-label">LP image mock</div>
+        <div class="slide__kpi-trend">Shareable, not a coded site</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 CONTENT benefits -->
+  <section class="slide slide--content" style="background-image:radial-gradient(ellipse at 15% 70%, var(--gold-dim) 0%, transparent 40%);">
+    <div class="slide__inner">
+      <div>
+        <p class="slide__label reveal">Why this, not a memo</p>
+        <h2 class="slide__heading reveal">A report card, not a novel</h2>
+        <ul class="slide__bullets">
+          <li class="reveal">One number and four buckets instead of a 20-page memo.</li>
+          <li class="reveal">Roast the gaps: mismatch, buried price, generic homepage leftover.</li>
+          <li class="reveal">Do not roast the brand, the company as people, or the customers.</li>
+          <li class="reveal">A shareable v1 landing-page mock sits next to the primary gap.</li>
+        </ul>
+      </div>
+      <div class="slide__aside reveal">
+        <div class="ve-stat">
+          <div class="ve-stat__n">4</div>
+          <div class="ve-stat__l">buckets, not 8 letter grades</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 SPLIT judges open -->
+  <section class="slide slide--split is-even">
+    <div class="slide__panels">
+      <div class="slide__panel slide__panel--primary">
+        <p class="slide__label reveal">What they open</p>
+        <h2 class="slide__heading reveal" style="font-size:clamp(22px,3.5vw,36px);">A short walk video</h2>
+        <p class="slide__body reveal" style="margin-top:16px;">Live crawl receipts, cut for clarity. ≤ 3 minutes for the hackathon tape. Grok is not “making a video” as a product feature.</p>
+      </div>
+      <div class="slide__panel slide__panel--secondary">
+        <p class="slide__label reveal">And the product</p>
+        <h2 class="slide__heading reveal" style="font-size:clamp(22px,3.5vw,36px);">The report-card write-up</h2>
+        <p class="slide__body reveal" style="margin-top:16px;">HTML canvas from the run. There is no live SaaS to click during judging. Capture stays a CLI / agent run.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 DIVIDER -->
+  <section class="slide slide--divider" style="background-image:radial-gradient(ellipse at 70% 30%, var(--accent-dim) 0%, transparent 40%);">
+    <span class="slide__number">03</span>
+    <div>
+      <h2 class="slide__heading reveal">The machine</h2>
+      <p class="slide__subtitle reveal" style="margin-top:12px;">Playwright walks. Grok judges. Roles do not mix.</p>
+    </div>
+  </section>
+
+  <!-- 13 CSS PIPELINE -->
+  <section class="slide" style="background-image:radial-gradient(ellipse at 50% 90%, var(--accent-dim) 0%, transparent 40%);">
+    <p class="slide__label reveal">Background magic</p>
+    <h2 class="slide__heading reveal">The operator does not watch a mouse</h2>
+    <div class="pipeline reveal">
+      <div class="pipeline__step">
+        <div class="pipeline__num">01</div>
+        <div class="pipeline__name">Save ads</div>
+        <div class="pipeline__desc">Placement, image vs video, copy, CTA, destination. No Ad Library chrome in the report.</div>
+        <div class="pipeline__file">ad bundle</div>
+      </div>
+      <div class="pipeline__arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path d="M5 12h14m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="pipeline__step" style="border-top-color:var(--gold);">
+        <div class="pipeline__num">02</div>
+        <div class="pipeline__name">Click through</div>
+        <div class="pipeline__desc">Follow the URL the ad actually opens. Shared destinations walk once.</div>
+        <div class="pipeline__file">destination</div>
+      </div>
+      <div class="pipeline__arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path d="M5 12h14m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="pipeline__step">
+        <div class="pipeline__num">03</div>
+        <div class="pipeline__name">Shopper path</div>
+        <div class="pipeline__desc">Destination → product if needed → cart → checkout page load. Stop before PII.</div>
+        <div class="pipeline__file">screenshots</div>
+      </div>
+      <div class="pipeline__arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path d="M5 12h14m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="pipeline__step" style="border-top-color:var(--gold);">
+        <div class="pipeline__num">04</div>
+        <div class="pipeline__name">Grok grades</div>
+        <div class="pipeline__desc">Offline on the evidence bundle. marketingskills is the rubric brain, not an interview.</div>
+        <div class="pipeline__file">report.json</div>
+      </div>
+      <div class="pipeline__arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path d="M5 12h14m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="pipeline__step">
+        <div class="pipeline__num">05</div>
+        <div class="pipeline__name">LP mock</div>
+        <div class="pipeline__desc">A still image that continues the primary ad. Starting point, not a redesign.</div>
+        <div class="pipeline__file">v1 still</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 DIAGRAM -->
+  <section class="slide slide--diagram">
+    <h2 class="slide__heading reveal">Walker records. Grok writes the card.</h2>
+    <div class="diagram-shell reveal">
+      <p class="diagram-shell__hint">Ctrl/Cmd + wheel to zoom. Drag to pan. Click expand for a full tab.</p>
+      <div class="mermaid-wrap">
+        <div class="zoom-controls">
+          <button type="button" data-action="zoom-in" title="Zoom in">+</button>
+          <button type="button" data-action="zoom-out" title="Zoom out">&minus;</button>
+          <button type="button" data-action="zoom-fit" title="Smart fit">&#8634;</button>
+          <button type="button" data-action="zoom-one" title="1:1 zoom">1:1</button>
+          <button type="button" data-action="zoom-expand" title="Open full size">&#x26F6;</button>
+          <span class="zoom-label">Loading...</span>
+        </div>
+        <div class="mermaid-viewport">
+          <div class="mermaid mermaid-canvas"></div>
+        </div>
+      </div>
+      <script type="text/plain" class="diagram-source">
+flowchart TD
+  ads["Provided ads"] --> save["Save each ad"]
+  save --> dest["Click through<br/>destination"]
+  dest --> walk["Consumer journey"]
+  walk --> bundle["Evidence bundle"]
+  bundle --> grok["Grok grades<br/>and roasts"]
+  grok --> score["Funnel Score"]
+  grok --> roast["Roast on tiles"]
+  grok --> mock["v1 LP mock"]
+  score --> card["Report card"]
+  roast --> card
+  mock --> card
+
+  classDef intake fill:#3c2e24,stroke:#e07a3d,stroke-width:2px,color:#f3ebe3
+  classDef judge fill:#32261e,stroke:#e8b86d,stroke-width:2px,color:#f3ebe3
+  classDef out fill:#2a2218,stroke:#8fb07a,stroke-width:2px,color:#f3ebe3
+  class ads,save,dest,walk,bundle intake
+  class grok judge
+  class score,roast,mock,card out
+      </script>
+    </div>
+  </section>
+
+  <!-- 15 CONTENT ads -->
+  <section class="slide slide--content" style="background-image:radial-gradient(ellipse at 80% 80%, var(--accent-dim) 0%, transparent 40%);">
+    <div class="slide__inner">
+      <div>
+        <p class="slide__label reveal">Ad intake</p>
+        <h2 class="slide__heading reveal">You paste the ads. We do not invent a top five.</h2>
+        <ul class="slide__bullets">
+          <li class="reveal">One Meta Ad Library link required. More optional.</li>
+          <li class="reveal">Each creative is graded. Shared pages are walked once.</li>
+          <li class="reveal">Video is frames plus copy — start, ~3s, ~8s, last — not a movie watch.</li>
+          <li class="reveal">Audio transcription and scene-as-movie analysis are out of this ship.</li>
+        </ul>
+      </div>
+      <div class="slide__aside reveal">
+        <div class="ve-stat">
+          <div class="ve-stat__n">Meta</div>
+          <div class="ve-stat__l">only live ad path</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 16 CONTENT journey -->
+  <section class="slide slide--content is-right" style="background-image:radial-gradient(ellipse at 10% 30%, var(--gold-dim) 0%, transparent 40%);">
+    <div class="slide__inner">
+      <div class="slide__aside reveal">
+        <svg viewBox="0 0 200 160" width="200" height="160" aria-hidden="true">
+          <text x="8" y="28" font-family="var(--font-mono)" font-size="13" fill="var(--accent)">01 dest</text>
+          <text x="8" y="56" font-family="var(--font-mono)" font-size="13" fill="var(--text-dim)">02 product</text>
+          <text x="8" y="84" font-family="var(--font-mono)" font-size="13" fill="var(--text-dim)">03 cart</text>
+          <text x="8" y="112" font-family="var(--font-mono)" font-size="13" fill="var(--gold)">04 checkout load</text>
+          <text x="8" y="148" font-family="var(--font-mono)" font-size="13" fill="var(--red)">STOP before PII</text>
+        </svg>
+      </div>
+      <div>
+        <p class="slide__label reveal">Consumer journey</p>
+        <h2 class="slide__heading reveal">One shopper path. Then we stop.</h2>
+        <ul class="slide__bullets">
+          <li class="reveal">Destination is whatever the ad opened — home, LP, or PDP.</li>
+          <li class="reveal">Then product if needed, add to cart, cart, checkout page load only.</li>
+          <li class="reveal">No email, address, phone, or card. Do not invent a card.</li>
+          <li class="reveal">Account walls at checkout are in. Login walls before cart are out.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 17 SPLIT contracts -->
+  <section class="slide slide--split is-even">
+    <div class="slide__panels">
+      <div class="slide__panel slide__panel--primary">
+        <p class="slide__label reveal">Walker does not judge</p>
+        <h2 class="slide__heading reveal" style="font-size:clamp(22px,3.5vw,36px);">Playwright records</h2>
+        <ul class="slide__bullets" style="margin-top:16px;">
+          <li class="reveal">Pages, frames, copy, artifacts. No scores.</li>
+          <li class="reveal">An AI helper that only finds a button is not a judge.</li>
+          <li class="reveal">Reaching a thank-you page is a capture failure.</li>
+        </ul>
+      </div>
+      <div class="slide__panel slide__panel--secondary">
+        <p class="slide__label reveal">Grok works from the bundle</p>
+        <h2 class="slide__heading reveal" style="font-size:clamp(22px,3.5vw,36px);">The only fact base</h2>
+        <ul class="slide__bullets" style="margin-top:16px;">
+          <li class="reveal">Findings must cite artifacts that exist.</li>
+          <li class="reveal">Do not invent pages, CTAs, or errors never seen.</li>
+          <li class="reveal">The scoring model pin is grading policy, not a default.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 18 TABLE score -->
+  <section class="slide slide--table">
+    <p class="slide__label reveal">Funnel Score</p>
+    <h2 class="slide__heading reveal">Four buckets. Cart is on-site.</h2>
+    <div class="table-wrap reveal" style="flex:1; min-height:0; margin-top:clamp(8px,1.5vh,20px);">
+      <div class="table-scroll">
+        <table class="data-table">
+          <caption class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;">Score bucket weights</caption>
+          <thead>
+            <tr><th>Bucket</th><th>Weight</th><th>What it scores</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Creative</td><td>30</td><td>Each provided ad, from frames + copy. Average if several.</td></tr>
+            <tr><td>Message match</td><td>30</td><td>Ad promise vs the actual destination page.</td></tr>
+            <tr><td>On-site</td><td>20</td><td>Destination if needed, PDP, cart. Shared pages once.</td></tr>
+            <tr><td>Checkout</td><td>20</td><td>Checkout page only: surprises, trust, commitment, field load.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 19 TABLE rubric -->
+  <section class="slide slide--table">
+    <p class="slide__label reveal">Rubric brain</p>
+    <h2 class="slide__heading reveal">marketingskills, inverted</h2>
+    <div class="table-wrap reveal" style="flex:1; min-height:0; margin-top:clamp(8px,1.5vh,20px);">
+      <div class="table-scroll">
+        <table class="data-table">
+          <caption class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;">Rubric mapping</caption>
+          <thead>
+            <tr><th>Bucket</th><th>Skill</th><th>How we use it</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Creative</td><td><code>ad-creative</code></td><td>Invert the generator. Score hook, offer, visual, CTA.</td></tr>
+            <tr><td>Message match</td><td><code>cro</code></td><td>Headline vs traffic source. Paid-funnel matcher lives here.</td></tr>
+            <tr><td>On-site</td><td><code>cro</code></td><td>Value prop, CTA, hierarchy, proof, objections, friction.</td></tr>
+            <tr><td>Checkout</td><td><code>cro</code></td><td>Surprises, required commitment, trust, field load.</td></tr>
+            <tr><td>LP mock</td><td><code>copywriting</code> + <code>image</code></td><td>Draft the replacement still for the primary ad.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 20 CONTENT report card -->
+  <section class="slide slide--content" style="background-image:radial-gradient(ellipse at 60% 20%, var(--accent-dim) 0%, transparent 40%);">
+    <div class="slide__inner">
+      <div>
+        <p class="slide__label reveal">The write-up</p>
+        <h2 class="slide__heading reveal">Roast copy lives on the canvas</h2>
+        <ul class="slide__bullets">
+          <li class="reveal">Ad cluster: one tile per pasted ad — frames, copy, grade, destination.</li>
+          <li class="reveal">Journey cluster: destination, PDP, cart, checkout. Shared pages unique.</li>
+          <li class="reveal">Score 0–100 plus four bucket numbers, visible on the card.</li>
+          <li class="reveal">V1 LP mock next to the primary ad / destination gap. No Ad Library chrome.</li>
+        </ul>
+      </div>
+      <div class="slide__aside reveal">
+        <div class="ve-stat">
+          <div class="ve-stat__n">Tiles</div>
+          <div class="ve-stat__l">not a bottom essay</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 21 QUOTE tone -->
+  <section class="slide slide--quote" style="background-image:radial-gradient(ellipse at 50% 50%, var(--gold-dim) 0%, transparent 35%);">
+    <div class="slide__quote-mark reveal">&ldquo;</div>
+    <blockquote class="reveal">Kill Tony of the funnel. Punch the gap. Leave the customers alone.</blockquote>
+    <cite class="reveal">Tone contract</cite>
+  </section>
+
+  <!-- 22 DIVIDER -->
+  <section class="slide slide--divider" style="background-image:radial-gradient(ellipse at 20% 70%, var(--gold-dim) 0%, transparent 40%);">
+    <span class="slide__number">04</span>
+    <div>
+      <h2 class="slide__heading reveal">The demo</h2>
+      <p class="slide__subtitle reveal" style="margin-top:12px;">Any URL is the story. This pair is the tape.</p>
+    </div>
+  </section>
+
+  <!-- 23 CONTENT tonal -->
+  <section class="slide slide--content" style="background-image:radial-gradient(ellipse at 75% 60%, var(--accent-dim) 0%, transparent 40%);">
+    <div class="slide__inner">
+      <div>
+        <p class="slide__label reveal">Cursor Austin · Grok 4.6 Hackathon</p>
+        <h2 class="slide__heading reveal">Tonal’s video dumps to the homepage</h2>
+        <ul class="slide__bullets">
+          <li class="reveal">Store: tonal.com. Ad: Meta Library 2110273689844971.</li>
+          <li class="reveal">The video’s content is not on that page. That is the roast.</li>
+          <li class="reveal">Live crawl. No silent fallback tape. Hardware + membership + install will surprise.</li>
+          <li class="reveal">Grok 4.6 must score and roast — not only have been used to write code.</li>
+        </ul>
+      </div>
+      <div class="slide__aside reveal">
+        <div class="ve-stat">
+          <div class="ve-stat__n">Live</div>
+          <div class="ve-stat__l">against Tonal</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 24 TABLE inputs -->
+  <section class="slide slide--table">
+    <p class="slide__label reveal">Operator inputs</p>
+    <h2 class="slide__heading reveal">Four things. Spend is intensity.</h2>
+    <div class="table-wrap reveal" style="flex:1; min-height:0; margin-top:clamp(8px,1.5vh,20px);">
+      <div class="table-scroll">
+        <table class="data-table">
+          <caption class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;">Operator inputs</caption>
+          <thead>
+            <tr><th>Input</th><th>Required</th><th>Rule</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Store / start URL</td><td>Yes</td><td>Demo: https://tonal.com/</td></tr>
+            <tr><td>Ad platform</td><td>Yes</td><td>Meta is the only live path. Google and TikTok show as disabled.</td></tr>
+            <tr><td>Monthly ad spend</td><td>Yes</td><td>Range selector. Changes roast intensity, not the crawl.</td></tr>
+            <tr><td>Ads they care about</td><td>One+</td><td>Pasted Library links. We do not auto-discover “top ads.”</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 25 TABLE constraints -->
+  <section class="slide slide--table">
+    <p class="slide__label reveal">Honesty as a feature</p>
+    <h2 class="slide__heading reveal">What this ship will not do</h2>
+    <div class="table-wrap reveal" style="flex:1; min-height:0; margin-top:clamp(8px,1.5vh,20px);">
+      <div class="table-scroll">
+        <table class="data-table">
+          <caption class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;">Ship constraints</caption>
+          <thead>
+            <tr><th>Bound</th><th>Why it stays</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Stop before personal information</td><td>Checkout is page-load only. No payment. No invented card.</td></tr>
+            <tr><td>Capture stays a CLI / agent run</td><td>No public roastmyfunnel.com web app for this ship.</td></tr>
+            <tr><td>Meta only, live</td><td>Other platforms may appear in UI as visible and disabled.</td></tr>
+            <tr><td>Video = frames + copy</td><td>Audio and scene-as-movie analysis wait.</td></tr>
+            <tr><td>Login walls before cart</td><td>Out of scope. Skip or fail that hop honestly.</td></tr>
+            <tr><td>Replace the old 8 letter grades</td><td>Those dimensions and stage weights are not this product.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 26 SPLIT keep/change -->
+  <section class="slide slide--split is-even">
+    <div class="slide__panels">
+      <div class="slide__panel slide__panel--primary">
+        <p class="slide__label reveal" style="color:var(--green);">Keep</p>
+        <h2 class="slide__heading reveal" style="font-size:clamp(22px,3.5vw,36px);">The walker already works</h2>
+        <ul class="slide__bullets" style="margin-top:16px;">
+          <li class="reveal">Playwright walk, overlay dismiss, stop-before-payment.</li>
+          <li class="reveal">Evidence bundle. Grok as offline judge.</li>
+          <li class="reveal">Shared-page uniqueness and the model pin stay contracts.</li>
+        </ul>
+      </div>
+      <div class="slide__panel slide__panel--secondary">
+        <p class="slide__label reveal" style="color:var(--accent);">Change</p>
+        <h2 class="slide__heading reveal" style="font-size:clamp(22px,3.5vw,36px);">This is the product now</h2>
+        <ul class="slide__bullets" style="margin-top:16px;">
+          <li class="reveal">Library-link intake. Video frames. Four-bucket score.</li>
+          <li class="reveal">Report-card HTML. Live LP still. Roast voice.</li>
+          <li class="reveal">Spend and platform as roast context. Shared-page dedupe.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 27 CODE -->
+  <section class="slide slide--code" style="background-image:radial-gradient(ellipse at 50% 80%, var(--accent-dim) 0%, transparent 40%);">
+    <p class="slide__label reveal">How you run it</p>
+    <h2 class="slide__heading reveal" style="text-align:center;">TypeScript CLI. Playwright in. Grok out.</h2>
+    <div class="slide__code-block reveal" style="margin-top:clamp(12px,2vh,24px);">
+      <span class="slide__code-filename">package.json</span>
+      <pre><code><span class="cm"># Capture needs Chromium. Score needs XAI_API_KEY.</span>
+<span class="hl">npm run capture</span> -- https://tonal.com/
+<span class="hl">npm run score</span> -- &lt;run&gt;
+
+<span class="cm"># Windowed walk by default. HEADLESS=1 hides it.</span>
+<span class="cm"># Output is gitignored under runs/.</span></code></pre>
+    </div>
+  </section>
+
+  <!-- 28 DASHBOARD judging -->
+  <section class="slide slide--dashboard" style="background-image:radial-gradient(ellipse at 30% 70%, var(--gold-dim) 0%, transparent 40%);">
+    <p class="slide__label reveal">Hackathon scoreboard</p>
+    <h2 class="slide__heading reveal">Works, taste, business — Grok must roast</h2>
+    <div class="slide__kpis" style="margin-top:clamp(16px,3vh,32px);">
+      <div class="slide__kpi reveal">
+        <div class="slide__kpi-val" style="color:var(--accent);">40</div>
+        <div class="slide__kpi-label">Works</div>
+        <div class="slide__kpi-trend">Live walk, real receipts</div>
+      </div>
+      <div class="slide__kpi reveal">
+        <div class="slide__kpi-val" style="color:var(--gold);">30</div>
+        <div class="slide__kpi-label">Taste</div>
+        <div class="slide__kpi-trend">Report card + LP still</div>
+      </div>
+      <div class="slide__kpi reveal">
+        <div class="slide__kpi-val" style="color:var(--green);">30</div>
+        <div class="slide__kpi-label">Business</div>
+        <div class="slide__kpi-trend">Own-funnel audit, not a toy</div>
+      </div>
+      <div class="slide__kpi reveal">
+        <div class="slide__kpi-val" style="color:var(--text);">3m</div>
+        <div class="slide__kpi-label">Demo tape</div>
+        <div class="slide__kpi-trend">Submit 3:00 PM CT</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 29 BLEED close -->
+  <section class="slide slide--bleed">
+    <div class="slide__bg slide__bg--gradient"></div>
+    <div class="slide__scrim"></div>
+    <div class="slide__content">
+      <p class="slide__label reveal" style="color:rgba(255,255,255,0.7);">The ask</p>
+      <h2 class="slide__heading reveal">Roast the gaps. Keep the brand. Ship the mock.</h2>
+      <p class="slide__subtitle reveal" style="margin-top:12px;">New concept. Not Red Beard. A marketer leaves with a score, a jab, and a page that matches the ad they actually run.</p>
+    </div>
+  </section>
+
+</div>
+
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  import elkLayouts from 'https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk/dist/mermaid-layout-elk.esm.min.mjs';
+
+  const config = {
+    fitPadding: 28,
+    minHeight: 360,
+    maxHeightPx: 960,
+    maxHeightVh: 0.84,
+    maxInitialZoom: 1.8,
+    minZoom: 0.08,
+    maxZoom: 6.5,
+    zoomStep: 0.14,
+    readabilityFloor: 0.58
+  };
+
+  const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
+  let activeDrag = null;
+  addEventListener('mousemove', (e) => activeDrag?.onMove(e));
+  addEventListener('mouseup', () => { activeDrag?.onEnd(); activeDrag = null; });
+
+  const isDark = matchMedia('(prefers-color-scheme: dark)').matches;
+  mermaid.registerLayoutLoaders(elkLayouts);
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: 'base',
+    look: 'classic',
+    layout: 'elk',
+    themeVariables: {
+      fontFamily: "'Bricolage Grotesque', sans-serif",
+      fontSize: '18px',
+      primaryColor: isDark ? '#3c2e24' : '#f3e8d8',
+      primaryBorderColor: isDark ? '#e07a3d' : '#c2410c',
+      primaryTextColor: isDark ? '#f3ebe3' : '#2a1f18',
+      secondaryColor: isDark ? '#32261e' : '#fff7ed',
+      secondaryBorderColor: isDark ? '#e8b86d' : '#a16207',
+      secondaryTextColor: isDark ? '#f3ebe3' : '#2a1f18',
+      tertiaryColor: isDark ? '#2a2218' : '#ecf4e6',
+      tertiaryBorderColor: isDark ? '#8fb07a' : '#3f6b38',
+      tertiaryTextColor: isDark ? '#f3ebe3' : '#2a1f18',
+      lineColor: isDark ? '#b5a89a' : '#6e5f52',
+      noteBkgColor: isDark ? '#32261e' : '#fff7ed',
+      noteTextColor: isDark ? '#f3ebe3' : '#2a1f18',
+      noteBorderColor: isDark ? '#e8b86d' : '#a16207',
+    }
+  });
+
+  const rerenderers = [];
+
+  function initDiagram(shell) {
+    const wrap = shell.querySelector('.mermaid-wrap');
+    const viewport = shell.querySelector('.mermaid-viewport');
+    const canvas = shell.querySelector('.mermaid-canvas');
+    const source = shell.querySelector('.diagram-source');
+    const label = shell.querySelector('.zoom-label');
+    if (!wrap || !viewport || !canvas || !source || !label) {
+      console.error('initDiagram: missing required elements in', shell);
+      return;
+    }
+
+    let zoom = 1;
+    let fitMode = 'contain';
+    let panX = 0;
+    let panY = 0;
+    let svgW = 0;
+    let svgH = 0;
+    let sx = 0, sy = 0, spx = 0, spy = 0;
+    let touchDist = 0, touchCx = 0, touchCy = 0;
+    const inSlide = Boolean(wrap.closest('.slide'));
+
+    function constrainPan() {
+      const vpW = viewport.clientWidth;
+      const vpH = viewport.clientHeight;
+      const rW = svgW * zoom;
+      const rH = svgH * zoom;
+      const pad = config.fitPadding;
+      panX = (rW + pad * 2 <= vpW) ? (vpW - rW) / 2 : clamp(panX, vpW - rW - pad, pad);
+      panY = (rH + pad * 2 <= vpH) ? (vpH - rH) / 2 : clamp(panY, vpH - rH - pad, pad);
+    }
+
+    function applyTransform() {
+      const svg = canvas.querySelector('svg');
+      if (!svg || !svgW) return;
+      constrainPan();
+      svg.style.width = (svgW * zoom) + 'px';
+      svg.style.height = (svgH * zoom) + 'px';
+      canvas.style.transform = `translate(${panX}px, ${panY}px)`;
+      label.textContent = Math.round(zoom * 100) + '% \u2014 ' + fitMode;
+    }
+
+    function canPan() {
+      const rW = svgW * zoom;
+      const rH = svgH * zoom;
+      return rW + config.fitPadding * 2 > viewport.clientWidth
+          || rH + config.fitPadding * 2 > viewport.clientHeight;
+    }
+
+    function computeSmartFit() {
+      const vpW = viewport.clientWidth;
+      const vpH = viewport.clientHeight;
+      const aW = Math.max(80, vpW - config.fitPadding * 2);
+      const aH = Math.max(80, vpH - config.fitPadding * 2);
+      const contain = Math.min(aW / svgW, aH / svgH);
+      let z = contain;
+      let mode = 'contain';
+      if (contain < config.readabilityFloor) {
+        const chartR = svgH / svgW;
+        const vpR = vpH / Math.max(vpW, 1);
+        if (chartR >= vpR) { z = aW / svgW; mode = 'width-priority'; }
+        else { z = aH / svgH; mode = 'height-priority'; }
+      }
+      return { zoom: clamp(z, config.minZoom, config.maxInitialZoom), mode };
+    }
+
+    function fitDiagram() {
+      if (!svgW) return;
+      const fit = computeSmartFit();
+      zoom = fit.zoom;
+      fitMode = fit.mode;
+      panX = (viewport.clientWidth - svgW * zoom) / 2;
+      panY = (viewport.clientHeight - svgH * zoom) / 2;
+      applyTransform();
+    }
+
+    function setOneToOne() {
+      zoom = clamp(1, config.minZoom, config.maxZoom);
+      fitMode = '1:1';
+      panX = (viewport.clientWidth - svgW * zoom) / 2;
+      panY = (viewport.clientHeight - svgH * zoom) / 2;
+      applyTransform();
+    }
+
+    function zoomAround(factor, cx, cy) {
+      const next = clamp(zoom * factor, config.minZoom, config.maxZoom);
+      const ratio = next / zoom;
+      panX = cx - ratio * (cx - panX);
+      panY = cy - ratio * (cy - panY);
+      zoom = next;
+      fitMode = 'custom';
+      applyTransform();
+    }
+
+    function readSvgNaturalSize(svg) {
+      let w = 0, h = 0;
+      if (svg.viewBox?.baseVal?.width > 0) {
+        w = svg.viewBox.baseVal.width;
+        h = svg.viewBox.baseVal.height;
+      }
+      if (!w) {
+        w = parseFloat(svg.getAttribute('width')) || 0;
+        h = parseFloat(svg.getAttribute('height')) || 0;
+      }
+      if (!w) {
+        const b = svg.getBBox();
+        w = b.width; h = b.height;
+      }
+      if (!w) {
+        const r = svg.getBoundingClientRect();
+        w = r.width || 1000; h = r.height || 700;
+      }
+      if (!svg.getAttribute('viewBox')) svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+      return { w, h };
+    }
+
+    function setAdaptiveHeight() {
+      if (inSlide || !svgW) return;
+      const usableW = Math.max(280, wrap.getBoundingClientRect().width - 2);
+      const idealH = (svgH / svgW) * usableW + config.fitPadding * 2;
+      const maxVp = Math.floor(innerHeight * config.maxHeightVh);
+      const hardMax = Math.min(config.maxHeightPx, Math.max(config.minHeight + 40, maxVp));
+      wrap.style.height = Math.round(clamp(idealH, config.minHeight, hardMax)) + 'px';
+    }
+
+    function openInNewTab() {
+      const svg = canvas.querySelector('svg');
+      if (!svg) return;
+      const clone = svg.cloneNode(true);
+      clone.style.width = '';
+      clone.style.height = '';
+      const bg = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() || (isDark ? '#1a120e' : '#faf4ec');
+      const html = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Diagram</title><style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:' + bg + ';padding:40px;box-sizing:border-box}svg{max-width:100%;max-height:90vh;height:auto}</style></head><body>' + clone.outerHTML + '</body></html>';
+      open(URL.createObjectURL(new Blob([html], { type: 'text/html' })), '_blank');
+    }
+
+    async function render() {
+      try {
+        const code = source.textContent.trim();
+        if (!code) { label.textContent = 'Error: Empty source'; return; }
+        const id = 'diagram-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8);
+        const { svg } = await mermaid.render(id, code);
+        const parsed = new DOMParser().parseFromString(svg, 'text/html');
+        const parsedSvg = parsed.body.querySelector('svg');
+        if (!parsedSvg) { label.textContent = 'Error: No SVG'; return; }
+        canvas.replaceChildren(document.adoptNode(parsedSvg));
+        const svgNode = canvas.querySelector('svg');
+        if (!svgNode) { label.textContent = 'Error: No SVG'; return; }
+        const size = readSvgNaturalSize(svgNode);
+        svgW = size.w;
+        svgH = size.h;
+        svgNode.removeAttribute('width');
+        svgNode.removeAttribute('height');
+        svgNode.style.maxWidth = 'none';
+        svgNode.style.display = 'block';
+        setAdaptiveHeight();
+        fitDiagram();
+      } catch (err) {
+        console.error('Mermaid render failed:', err);
+        label.textContent = 'Error: ' + (err.message || 'Render failed');
+      }
+    }
+
+    const actions = {
+      'zoom-in': () => zoomAround(1 + config.zoomStep, viewport.clientWidth / 2, viewport.clientHeight / 2),
+      'zoom-out': () => zoomAround(1 / (1 + config.zoomStep), viewport.clientWidth / 2, viewport.clientHeight / 2),
+      'zoom-fit': fitDiagram,
+      'zoom-one': setOneToOne,
+      'zoom-expand': openInNewTab
+    };
+    Object.entries(actions).forEach(([action, handler]) => {
+      wrap.querySelector('[data-action="' + action + '"]')?.addEventListener('click', handler);
+    });
+    viewport.addEventListener('dblclick', fitDiagram);
+    viewport.addEventListener('wheel', (e) => {
+      if (e.ctrlKey || e.metaKey) {
+        e.preventDefault();
+        const rect = viewport.getBoundingClientRect();
+        const factor = e.deltaY < 0 ? 1 + config.zoomStep : 1 / (1 + config.zoomStep);
+        zoomAround(factor, e.clientX - rect.left, e.clientY - rect.top);
+        return;
+      }
+      if (canPan()) {
+        e.preventDefault();
+        panX -= e.deltaX;
+        panY -= e.deltaY;
+        applyTransform();
+      }
+    }, { passive: false });
+    viewport.addEventListener('mousedown', (e) => {
+      if (e.target.closest('.zoom-controls') || !canPan()) return;
+      wrap.classList.add('is-panning');
+      sx = e.clientX; sy = e.clientY; spx = panX; spy = panY;
+      e.preventDefault();
+      activeDrag = {
+        onMove: (ev) => { panX = spx + (ev.clientX - sx); panY = spy + (ev.clientY - sy); applyTransform(); },
+        onEnd: () => { wrap.classList.remove('is-panning'); }
+      };
+    });
+    viewport.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        sx = e.touches[0].clientX; sy = e.touches[0].clientY; spx = panX; spy = panY;
+      } else if (e.touches.length === 2) {
+        const dx = e.touches[0].clientX - e.touches[1].clientX;
+        const dy = e.touches[0].clientY - e.touches[1].clientY;
+        touchDist = Math.sqrt(dx * dx + dy * dy);
+        const r = viewport.getBoundingClientRect();
+        touchCx = (e.touches[0].clientX + e.touches[1].clientX) / 2 - r.left;
+        touchCy = (e.touches[0].clientY + e.touches[1].clientY) / 2 - r.top;
+      }
+    }, { passive: true });
+    viewport.addEventListener('touchmove', (e) => {
+      if (e.touches.length === 1 && canPan()) {
+        if (touchDist > 0) {
+          sx = e.touches[0].clientX; sy = e.touches[0].clientY; spx = panX; spy = panY; touchDist = 0;
+        }
+        e.preventDefault();
+        panX = spx + (e.touches[0].clientX - sx);
+        panY = spy + (e.touches[0].clientY - sy);
+        applyTransform();
+      } else if (e.touches.length === 2 && touchDist > 0) {
+        e.preventDefault();
+        const dx = e.touches[0].clientX - e.touches[1].clientX;
+        const dy = e.touches[0].clientY - e.touches[1].clientY;
+        const d = Math.sqrt(dx * dx + dy * dy);
+        zoomAround(d / touchDist, touchCx, touchCy);
+        touchDist = d;
+      }
+    }, { passive: false });
+    new ResizeObserver(() => {
+      if (svgW) { setAdaptiveHeight(); fitDiagram(); }
+    }).observe(wrap);
+    rerenderers.push(render);
+    render();
+  }
+
+  document.querySelectorAll('.diagram-shell').forEach(initDiagram);
+  window.rerenderDiagrams = () => Promise.all(rerenderers.map((render) => render()));
+</script>
+
+<script>
+  function autoFit() {
+    document.querySelectorAll('.slide__kpi-val').forEach(function(el) {
+      if (el.scrollWidth > el.clientWidth) {
+        var s = el.clientWidth / el.scrollWidth;
+        el.style.transform = 'scale(' + s + ')';
+        el.style.transformOrigin = 'left top';
+      }
+    });
+    document.querySelectorAll('.slide--quote blockquote').forEach(function(el) {
+      var len = el.textContent.trim().length;
+      if (len > 100) {
+        var scale = Math.max(0.5, 100 / len);
+        var fs = parseFloat(getComputedStyle(el).fontSize);
+        el.style.fontSize = Math.max(16, Math.round(fs * scale)) + 'px';
+      }
+    });
+  }
+
+  function SlideEngine() {
+    this.deck = document.querySelector('.deck');
+    this.slides = [].slice.call(document.querySelectorAll('.slide'));
+    this.current = 0;
+    this.total = this.slides.length;
+    this.storeKey = ['visual-explainer:slide-deck', location.pathname, document.title, this.total].join(':');
+    this.buildChrome();
+    this.bindEvents();
+    this.observe();
+    this.restore();
+    this.update();
+    autoFit();
+  }
+  SlideEngine.prototype.titleOf = function(i) {
+    var s = this.slides[i];
+    var el = s.querySelector('.slide__display,.slide__heading,blockquote,.slide__kpi-label');
+    var title = el ? el.textContent.trim().replace(/\s+/g, ' ') : '';
+    if (!title) {
+      var n = s.querySelector('.slide__number');
+      title = n ? 'Section ' + n.textContent.trim() : 'Slide ' + (i + 1);
+    }
+    return title.length > 58 ? title.slice(0, 56) + '\u2026' : title;
+  };
+  SlideEngine.prototype.buildChrome = function() {
+    var self = this;
+    var bar = document.createElement('div');
+    bar.className = 'deck-progress';
+    document.body.appendChild(bar);
+    this.bar = bar;
+    var dots = document.createElement('nav');
+    dots.className = 'deck-dots';
+    dots.setAttribute('aria-label', 'Slide navigation');
+    this.slides.forEach(function(_, i) {
+      var title = self.titleOf(i);
+      var d = document.createElement('button');
+      d.type = 'button';
+      d.className = 'deck-dot';
+      d.title = title;
+      d.setAttribute('aria-label', 'Go to slide ' + (i + 1) + ': ' + title);
+      var label = document.createElement('span');
+      label.className = 'deck-dot-label';
+      label.textContent = title;
+      d.appendChild(label);
+      d.onclick = function() { self.goTo(i); };
+      dots.appendChild(d);
+    });
+    document.body.appendChild(dots);
+    this.dots = [].slice.call(dots.children);
+    var prev = document.createElement('button');
+    prev.type = 'button';
+    prev.className = 'deck-arrow deck-arrow--prev';
+    prev.setAttribute('aria-label', 'Previous slide');
+    prev.textContent = '\u2190';
+    prev.onclick = function() { self.prev(); };
+    document.body.appendChild(prev);
+    var next = document.createElement('button');
+    next.type = 'button';
+    next.className = 'deck-arrow deck-arrow--next';
+    next.setAttribute('aria-label', 'Next slide');
+    next.textContent = '\u2192';
+    next.onclick = function() { self.next(); };
+    document.body.appendChild(next);
+    var ctr = document.createElement('div');
+    ctr.className = 'deck-counter';
+    ctr.setAttribute('aria-live', 'polite');
+    document.body.appendChild(ctr);
+    this.counter = ctr;
+    var hints = document.createElement('div');
+    hints.className = 'deck-hints';
+    hints.textContent = '\u2190 \u2192 \u00b7 O outline \u00b7 ? help';
+    document.body.appendChild(hints);
+    this.hints = hints;
+    this.hintTimer = setTimeout(function() { hints.classList.add('faded'); }, 4500);
+    var overlay = document.createElement('div');
+    overlay.className = 'deck-overlay';
+    overlay.setAttribute('aria-hidden', 'true');
+    var panel = document.createElement('div');
+    panel.className = 'deck-panel';
+    panel.setAttribute('role', 'dialog');
+    panel.setAttribute('aria-modal', 'true');
+    panel.setAttribute('aria-label', 'Slide deck panel');
+    panel.tabIndex = -1;
+    overlay.appendChild(panel);
+    document.body.appendChild(overlay);
+    this.overlay = overlay;
+    this.panel = panel;
+    overlay.addEventListener('click', function(e) { if (e.target === overlay) self.closeOverlay(); });
+  };
+  SlideEngine.prototype.clearPanel = function() {
+    while (this.panel.firstChild) this.panel.removeChild(this.panel.firstChild);
+  };
+  SlideEngine.prototype.addPanelHeader = function(text) {
+    var h = document.createElement('div');
+    h.className = 'deck-panel__header';
+    h.textContent = text;
+    this.panel.appendChild(h);
+  };
+  SlideEngine.prototype.renderOutline = function() {
+    var self = this;
+    this.clearPanel();
+    this.addPanelHeader('Outline');
+    this.slides.forEach(function(_, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'deck-panel__button';
+      b.setAttribute('data-i', String(i));
+      if (i === self.current) b.setAttribute('aria-current', 'true');
+      var n = document.createElement('span');
+      n.className = 'deck-panel__number';
+      n.textContent = String(i + 1);
+      var t = document.createElement('span');
+      t.textContent = self.titleOf(i);
+      b.appendChild(n);
+      b.appendChild(t);
+      b.onclick = function() { self.goTo(i); self.closeOverlay(); };
+      self.panel.appendChild(b);
+    });
+  };
+  SlideEngine.prototype.renderHelp = function() {
+    var rows = [['\u2192 / \u2193 / Space', 'next'], ['\u2190 / \u2191', 'previous'], ['Home / End', 'first / last'], ['O', 'outline'], ['?', 'help'], ['Esc', 'close']];
+    this.clearPanel();
+    this.addPanelHeader('Keyboard');
+    rows.forEach(function(row) {
+      var item = document.createElement('div');
+      item.className = 'deck-help-row';
+      var label = document.createElement('span');
+      label.textContent = row[1];
+      var key = document.createElement('kbd');
+      key.textContent = row[0];
+      item.appendChild(label);
+      item.appendChild(key);
+      this.panel.appendChild(item);
+    }, this);
+  };
+  SlideEngine.prototype.openOverlay = function(mode) {
+    this.lastFocus = document.activeElement;
+    this.overlay.classList.add('open');
+    this.overlay.setAttribute('aria-hidden', 'false');
+    mode === 'help' ? this.renderHelp() : this.renderOutline();
+    this.panel.focus();
+    this.fadeHints();
+  };
+  SlideEngine.prototype.closeOverlay = function() {
+    this.overlay.classList.remove('open');
+    this.overlay.setAttribute('aria-hidden', 'true');
+    if (this.lastFocus && typeof this.lastFocus.focus === 'function') this.lastFocus.focus();
+  };
+  SlideEngine.prototype.overlayOpen = function() { return this.overlay.classList.contains('open'); };
+  SlideEngine.prototype.bindEvents = function() {
+    var self = this;
+    document.addEventListener('keydown', function(e) {
+      if (e.target.closest('.mermaid-wrap,.table-scroll,.code-scroll,input,textarea,[contenteditable]')) return;
+      if (e.key === 'Escape' && self.overlayOpen()) { e.preventDefault(); self.closeOverlay(); return; }
+      if (e.key === 'o' || e.key === 'O') { e.preventDefault(); self.overlayOpen() ? self.closeOverlay() : self.openOverlay('outline'); return; }
+      if (e.key === '?') { e.preventDefault(); self.overlayOpen() ? self.closeOverlay() : self.openOverlay('help'); return; }
+      if (self.overlayOpen()) return;
+      if (['ArrowDown', 'ArrowRight', ' ', 'PageDown'].indexOf(e.key) > -1) { e.preventDefault(); self.next(); }
+      else if (['ArrowUp', 'ArrowLeft', 'PageUp'].indexOf(e.key) > -1) { e.preventDefault(); self.prev(); }
+      else if (e.key === 'Home') { e.preventDefault(); self.goTo(0); }
+      else if (e.key === 'End') { e.preventDefault(); self.goTo(self.total - 1); }
+      self.fadeHints();
+    });
+    window.addEventListener('hashchange', function() {
+      var i = self.fromHash();
+      if (i !== null && i !== self.current) self.goTo(i);
+    });
+    var tY;
+    this.deck.addEventListener('touchstart', function(e) { tY = e.touches[0].clientY; }, { passive: true });
+    this.deck.addEventListener('touchend', function(e) {
+      var dy = tY - e.changedTouches[0].clientY;
+      if (Math.abs(dy) > 50) { dy > 0 ? self.next() : self.prev(); }
+    });
+  };
+  SlideEngine.prototype.fromHash = function() {
+    var m = /^#(?:slide-)?(\d+)$/.exec(location.hash);
+    if (!m) return null;
+    var i = (+m[1]) - 1;
+    return i >= 0 && i < this.total ? i : null;
+  };
+  SlideEngine.prototype.restore = function() {
+    var i = this.fromHash();
+    if (i === null) {
+      try {
+        var saved = localStorage.getItem(this.storeKey);
+        if (saved !== null) {
+          var j = parseInt(saved, 10);
+          if (j > 0 && j < this.total) i = j;
+        }
+      } catch (e) {}
+    }
+    if (i !== null && i > 0) {
+      var self = this;
+      this.current = i;
+      setTimeout(function() { self.slides[i].scrollIntoView({ block: 'start' }); }, 60);
+    }
+  };
+  SlideEngine.prototype.observe = function() {
+    var self = this;
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          self.current = self.slides.indexOf(entry.target);
+          self.update();
+        }
+      });
+    }, { threshold: 0.5 });
+    this.slides.forEach(function(s) { obs.observe(s); });
+  };
+  SlideEngine.prototype.goTo = function(i) {
+    i = Math.max(0, Math.min(i, this.total - 1));
+    this.slides[i].scrollIntoView({ behavior: 'smooth' });
+  };
+  SlideEngine.prototype.next = function() { if (this.current < this.total - 1) this.goTo(this.current + 1); };
+  SlideEngine.prototype.prev = function() { if (this.current > 0) this.goTo(this.current - 1); };
+  SlideEngine.prototype.update = function() {
+    var c = this.current, pct = Math.round((c + 1) / this.total * 100);
+    this.bar.style.width = pct + '%';
+    this.dots.forEach(function(d, i) {
+      d.classList.toggle('active', i === c);
+      i === c ? d.setAttribute('aria-current', 'true') : d.removeAttribute('aria-current');
+    });
+    this.counter.textContent = (c + 1) + ' / ' + this.total + ' \u00b7 ' + pct + '%';
+    try {
+      history.replaceState(null, '', '#slide-' + (c + 1));
+      localStorage.setItem(this.storeKey, String(c));
+    } catch (e) {}
+  };
+  SlideEngine.prototype.fadeHints = function() {
+    clearTimeout(this.hintTimer);
+    this.hints.classList.add('faded');
+  };
+  new SlideEngine();
+</script>
+
+</body>
+</html>
