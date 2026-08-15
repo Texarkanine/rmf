@@ -17,7 +17,7 @@ TypeScript CLI: Playwright captures a live funnel; Grok 4.6 scores the evidence 
 
 ## Testing Process
 
-No test runner is wired in `package.json` yet. When tests land, this section should point at that config rather than listing commands. Until then, treat `prd.md` plus a real capture/score run as the acceptance check.
+Unit tests use Node's built-in `node:test` runner via `tsx`, configured as the `test` script in `package.json`. A live `capture` run against the target store remains the acceptance check for the walker.
 
 ## Design System
 

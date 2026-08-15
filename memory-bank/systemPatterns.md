@@ -46,8 +46,8 @@ The scoring model identity is a product contract, not a convenience default. Cha
 
 ## Product skills live under `skills/`
 
-Imported instructions stay in `.cursor/`. The roast entrypoint is `skills/start-the-roast`. Meta Ad Library retrieval is `skills/get-meta-ad`; the entrypoint invokes it and does not fetch the library itself. Do not put product skills under `.cursor/skills/`.
+Imported instructions stay in `.cursor/`. The walk entrypoint is `skills/walk-the-funnel`. The roast entrypoint is `skills/start-the-roast`. Meta Ad Library retrieval is `skills/get-meta-ad`; the entrypoint invokes it and does not fetch the library itself. Do not put product skills under `.cursor/skills/`.
 
 ## Entrypoint runs land under `.rmf/`
 
-`/start-the-roast` writes a timestamped directory under `.rmf/` (gitignored), or an explicit `--workdir`. `funnel.json` in that directory is the structured ad/funnel handoff. Later steps consume the printed path.
+`/walk-the-funnel` writes under `runs/<id>/` (gitignored). `steps.json` is the hop-list handoff; `bundle.json` stays on disk for scoring. `/start-the-roast` writes a timestamped directory under `.rmf/` (gitignored), or an explicit `--workdir`. `funnel.json` in that directory is the structured ad/funnel handoff. Later steps consume the printed path.

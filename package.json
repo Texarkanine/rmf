@@ -5,6 +5,7 @@
   "scripts": {
     "capture": "tsx src/cli.ts capture",
     "score": "tsx src/cli.ts score",
+    "test": "tsx --test src/**/*.test.ts",
     "web": "npm run dev --prefix web",
     "web:build": "npm run build --prefix web"
   },

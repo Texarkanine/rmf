@@ -8,6 +8,10 @@ npm run capture -- https://tonal.com/
 
 Screenshots land in `runs/<id>/artifacts/`. Chromium opens so you can watch it. Pass `HEADLESS=1` to hide the window.
 
+## Walk a funnel
+
+`/walk-the-funnel` runs Playwright against a live URL (`HEADLESS=1 npm run capture -- <url>`), writes `runs/<id>/steps.json`, and prints that hop list. It does not score or roast.
+
 ## Start a roast
 
 `/start-the-roast` collects a funnel URL and a Meta ads deeplink, writes a run under `.rmf/`, and prints that directory path. Ad Library retrieval is `/get-meta-ad`.
