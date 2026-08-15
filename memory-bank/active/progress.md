@@ -57,3 +57,18 @@ Build `skills/start-the-roast` so an operator can hand in a funnel and a Meta ad
     - `ads` may be `[]`; media `path` only after an on-disk existence check
 * Insights
     - The skill stays short by parking the JSON contract in `references/funnel-json.md` and requiring a read before the write
+
+## 2026-08-15 - QA - COMPLETE
+
+* Work completed
+    - Evaluated implementation against Project Brief, Implementation Plan, and semantic QA dimensions (KISS, DRY, YAGNI, Completeness, Regression, Integrity, Documentation)
+    - Confirmed `.gitignore` contains `.rmf/`
+    - Confirmed `skills/start-the-roast/references/funnel-json.md` defines public contract for `funnel.json`
+    - Confirmed `skills/start-the-roast/SKILL.md` implements 6-step entrypoint workflow per prompt-authoring guidelines
+    - Confirmed `README.md` and `memory-bank/productContext.md` reflect new entrypoint skill surface
+    - Wrote PASS to `memory-bank/active/.qa-validation-status`
+* Decisions made
+    - QA validation passed with no blocking issues or advisories; implementation cleanly satisfies all requirements and constraints
+* Insights
+    - Clean separation between workflow instructions in `SKILL.md` and data contract in `references/funnel-json.md` keeps the skill maintainable and robust
+
