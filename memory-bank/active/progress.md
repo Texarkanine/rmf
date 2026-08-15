@@ -55,3 +55,15 @@ Expand `/start-the-roast` so it sequences gather → Meta ad fetch → Playwrigh
 * Insights
     - `--out` / `--run-id walk` lands artifacts at `<workdir>/walk/`; screenshot paths in `steps.json` are relative to that directory
     - `walk-the-funnel` unchanged; orchestrator must read hops from disk, not from chat output
+
+## 2026-08-15 - BUILD - COMPLETE
+
+* Work completed
+    - Five planned files written; `start-the-roast` now has steps 1–11
+    - Existing `npm test`: 16 passing
+* Decisions made
+    - Report filename is `report.html` in the workdir
+    - Analysis starts only after `hop-skills.md` is read; walk hops are read from `<workdir>/walk/steps.json`
+    - No capture or score code changes
+* Insights
+    - Leftover intake-only frontmatter was the main stop-the-pipeline risk; it is gone
