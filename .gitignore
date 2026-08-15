@@ -5,6 +5,7 @@ blob-report/
 playwright/.cache/
 dist/
 runs/
+.rmf/
 .env
 .DS_Store
 .venv/

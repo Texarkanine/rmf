@@ -43,3 +43,17 @@ Build `skills/start-the-roast` so an operator can hand in a funnel and a Meta ad
     - Logged a non-blocking advisory (screenshot fallback for blocked media fetch) for operator consideration; not applied because it assumes tooling not guaranteed in every invocation context
 * Insights
     - The plan's only real gap was inside the memory bank itself (a document about to go stale), not in the skill design
+
+## 2026-08-15 - BUILD - COMPLETE
+
+* Work completed
+    - Added `.gitignore` with `.rmf/`
+    - Wrote `funnel.json` schema reference and the `start-the-roast` workflow skill
+    - Pointed `README.md` at the entrypoint
+    - Updated `productContext.md` for the roast-entrypoint product surface
+* Decisions made
+    - Screenshot fallback from preflight advisory not added; operator did not request it on `/niko-build`
+    - Timestamp is UTC, seconds precision, colons replaced with hyphens
+    - `ads` may be `[]`; media `path` only after an on-disk existence check
+* Insights
+    - The skill stays short by parking the JSON contract in `references/funnel-json.md` and requiring a read before the write

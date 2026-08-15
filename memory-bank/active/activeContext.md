@@ -1,13 +1,12 @@
 # Active Context
 
 ## Current Task: start-the-roast
-**Phase:** BUILD - IN-PROGRESS
+**Phase:** BUILD - COMPLETE
 
 ## What Was Done
-- Operator constraint recorded: prose only, no unit tests, no retrieval library.
-- Planned a skill-only deliverable: `skills/start-the-roast/SKILL.md` + `references/funnel-json.md`, slobac-style `.rmf/<timestamp>/` runs, gitignored.
-- Retrieval is agent fetch of the deeplink, best-effort media, no Marketing API.
-- Preflight validated the plan: no TDD, convention, dependency, or conflict issues; fixed a completeness gap in step 5 (both stale `productContext.md` lines now covered); logged one non-blocking advisory (screenshot fallback for blocked media).
+- Wrote `.gitignore` (`.rmf/`), `skills/start-the-roast/references/funnel-json.md`, `skills/start-the-roast/SKILL.md`, README mention, and a surgical `productContext.md` update.
+- Skill is a six-step workflow: collect inputs, establish workdir, read schema, fetch ads, write `funnel.json`, print the path.
+- No unit tests (operator constraint). No test suite, linter, or package to run.
 
 ## Next Step
-- Wait for the operator to run `/niko-build`.
+- QA review of the prose skill against the plan.

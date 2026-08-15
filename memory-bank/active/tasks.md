@@ -84,23 +84,23 @@ Operator constraint: no unit tests. These are the skill's observable behaviors f
 
 ## Implementation Plan
 
-1. Ignore local run folders
+1. [x] Ignore local run folders
     - Files: `.gitignore`
     - Tests first: N/A for prose & policy artifacts
     - Changes: add `.rmf/`
-2. Write the `funnel.json` contract
+2. [x] Write the `funnel.json` contract
     - Files: `skills/start-the-roast/references/funnel-json.md`
     - Tests first: N/A for prose & policy artifacts
     - Changes: document required fields (`funnel.url`, `source.ads_deeplink`, `ads[]` with copy fields and optional `media[].path`), relative media paths, and the rule that `path` is omitted unless the file exists
-3. Write the entrypoint skill
+3. [x] Write the entrypoint skill
     - Files: `skills/start-the-roast/SKILL.md`
     - Tests first: N/A for prose & policy artifacts
     - Changes: workflow skill (frontmatter per prompt-authoring). Steps: collect inputs, establish workdir (slobac rules), read the schema reference, fetch ads, write `funnel.json` and any media, print the directory. Author with `.cursor/skills/shared/prompt-authoring/SKILL.md`.
-4. Point the README at the skill
+4. [x] Point the README at the skill
     - Files: `README.md`
     - Tests first: N/A for prose & policy artifacts
     - Changes: keep the title; add that `/start-the-roast` is the entrypoint and that runs land under `.rmf/`
-5. Correct product context
+5. [x] Correct product context
     - Files: `memory-bank/productContext.md`
     - Tests first: N/A for prose & policy artifacts
     - Changes: surgical replace of "scaffolding only" with the roast-entrypoint use case. Also correct the Key Constraints bullet "The README currently names the project and nothing else" — false once step 4 lands. Do not dump the task narrative.
@@ -141,5 +141,5 @@ No new technology - validation not required. No package, runtime, or test runner
 - [x] Technology validation complete
 - [x] Pre-Mortem complete
 - [x] Preflight
-- [ ] Build
+- [x] Build
 - [ ] QA
