@@ -67,3 +67,14 @@ Inspect the Playwright funnel walker and try it against `https://tonal.com/`. Re
 * Insights
     - Tonal add-to-cart is AJAX; the shopper stays on `/products/tonal-2` until `/cart` is opened
     - Checkout already shows empty card placeholders without typing email
+
+## 2026-08-15 - QA - COMPLETE (PASS)
+
+* Work completed
+    - Reviewed the implementation against the Level 2 plan and acceptance criteria
+    - Confirmed the live bundle records landing → product → `/cart` → checkout, with payment UI detected and `stoppedBeforePayment: true`
+    - Ran the complete test suite: 14 tests passed
+    - Ran TypeScript validation with `npx tsc --noEmit`
+* Findings
+    - No blocking findings
+    - Advisory: an orphaned duplicate JSDoc block remains before `storeCartUrl` in `src/capture/funnel.ts`; it does not affect behavior or acceptance

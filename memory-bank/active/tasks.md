@@ -111,4 +111,12 @@ No new runtime technology. `node:test` is in Node 22. Playwright is already in `
 - [x] Pre-Mortem complete
 - [x] Preflight (PASS WITH ADVISORY)
 - [x] Build
-- [ ] QA
+- [x] QA (PASS)
+
+## QA Result
+
+✅ PASS
+
+- No blocking findings. The implementation covers the planned URL classification, cart fallback, payment-stop guards, payment UI evidence, rent-link avoidance, and live Tonal hop sequence.
+- Advisory: `src/capture/funnel.ts` has an orphaned duplicate JSDoc block immediately before `storeCartUrl`; this is documentation debris with no behavior impact and does not block acceptance.
+- Verification evidence: `npm test` passed all 14 tests; `npx tsc --noEmit` passed; `runs/tonal-walk-3/bundle.json` records landing → product → `/cart` → checkout with `paymentUiDetected: true` and `stoppedBeforePayment: true`.

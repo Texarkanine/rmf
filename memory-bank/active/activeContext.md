@@ -1,7 +1,7 @@
 # Active Context
 
 ## Current Task: tonal-funnel-walk
-**Phase:** BUILD - COMPLETE
+**Phase:** QA - COMPLETE (PASS)
 
 ## What Was Done
 - Added `node:test` (`npm test`) and locked `classifyPage`, payment-stop guards, and `PAYMENT_SUBMIT`.
@@ -30,4 +30,4 @@
 - `detectPaymentUi` iframe hosts alone were false on Tonal checkout; added `hasPaymentFieldLabels` after the live miss.
 
 ## Next Step
-- QA review of the Level 2 build.
+- Proceed to the next workflow phase.
