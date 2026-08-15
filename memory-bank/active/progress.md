@@ -29,3 +29,17 @@ Build `skills/start-the-roast` so an operator can hand in a funnel and a Meta ad
     - Agent-mediated fetch; no API client or test suite
 * Insights
     - The hard part is a stable on-disk contract, not code. A schema reference is the lock.
+
+## 2026-08-15 - PREFLIGHT - COMPLETE (PASS WITH ADVISORY)
+
+* Work completed
+    - Verified TDD carve-out applies to every implementation unit (all prose/policy artifacts); confirmed no change-detector tests are scheduled
+    - Verified proposed file locations (`skills/<name>/SKILL.md` + `references/`, `.rmf/`) against existing conventions; no violations
+    - Searched the repo for conflicting or duplicate implementations; found none
+    - Traced every Project Brief requirement and acceptance criterion to a concrete plan step; no gaps
+    - Found and fixed a completeness gap: step 5 named only one of two `productContext.md` lines invalidated by step 4
+* Decisions made
+    - Amended Implementation Plan step 5 to also correct the README-related Key Constraints bullet in `productContext.md`
+    - Logged a non-blocking advisory (screenshot fallback for blocked media fetch) for operator consideration; not applied because it assumes tooling not guaranteed in every invocation context
+* Insights
+    - The plan's only real gap was inside the memory bank itself (a document about to go stale), not in the skill design

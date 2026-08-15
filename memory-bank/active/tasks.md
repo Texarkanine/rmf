@@ -103,7 +103,7 @@ Operator constraint: no unit tests. These are the skill's observable behaviors f
 5. Correct product context
     - Files: `memory-bank/productContext.md`
     - Tests first: N/A for prose & policy artifacts
-    - Changes: surgical replace of "scaffolding only" with the roast-entrypoint use case. Do not dump the task narrative.
+    - Changes: surgical replace of "scaffolding only" with the roast-entrypoint use case. Also correct the Key Constraints bullet "The README currently names the project and nothing else" — false once step 4 lands. Do not dump the task narrative.
 
 ## Technology Validation
 
@@ -122,6 +122,16 @@ No new technology - validation not required. No package, runtime, or test runner
 - Skill silently assumes Marketing API tokens the operator does not have: plan response is the retrieval decision — agent fetch only, no API client.
 - Run artifacts get committed and leak ad creatives: already covered by gitignoring `.rmf/`.
 
+## Preflight Findings
+
+- **Fixed (completeness gap)**: Step 5 only named one of two `productContext.md` lines that step 4 (README edit) invalidates. Amended step 5 above to also cover the Key Constraints bullet about the README's current content.
+- **Advisory (Radical Innovation, not applied)**: The Pre-Mortem already flags that Ads Library pages are JS-heavy and direct fetch may yield little media. Consider directing `SKILL.md` to fall back to a full-page screenshot of the deeplink as `media/` when direct download fails. Not applied here because it assumes the executing agent has screenshot/browser tooling, which is not guaranteed for every invocation context — operator should decide whether to add it as a documented best-effort fallback in `SKILL.md`.
+- No TDD violations: every implementation unit is a prose/policy artifact (`.gitignore`, reference doc, `SKILL.md`, `README.md`, `productContext.md`) under the explicit skill/rule-wording carve-out in `.cursor/rules/shared/always-tdd.mdc`; the Test Plan schedules no automated or change-detector tests.
+- No convention violations: `skills/<name>/SKILL.md` + `references/*.md` mirrors the layout already used by imported skills (e.g. `prompt-authoring/references/`); `.rmf/` as the run-parent name matches the product name (`README.md`: `rmf`), consistent with `.slobac/` in the cited reference project.
+- No conflicts found: repo has no existing `.gitignore`, `skills/`, or `funnel.json`/`.rmf`/`start-the-roast` references outside the memory bank — nothing to duplicate or collide with (verified via repo-wide search).
+- Dependency impact otherwise clean: no other files reference the touched paths; no other in-flight task in `memory-bank/active/`.
+- All Project Brief requirements and acceptance criteria trace to a concrete plan step (1↔3, 2↔3, 3↔1+3, 4↔3, 5↔2+3; AC 1-5 ↔ steps 2-3).
+
 ## Status
 
 - [x] Component analysis complete
@@ -130,6 +140,6 @@ No new technology - validation not required. No package, runtime, or test runner
 - [x] Implementation plan complete
 - [x] Technology validation complete
 - [x] Pre-Mortem complete
-- [ ] Preflight
+- [x] Preflight
 - [ ] Build
 - [ ] QA
