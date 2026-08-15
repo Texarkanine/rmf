@@ -1,0 +1,17 @@
+---
+description: When using visual-explainer, write HTML under docs/visual-explainer/ so GitHub Pages can publish it from main.
+alwaysApply: true
+---
+
+# Visual Explainer Output
+
+This repository publishes the contents of `docs/` to GitHub Pages on every push to `main`.
+
+When using the `visual-explainer` skill — diagrams, architecture overviews, diff reviews, plan reviews, project recaps, slide decks, or complex comparison tables — follow the skill at `.cursor/skills/visual-explainer/SKILL.md`, then apply this output override:
+
+1. Write the generated HTML to `docs/visual-explainer/<descriptive-name>.html`. Use a kebab-case basename. Do not write to `~/.agent/diagrams/`.
+2. Do not overwrite an existing page unless the user asked to replace it.
+3. After writing, report the repo-relative path and the published URL: `https://texarkanine.github.io/rmf/visual-explainer/<filename>.html`.
+4. Leave `docs/index.html` alone. The Pages workflow rebuilds the listing from the HTML files in `docs/visual-explainer/`.
+
+This rule covers visual-explainer HTML pages only. Mermaid embedded in Markdown still belongs in the document that needs it.
