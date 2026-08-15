@@ -32,7 +32,7 @@ const HEAT = [
 
 export function LandingPage() {
   const navigate = useNavigate();
-  const [url, setUrl] = useState("https://yourstore.com");
+  const [url, setUrl] = useState("https://tonal.com/");
 
   function onRoast(event: FormEvent) {
     event.preventDefault();
