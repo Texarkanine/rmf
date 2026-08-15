@@ -1,12 +1,11 @@
 # Active Context
 
 ## Current Task: abort-on-failed-walk
-**Phase:** QA - COMPLETE (PASS)
+**Phase:** REFLECT COMPLETE
 
 ## What Was Done
-- QA semantic review: implementation matches the amended plan and brief acceptance criteria
-- No blocking findings; three advisories recorded (write-the-roast standalone gap, README placement, intentional cross-skill repetition)
-- Build changes not required
+- Reflection written. Standing contract added to `systemPatterns.md`: a hop that is not the page is a walk failure.
+- productContext and techContext unchanged.
 
 ## Next Step
-- `/niko-reflect`
+- Operator: `/niko-archive`

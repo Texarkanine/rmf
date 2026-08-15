@@ -61,3 +61,14 @@ Teach the walk and roast skills that a hop which is not the real page is a walk 
     - Repeated failure definitions across skill files are acceptable for self-contained skills
 * Insights
     - Dual gates (walk inspect + roast inspect) match the pre-mortem: a README-only change would not have stopped Heart & Soil
+
+## 2026-08-15 - REFLECT - COMPLETE
+
+* Work completed
+    - Wrote `memory-bank/active/reflection/reflection-abort-on-failed-walk.md`
+    - Added the walk-failure contract to `memory-bank/systemPatterns.md`
+* Decisions made
+    - productContext and techContext: skip — no product-picture or toolchain change
+* Insights
+    - URL classification is not page identity
+    - A later “continue when file exists” line will beat an inspect paragraph unless you edit that line
