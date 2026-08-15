@@ -39,3 +39,14 @@ Teach the walk and roast skills that a hop which is not the real page is a walk 
 * Insights
     - `start-the-roast` line “When `steps.json` is on disk, continue to Step 8” would beat a buried inspect paragraph unless that line is edited
     - `write-the-roast` is an un-gated standalone report entry; left as advisory, not a third required file
+
+## 2026-08-15 - BUILD - COMPLETE
+
+* Work completed
+    - Inserted walk inspect Step 4; roast inspect before Step 8; hop-skills stop on a failed page; README sentence
+    - Full suite: 16 passing
+* Decisions made
+    - No deviations from the amended plan
+    - Did not add a `write-the-roast` refuse gate (preflight advisory, not applied)
+* Insights
+    - The competing roast line was the one that sent Heart & Soil into cart analysis after a 0-exit walk

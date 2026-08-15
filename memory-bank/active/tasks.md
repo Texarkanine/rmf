@@ -27,7 +27,7 @@ These are agent-facing contracts, not executable product behavior. Do not add ch
 
 ## Implementation Plan
 
-1. Gate `walk-the-funnel` after the CLI returns
+1. [x] Gate `walk-the-funnel` after the CLI returns
    - Files: `skills/walk-the-funnel/SKILL.md`
    - Tests first: N/A for prose & policy artifacts
    - Changes:
@@ -38,7 +38,7 @@ These are agent-facing contracts, not executable product behavior. Do not add ch
      - If inspect fails and retry did not produce the intended pages: print that the walk failed and **stop**. Do not print `steps.json` as the successful deliverable. Update the opening line so chat output on failure is the failure, not the hop list.
      - Keep the existing CLI-failure stop in Step 3.
 
-2. Gate `start-the-roast` before hop analysis
+2. [x] Gate `start-the-roast` before hop analysis
    - Files: `skills/start-the-roast/SKILL.md`
    - Tests first: N/A for prose & policy artifacts
    - Changes:
@@ -47,14 +47,14 @@ These are agent-facing contracts, not executable product behavior. Do not add ch
      - If any hop is not the intended page: print the error, **stop**, do not write hop analysis, do not write a report. Recover-or-bail is the agent's call (retry the walk, wait, or stop). Telling the operator that analysis cannot be completed is an acceptable end state. Recovery must not type PII or pay. Do not invent hops.
      - Keep the existing CLI-failure and missing-`steps.json` stops.
 
-3. Stop hop-skills from roasting a failed page
+3. [x] Stop hop-skills from roasting a failed page
    - Files: `skills/start-the-roast/references/hop-skills.md`
    - Tests first: N/A for prose & policy artifacts
    - Changes:
      - Keep “If `skills/<name>/SKILL.md` is not on disk, follow this map anyway. Do not skip the hop.” That line means a missing skill file is not a skip.
      - Add: if the hop artifact is not the intended page, do not write that hop's analysis and do not invent a score. Point back to the roast/walk stop. A failed capture is a stop, not a skip-with-a-score.
 
-4. Tell the operator in the README
+4. [x] Tell the operator in the README
    - Files: `README.md`
    - Tests first: N/A for prose & policy artifacts
    - Changes: One sentence on `/start-the-roast` / `/walk-the-funnel`: a hop that is not the real page fails the walk; the roast stops rather than scoring it.
@@ -96,5 +96,5 @@ No new technology - validation not required
 - [x] Technology validation complete
 - [x] Pre-Mortem complete
 - [x] Preflight
-- [ ] Build
+- [x] Build
 - [ ] QA

@@ -1,11 +1,16 @@
 # Active Context
 
 ## Current Task: abort-on-failed-walk
-**Phase:** PREFLIGHT - COMPLETE (PASS WITH ADVISORY)
+**Phase:** BUILD - COMPLETE
 
 ## What Was Done
-- Preflight passed with advisory. Plan amended: numbered inspect step in `walk-the-funnel`; `steps.json` on disk is not sufficient to enter roast Step 8; inspect screenshots only; keep hop-skills “do not skip” for missing skill files.
-- Advisory left for the operator: optional refuse-to-write gate in `write-the-roast` if invoked alone on a failed walk.
+- Built the four plan steps. No walker code. No vendor-specific recovery recipe.
+- Files modified:
+  - `/workspace/skills/walk-the-funnel/SKILL.md` — numbered Step 4 inspect; Print is Step 5; failure output is the failure, not the hop list
+  - `/workspace/skills/start-the-roast/SKILL.md` — `steps.json` on disk is not enough; inspect screenshots before Step 8; abort-and-tell is valid
+  - `/workspace/skills/start-the-roast/references/hop-skills.md` — keep “do not skip” for missing skill files; failed page is a stop, not a score
+  - `/workspace/README.md` — one sentence: not-the-page fails the walk; the roast stops
+- `npm test`: 16 passing. No new tests (prose and policy).
 
 ## Next Step
-- `/niko-build` when ready.
+- QA review.
