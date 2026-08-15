@@ -14,7 +14,7 @@ Screenshots land in `runs/<id>/artifacts/`. Chromium opens so you can watch it. 
 
 ## Start a roast
 
-`/start-the-roast` collects a funnel URL and a Meta ads deeplink, writes a run under `.rmf/`, and prints that directory path.
+`/start-the-roast` collects a funnel URL and a Meta ads deeplink, writes a run under `.rmf/`, and prints that directory path. Ad Library retrieval is `/get-meta-ad`.
 
 ## Score
 

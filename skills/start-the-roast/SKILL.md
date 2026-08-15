@@ -1,12 +1,12 @@
 ---
 name: start-the-roast
 description: >
-  Collect a sales-funnel URL and a Meta or Facebook ads deeplink, write a
-  timestamped run folder with funnel.json and any retrieved ad media, and
-  print that folder path. Use when starting a roast, beginning a roast run,
-  or gathering ads plus a landing page into on-disk inputs. Do not use for
-  writing roast copy, critiquing ads, auditing tests, or running later roast
-  pipeline steps.
+  Collect a sales-funnel URL and a Meta or Facebook ads deeplink (a single-ad
+  library link with id=, or a library search or page), write a timestamped
+  run folder with funnel.json and any retrieved ad media, and print that
+  folder path. Use when starting a roast, beginning a roast run, or gathering
+  ads plus a landing page into on-disk inputs. Do not use for writing roast
+  copy, critiquing ads, auditing tests, or running later roast pipeline steps.
 ---
 
 # Start the Roast
@@ -18,7 +18,7 @@ Single-agent workflow. Disk is the handoff. Chat output is the run directory pat
 Resolve two values from the invocation:
 
 1. **Funnel** — an absolute HTTP(S) URL for the landing page or offer.
-2. **Ads deeplink** — an absolute HTTP(S) URL to a set of Meta or Facebook ads.
+2. **Ads deeplink** — an absolute HTTP(S) URL to Meta or Facebook ads. A library URL with a non-empty `id` query parameter is one ad. A URL without `id` is a set.
 
 If either value is missing or is not an absolute HTTP(S) URL, ask for the missing piece and **stop**. Do not create a run directory. Do not fetch ads.
 
@@ -44,15 +44,14 @@ Read [`references/funnel-json.md`](references/funnel-json.md). That file is the 
 
 ## Step 4 — Fetch ads
 
-Open or fetch the ads deeplink with ordinary agent tools (HTTP fetch or a browser). Extract every ad the page yields: id, permalink, advertiser, body, headline, description, CTA, and creative URLs.
+Invoke [`../get-meta-ad/SKILL.md`](../get-meta-ad/SKILL.md) with:
 
-For each creative URL, try to download the file into `<workdir>/media/`. Name files `media/<ad-id>-<index>.<ext>` using the ad id when known, a zero-based index, and an extension from the URL or `Content-Type`. Create `media/` only when at least one file lands.
+1. The ads deeplink from Step 1
+2. The workdir from Step 2
 
-Do not call the Meta Marketing API or the Graph API. Do not add a scraper package or helper script.
+Do not open, fetch, or parse the Ad Library yourself. That skill writes `<workdir>/ads.json` and any media files.
 
-A failed page fetch or a failed download does not fail the run. Continue to Step 5 with whatever was retrieved.
-
-Do not write a `path` for a file that is not on disk.
+When it finishes, continue to Step 5. A missing `ads.json` or an empty `ads` array is not a failure.
 
 ## Step 5 — Write funnel.json
 
@@ -60,7 +59,7 @@ Write `<workdir>/funnel.json` to the schema from Step 3.
 
 - `funnel.url` is the funnel from Step 1.
 - `source.ads_deeplink` is the deeplink from Step 1, stored as given.
-- `ads` is the extracted list. Use `[]` when nothing was extracted.
+- `ads` is the `ads` array from `<workdir>/ads.json`. Use `[]` when that file is missing or `ads` is empty.
 - For each media object, include `path` only after confirming that file exists under the workdir. Omit `path` when the file is missing.
 
 Do not invent ads, copy, or media paths.
