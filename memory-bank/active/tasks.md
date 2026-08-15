@@ -56,7 +56,7 @@ Prove the Playwright walker can take `https://tonal.com/` from homepage to a che
    - Tests first: N/A for prose & policy artifacts
    - Changes: `npm ci` and Playwright Chromium install so the live walk can run
 
-3. Run the existing walker against Tonal
+3. [x] Run the existing walker against Tonal
    - Files: `runs/` (gitignored)
    - Tests first: N/A for prose & policy artifacts
    - Changes: `HEADLESS=1 npm run capture -- https://tonal.com/ --run-id tonal-walk --delay-ms 800`; keep the full log; record each stage URL and interaction
@@ -66,12 +66,12 @@ Prove the Playwright walker can take `https://tonal.com/` from homepage to a che
    - Tests first: add a failing case in `src/capture/resolve.test.ts` or `src/capture/funnel.test.ts` for that hop (selector/URL/intent), then implement the smallest fix
    - Changes: likely candidates — prefer `/products/tonal-2` (or hardware) over accessory/rent links; dismiss Tonal-specific overlays; treat Shop.app / Shopify hosted checkout as checkout; do not fill email/address/card; do not click `PAYMENT_SUBMIT`
 
-5. Re-run capture until the path is honest
+5. [x] Re-run capture until the path is honest
    - Files: `runs/` (gitignored)
    - Tests first: N/A for prose & policy artifacts
    - Changes: successful bundle or an honest failure at a named hop; checkout must not be the landing URL; `stoppedBeforePayment` stays true; no payment-complete page
 
-6. Publish the recorded step sequence
+6. [x] Publish the recorded step sequence
    - Files: `docs/visual-explainer/tonal-funnel-walk.html`
    - Tests first: N/A for prose & policy artifacts
    - Changes: visual explainer of the actual hop sequence (stage, action, URL, what we saw, where we stopped, whether `paymentUiDetected` fired on the checkout stage). Facts only from the live bundle/screenshots. Do not overwrite an existing page. Leave `docs/index.html` alone.
@@ -110,5 +110,5 @@ No new runtime technology. `node:test` is in Node 22. Playwright is already in `
 - [x] Technology validation complete
 - [x] Pre-Mortem complete
 - [x] Preflight (PASS WITH ADVISORY)
-- [ ] Build
+- [x] Build
 - [ ] QA

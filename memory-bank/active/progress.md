@@ -54,3 +54,16 @@ Inspect the Playwright funnel walker and try it against `https://tonal.com/`. Re
     - Preflight passed with advisory; entering build in plan order (steps 1, 1b, 2–6)
 * Decisions made
     - Follow the preflight-amended plan, including `detectPaymentUi` as capture-only evidence
+
+## 2026-08-15 - BUILD - COMPLETE
+
+* Work completed
+    - Wired `npm test` (`node:test` via `tsx`)
+    - Live walks: `tonal-walk` reached checkout on the PDP-as-cart path; `tonal-walk-3` recorded a real `/cart` then checkout with `paymentUiDetected: true`
+    - Wrote `docs/visual-explainer/tonal-funnel-walk.html`
+* Decisions made
+    - Fall back to `/cart` when the Tonal cart drawer does not navigate
+    - Treat “Credit card” form labels as payment UI when Shopify skips known iframe hosts
+* Insights
+    - Tonal add-to-cart is AJAX; the shopper stays on `/products/tonal-2` until `/cart` is opened
+    - Checkout already shows empty card placeholders without typing email
