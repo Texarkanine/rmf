@@ -25,3 +25,17 @@ Teach the walk and roast skills that a hop which is not the real page is a walk 
     - No new tests — prose and policy only
 * Insights
     - `hop-skills.md` “Do not skip the hop” is the line that licensed roasting the Cloudflare cart
+
+## 2026-08-15 - PREFLIGHT - COMPLETE (PASS WITH ADVISORY)
+
+* Work completed
+    - Validated the Level 2 plan against `walk-the-funnel`, `start-the-roast`, `hop-skills.md`, `write-the-roast`, `steps.json` shape, and walker fail conditions
+    - Amended the plan: numbered inspect step; `steps.json` on disk is not enough to enter roast Step 8; inspect screenshots only; keep hop-skills “do not skip” for missing skill files
+    - Wrote `memory-bank/active/.preflight-status` as `PASS WITH ADVISORY`
+* Decisions made
+    - TDD carve-out holds: skill and README wording only; no change-detector tests
+    - Do not open `bundle.json` for the inspect — `visibleCopy` is not in `steps.json`
+    - Recovery after CLI exit is retry-or-stop, not taking over Playwright
+* Insights
+    - `start-the-roast` line “When `steps.json` is on disk, continue to Step 8” would beat a buried inspect paragraph unless that line is edited
+    - `write-the-roast` is an un-gated standalone report entry; left as advisory, not a third required file

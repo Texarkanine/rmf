@@ -1,12 +1,11 @@
 # Active Context
 
 ## Current Task: abort-on-failed-walk
-**Phase:** PLAN - COMPLETE
+**Phase:** PREFLIGHT - COMPLETE (PASS WITH ADVISORY)
 
 ## What Was Done
-- Level 2 plan: skill gates only. No walker code. No vendor-specific recovery recipe.
-- Walk and roast both inspect hop artifacts after a 0-exit CLI. Not-the-page → recover or abort. Abort-and-tell is valid. No analysis or report on a failed hop.
-- Operator constraint recorded: do not over-specify handling; leave recovery to the agent.
+- Preflight passed with advisory. Plan amended: numbered inspect step in `walk-the-funnel`; `steps.json` on disk is not sufficient to enter roast Step 8; inspect screenshots only; keep hop-skills “do not skip” for missing skill files.
+- Advisory left for the operator: optional refuse-to-write gate in `write-the-roast` if invoked alone on a failed walk.
 
 ## Next Step
-- Preflight validation.
+- `/niko-build` when ready.
