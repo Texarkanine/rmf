@@ -27,3 +27,13 @@ Tighten `/start-the-roast` so a Meta Ad Library URL with `?id=` collects only th
     - No test suite: TDD carve-out for skill wording.
 * Insights
     - The helper-spawn sentence is load-bearing. Parent-skill constraints do not travel into a browser subagent unless restated.
+
+## 2026-08-15 - QA - COMPLETE (PASS)
+
+* Work completed
+    - Semantic review of the pin-ad-library-id wording against the project brief and the two planned files.
+    - Wrote `memory-bank/active/.qa-validation-status` as PASS.
+* Decisions made
+    - Accept as-is. Two advisories (repeated extract field list; stay-on-URL sentence gated on HTTP-blocked) do not require a rebuild.
+* Insights
+    - The load-bearing helper-spawn restatement is present. Set-mode behavior is unchanged.

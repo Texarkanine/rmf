@@ -1,7 +1,7 @@
 # Active Context
 
 ## Current Task: pin-ad-library-id
-**Phase:** BUILD - COMPLETE
+**Phase:** QA - COMPLETE (PASS)
 
 ## What Was Done
 - Pinned `/start-the-roast` collection when the ads deeplink has a non-empty `id` query parameter.
