@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "roast": "tsx src/cli.ts roast",
     "capture": "tsx src/cli.ts capture",
     "score": "tsx src/cli.ts score",
     "report": "tsx src/cli.ts report"
