@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { Grain, displayHost } from "../components/Grain";
+import { DEMO_FUNNEL_URL, resultsPath, toFunnelUrl } from "../demoFunnel";
 import { IconBrowser } from "../components/icons";
 import { KitStar, StageDressing, kit } from "../kit";
 
@@ -41,7 +42,7 @@ const STEP_MS = 2200;
 export function ScanPage() {
   const [params] = useSearchParams();
   const navigate = useNavigate();
-  const url = params.get("url") || "https://yourstore.com";
+  const url = toFunnelUrl(params.get("url") || DEMO_FUNNEL_URL);
   const host = displayHost(url);
   const [step, setStep] = useState(0);
   const [done, setDone] = useState(false);
@@ -73,6 +74,14 @@ export function ScanPage() {
       window.clearTimeout(doneTimer);
     };
   }, []);
+
+  useEffect(() => {
+    if (!done) return;
+    const id = window.setTimeout(() => {
+      navigate(resultsPath(url), { replace: true });
+    }, 1400);
+    return () => window.clearTimeout(id);
+  }, [done, navigate, url]);
 
   const current = STEPS[step];
   const progress = done ? 100 : Math.round(((step + 0.35) / STEPS.length) * 100);
@@ -152,7 +161,7 @@ export function ScanPage() {
               className="scan-cta"
               type="button"
               onClick={() =>
-                navigate(`/results?url=${encodeURIComponent(url)}`)
+                navigate(resultsPath(url))
               }
             >
               Bring out the roast

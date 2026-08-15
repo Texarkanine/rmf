@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Landing page vs original mock — Roast My Funnel</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%231a1410'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-size='28' fill='%23c4a35a' font-family='Georgia'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --font-body: "Newsreader", "Iowan Old Style", Georgia, serif;
+    --font-mono: "IBM Plex Mono", "SF Mono", Consolas, monospace;
+
+    --bg: #f3ead8;
+    --surface: #fbf6ea;
+    --surface2: #ebe1c9;
+    --surface-elevated: #fffdf6;
+    --border: rgba(26, 20, 16, 0.12);
+    --border-bright: rgba(26, 20, 16, 0.22);
+    --text: #1a1410;
+    --text-dim: #6b5e4e;
+    --accent: #8b1e1e;
+    --accent-dim: rgba(139, 30, 30, 0.08);
+    --gold: #9a7b32;
+    --gold-dim: rgba(154, 123, 50, 0.12);
+    --sage: #3f5c32;
+    --sage-dim: rgba(63, 92, 50, 0.1);
+    --ink: #1a1410;
+    --must: #8b1e1e;
+    --should: #9a7b32;
+    --keep: #3f5c32;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16110d;
+      --surface: #221c16;
+      --surface2: #2c241c;
+      --surface-elevated: #2f271e;
+      --border: rgba(243, 234, 216, 0.1);
+      --border-bright: rgba(243, 234, 216, 0.2);
+      --text: #f3ead8;
+      --text-dim: #b5a78e;
+      --accent: #e07a6a;
+      --accent-dim: rgba(224, 122, 106, 0.12);
+      --gold: #d4b56a;
+      --gold-dim: rgba(212, 181, 106, 0.14);
+      --sage: #9cbf7a;
+      --sage-dim: rgba(156, 191, 122, 0.12);
+      --ink: #f3ead8;
+      --must: #e07a6a;
+      --should: #d4b56a;
+      --keep: #9cbf7a;
+    }
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--bg);
+    background-image:
+      radial-gradient(ellipse 80% 50% at 8% 0%, var(--gold-dim), transparent 55%),
+      radial-gradient(ellipse 50% 40% at 100% 8%, var(--accent-dim), transparent 50%);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.55;
+    padding: 40px;
+    min-height: 100vh;
+    overflow-wrap: break-word;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate {
+    animation: fadeUp 0.4s ease-out both;
+    animation-delay: calc(var(--i, 0) * 0.05s);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-delay: 0ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  .wrap {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 0 40px;
+  }
+  .main { min-width: 0; }
+
+  .toc {
+    position: sticky;
+    top: 24px;
+    align-self: start;
+    padding: 14px 0;
+    grid-row: 1 / -1;
+    max-height: calc(100dvh - 48px);
+    overflow-y: auto;
+  }
+  .toc::-webkit-scrollbar { width: 3px; }
+  .toc::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 2px; }
+  .toc-title {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    padding: 0 0 10px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .toc a {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: 5px;
+    border-left: 2px solid transparent;
+    line-height: 1.4;
+    margin-bottom: 1px;
+  }
+  .toc a:hover { color: var(--text); background: var(--surface2); }
+  .toc a.active { color: var(--text); border-left-color: var(--accent); }
+
+  h1 {
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 8px;
+    text-wrap: balance;
+  }
+  .subtitle {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 28px;
+  }
+  .lede {
+    font-size: 20px;
+    line-height: 1.45;
+    max-width: 62ch;
+    margin-bottom: 28px;
+  }
+  .lede em { color: var(--accent); font-style: italic; }
+
+  .sec-head {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 48px 0 16px;
+    padding-top: 8px;
+    scroll-margin-top: 24px;
+  }
+
+  h2 {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    text-wrap: balance;
+  }
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 22px 0 8px;
+  }
+  p { margin-bottom: 14px; max-width: 68ch; }
+  ul, ol { margin: 0 0 16px 1.2em; max-width: 68ch; }
+  li { margin-bottom: 6px; }
+  li strong { font-weight: 600; }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.82em;
+    background: var(--gold-dim);
+    color: var(--gold);
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+
+  .status-row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin: 24px 0 8px;
+  }
+  .status-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 16px 14px;
+    min-width: 0;
+  }
+  .status-card .k {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+  .status-card .v {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+  .status-card .s {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-top: 6px;
+    line-height: 1.35;
+  }
+
+  .pill {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 99px;
+    white-space: nowrap;
+  }
+  .pill.must { background: var(--accent-dim); color: var(--must); }
+  .pill.should { background: var(--gold-dim); color: var(--should); }
+  .pill.keep { background: var(--sage-dim); color: var(--keep); }
+  .pill.extra { background: var(--surface2); color: var(--text-dim); }
+
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    padding: 16px 20px;
+    font-size: 16px;
+    line-height: 1.55;
+    margin: 20px 0;
+    max-width: 72ch;
+  }
+  .callout.plan { border-left-color: var(--sage); }
+  .callout.gold { border-left-color: var(--gold); }
+
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 16px 0 22px;
+  }
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    min-width: 0;
+  }
+  .panel h3 { margin-top: 0; font-size: 13px; font-family: var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); }
+  .panel ul { margin-bottom: 0; }
+  .panel.mock { border-top: 3px solid var(--gold); }
+  .panel.live { border-top: 3px solid var(--accent); }
+
+  .table-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 16px 0 28px;
+  }
+  .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+  th {
+    background: var(--surface2);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--text-dim);
+    text-align: left;
+    padding: 12px 14px;
+    border-bottom: 2px solid var(--border-bright);
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tbody tr:nth-child(even) { background: var(--accent-dim); }
+  tbody tr:last-child td { border-bottom: none; }
+  td.wide { min-width: 180px; max-width: 340px; }
+  .foot {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    padding: 12px 14px;
+    border-top: 1px solid var(--border);
+  }
+
+  .fix-list { max-width: none; }
+  .fix-list li { margin-bottom: 10px; }
+  .files {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    display: block;
+    margin-top: 3px;
+  }
+
+  .keep-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 16px 0 8px;
+  }
+  .keep-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    min-width: 0;
+    font-size: 15px;
+  }
+  .keep-item strong { display: block; margin-bottom: 4px; }
+
+  @media (max-width: 1000px) {
+    .wrap { grid-template-columns: 1fr; padding-top: 0; }
+    body { padding-top: 0; }
+    .toc {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      max-height: none;
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 40px;
+      margin: 0 -40px;
+      grid-row: auto;
+    }
+    .toc::-webkit-scrollbar { display: none; }
+    .toc-title { display: none; }
+    .toc a {
+      white-space: nowrap;
+      flex-shrink: 0;
+      border-left: none;
+      border-bottom: 2px solid transparent;
+      border-radius: 4px 4px 0 0;
+      padding: 6px 10px;
+      font-size: 10px;
+    }
+    .toc a.active {
+      border-left: none;
+      border-bottom-color: var(--accent);
+      background: var(--surface);
+    }
+    .main { padding-top: 20px; }
+    .sec-head { scroll-margin-top: 52px; }
+    .status-row, .compare, .keep-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav class="toc" id="toc">
+  <div class="toc-title">Contents</div>
+  <a href="#s1">1. Verdict</a>
+  <a href="#s2">2. Already matching</a>
+  <a href="#s3">3. Atmosphere</a>
+  <a href="#s4">4. Hero</a>
+  <a href="#s5">5. Tickets</a>
+  <a href="#s6">6. Film strip</a>
+  <a href="#s7">7. Marquee</a>
+  <a href="#s8">8. Scorecard</a>
+  <a href="#s9">9. Finale</a>
+  <a href="#s10">10. Full delta</a>
+  <a href="#s11">11. Fix plan</a>
+</nav>
+
+<div class="main">
+
+<h1>The skeleton matches. The dressing drifted.</h1>
+<p class="subtitle">Landing page vs original mock · August 15, 2026 · files: web/src/components/LandingPage.tsx, web/src/styles.css, web/src/kit.tsx</p>
+
+<p class="lede">The live page kept the original’s six-act structure and most of the headlines. It then added comedy-club scenery the mock never had, swapped a few lines of copy, and missed several props that made the original feel like a playbill instead of a themed website.</p>
+
+<div class="status-row">
+  <div class="status-card animate" style="--i:0">
+    <div class="k">Must-fix</div>
+    <div class="v" style="color:var(--must)">12</div>
+    <div class="s">Visible in the first scroll. Copy, extra chrome, chili scale, missing landing icon.</div>
+  </div>
+  <div class="status-card animate" style="--i:1">
+    <div class="k">Should-fix</div>
+    <div class="v" style="color:var(--should)">9</div>
+    <div class="s">Gets you from “same idea” to “same picture.” Type, frames, connectors, footer ornament.</div>
+  </div>
+  <div class="status-card animate" style="--i:2">
+    <div class="k">Leave alone</div>
+    <div class="v" style="color:var(--keep)">8</div>
+    <div class="s">Section order, gold CTAs, ticket stubs, punch ticket, marquee icons, film overlay.</div>
+  </div>
+  <div class="status-card animate" style="--i:3">
+    <div class="k">Extra on live</div>
+    <div class="v">7</div>
+    <div class="s">Brick, swag, footlights, logo-marks, ornate corners, extra taglines, curtains on the tape.</div>
+  </div>
+</div>
+
+<div class="callout gold animate" style="--i:4">
+  The original is a <strong>black void stage</strong> with cream parchment inserts. The live page is a <strong>brick comedy club</strong> with curtains, footlights, and extra logos on every dark section. Same show. Different room.
+</div>
+
+<div class="sec-head" id="s1">1 — Verdict</div>
+<h2>What “match the image” actually means</h2>
+<p>The original mock is vintage theater / comedy club, but it is restrained. Dark sections are almost empty: black, a spotlight, side curtains, type, one gold bar. Light sections are parchment with a thin gold edge and a few ticket props. The live build kept the props and then filled the empty space.</p>
+<p>Three kinds of difference show up again and again:</p>
+<ol>
+  <li><strong>Extras the mock never had</strong> — brick texture, curtain swag, footlights, the gold logo-mark above headlines, ornate corner frames, extra taglines.</li>
+  <li><strong>Missing or swapped props</strong> — the landing-page ticket icon, 5 chili peppers, gold lines from roast cards to the film, a footer ornament, the original hero line.</li>
+  <li><strong>Layout that is close but heavier</strong> — cream wrapper around the CTA, punch-and-fix copy on the tape cards, brown ornate frames instead of a gold hairline.</li>
+</ol>
+
+<div class="sec-head" id="s2">2 — Already matching</div>
+<h2>Do not rip these out</h2>
+<p>A lot of the page is already on-brief. Fixing the gaps should not mean redesigning the kit.</p>
+<div class="keep-grid">
+  <div class="keep-item"><strong>Six-act structure</strong>Hero → tickets → tape → marquee → scorecard → finale. Same order as the mock.</div>
+  <div class="keep-item"><strong>Headlines</strong>“Your funnel says it’s fine.” / “Every click is material.” / “Let’s review the tape.” / “Three steps…” / “The roast report.” / “Ready to hear the truth?”</div>
+  <div class="keep-item"><strong>Gold CTA buttons</strong>Gradient gold, 3D press, condensed all-caps. Hero button copy matches. Finale button copy matches.</div>
+  <div class="keep-item"><strong>Ticket stubs</strong>Scalloped cream tickets with double border and three stars. Right object.</div>
+  <div class="keep-item"><strong>Film strip overlay</strong>Vertical strip, sprocket holes, three frames, red circle / underline marks, audio jack under the section.</div>
+  <div class="keep-item"><strong>Marquee icons</strong>Vintage mic, fedora + glass, comedy mask. These are stronger than the mock’s line art and still on-theme.</div>
+  <div class="keep-item"><strong>Scorecard idea</strong>62 / 100, “Needs better material,” chili heat, punch ticket with The Punchline / The Fix.</div>
+  <div class="keep-item"><strong>Nav</strong>How it works · What we roast · Sample report · Log in in a ghost box.</div>
+</div>
+
+<div class="sec-head" id="s3">3 — Atmosphere</div>
+<h2>The room is wrong before any section is</h2>
+<div class="compare">
+  <div class="panel mock">
+    <h3>Original</h3>
+    <ul>
+      <li>Solid black stage. One gold spotlight from the top center.</li>
+      <li>Red velvet curtains only on the left and right of the hero, and again at the finale corners.</li>
+      <li>Parchment sections with a thin gold border. No brick. No footlights. No valance.</li>
+      <li>Tall condensed playbill type. Body / lede reads as serif or slab, not a UI sans.</li>
+    </ul>
+  </div>
+  <div class="panel live">
+    <h3>Live</h3>
+    <ul>
+      <li>Brick wall (<code>comedy-club-brick.png</code>) on every <code>.stage</code> section, plus grain and spotlight dust.</li>
+      <li><code>StageDressing</code> always draws side curtains. Hero and finale also get swag + footlights. The tape section gets curtains too.</li>
+      <li>Parchment sections sit in a dark-brown box with gold ornate corners.</li>
+      <li>Display type is League Gothic (condensed sans). Lede is DM Sans. Libre Baskerville is loaded and almost unused on the landing page.</li>
+    </ul>
+  </div>
+</div>
+<p><span class="pill must">Must-fix</span> Drop the brick on the landing stages. The mock is a black void, not a club interior. Keep the radial gold spotlight and the light grain if you want texture.</p>
+<p><span class="pill must">Must-fix</span> Curtains only on the hero and the finale. Remove them from “Let’s review the tape.” That section is a black film-review board, not another stage.</p>
+<p><span class="pill should">Should-fix</span> Swag valance and footlight bar are extra. They are good kit pieces, but they are not in the original. Strip them from the landing page if the goal is to match the image. Keep them on scan / results if those pages need more scenery.</p>
+<p><span class="pill should">Should-fix</span> Use Libre Baskerville (already loaded) for the hero lede and parchment subheads. Leave Bebas Neue on labels. League Gothic can stay as the condensed poster face, or swap to a heavier wood-type if the mock still feels more serif than gothic after the other fixes.</p>
+
+<div class="sec-head" id="s4">4 — Hero</div>
+<h2>The stage has too many actors</h2>
+<div class="compare">
+  <div class="panel mock">
+    <h3>Original</h3>
+    <ul>
+      <li>Nav + side curtains + spotlight.</li>
+      <li>Headline, then the inspect/roast lede.</li>
+      <li>Cream URL field beside a gold button. No giant cream card around both.</li>
+      <li>Line under the form: <em>Roast the funnel. Not the marketer.</em></li>
+      <li>A thin gold flourish under that line. No second logo in the middle of the stage.</li>
+    </ul>
+  </div>
+  <div class="panel live">
+    <h3>Live</h3>
+    <ul>
+      <li>Swag across the top, tied-back curtains, footlights, brick, extra <code>logo-mark.png</code> above the headline.</li>
+      <li>Same headline and lede. Good.</li>
+      <li>Input + button sit inside a padded cream rounded card. The gold button looks inset into a ticket instead of sitting next to a field.</li>
+      <li>Tagline is <em>Find the leaks. Make more MONEY.</em></li>
+      <li>CSS gold rule (line + center dot) instead of the mock’s swirl. URL is prefilled with <code>https://tonal.com/</code>.</li>
+    </ul>
+  </div>
+</div>
+<p><span class="pill must">Must-fix</span> Restore <em>Roast the funnel. Not the marketer.</em> That line is already on the scan page. Put it back on the hero.</p>
+<p><span class="pill must">Must-fix</span> Remove the hero logo-mark. The mock goes straight from spotlight to headline. The wordmark already lives in the nav.</p>
+<p><span class="pill must">Must-fix</span> Restyle the form: cream field, gold button, no cream wrapper hugging both. Placeholder <code>https://yourstore.com</code>, not Tonal.</p>
+
+<div class="sec-head" id="s5">5 — Tickets</div>
+<h2>Right objects, wrong frame, one missing icon</h2>
+<div class="compare">
+  <div class="panel mock">
+    <h3>Original</h3>
+    <ul>
+      <li>Parchment field, thin gold border, no corner filigree, no star over the title.</li>
+      <li>Headline only. No flanking flourishes.</li>
+      <li>Five tickets: Ads, Landing page, Product page, Cart, Checkout.</li>
+      <li>Simple brown line-art icons. Product is a price tag. Landing is a browser window.</li>
+    </ul>
+  </div>
+  <div class="panel live">
+    <h3>Live</h3>
+    <ul>
+      <li><code>.ornate-frame</code> + four <code>ornate-corner.png</code> pieces + a gold star above the heading + SVG flourishes on both sides.</li>
+      <li>Four tickets use engraved kit PNGs. Landing page uses the leftover <code>IconBrowser</code> SVG. There is no <code>icon-landing.png</code> in the kit.</li>
+      <li>Product icon is a hang tag with a dropper bottle, not a plain price tag.</li>
+      <li>Engraved icons are richer than the mock. Fine, as long as they are a set. Landing page is the odd one out.</li>
+    </ul>
+  </div>
+</div>
+<p><span class="pill must">Must-fix</span> Generate <code>web/public/kit/icons/icon-landing.png</code> in the same engraved style as Ads / Cart / Checkout, and stop using the SVG.</p>
+<p><span class="pill should">Should-fix</span> Drop the ornate corners, the section star, and the flanking flourishes on this heading. Use a thin gold border around the parchment block, like the mock.</p>
+<p><span class="pill extra">Optional</span> Product icon can stay if you like it. Only replace it if you are pixel-matching the mock’s simple tag.</p>
+
+<div class="sec-head" id="s6">6 — Film strip</div>
+<h2>The tape review is doing the report’s job</h2>
+<div class="compare">
+  <div class="panel mock">
+    <h3>Original</h3>
+    <ul>
+      <li>Black section. No curtains. Headline with gold flourishes. Sub: “Your funnel. Our commentary.”</li>
+      <li>Vertical film on the left. Three mobile screens with red circles / underlines.</li>
+      <li>Three cream cards on the right: Ad creative, Landing page, Checkout. Short roast only.</li>
+      <li>Thin gold lines from each card to the matching mark on the film.</li>
+      <li>Gold ¼-inch audio jack along the bottom.</li>
+    </ul>
+  </div>
+  <div class="panel live">
+    <h3>Live</h3>
+    <ul>
+      <li>Curtains + brick. Flourishes on the heading (good). Audio jack (good).</li>
+      <li>Film overlay is right. Stills are 16:9 Glow Co. frames, not mobile screens.</li>
+      <li>Each card has a punch <em>and</em> a fix. That pairing belongs on the scorecard ticket, not here.</li>
+      <li>A gold arrow PNG sits to the left of each card. It points at the strip in general. It does not connect to the red marks.</li>
+    </ul>
+  </div>
+</div>
+<p><span class="pill must">Must-fix</span> Strip curtains from this section. Keep it black.</p>
+<p><span class="pill must">Must-fix</span> Cards: title + one roast line. Move “the fix” off these cards.</p>
+<p><span class="pill should">Should-fix</span> Draw gold connector lines from card 1 / 2 / 3 to the matching red mark. The arrow PNGs are a stand-in, not the mock.</p>
+<p><span class="pill extra">Optional</span> Swap the stills to portrait mobile crops if you want the film to read as “phone screens in a strip.”</p>
+
+<div class="sec-head" id="s7">7 — Marquee</div>
+<h2>Closest section — two missing flourishes</h2>
+<div class="compare">
+  <div class="panel mock">
+    <h3>Original</h3>
+    <ul>
+      <li>Black field. Rectangular marquee of warm bulbs. No brick showing around it.</li>
+      <li>Headline framed by small gold flourishes.</li>
+      <li>Three gold icons: vintage mic, detective (fedora + glass), comedy/tragedy masks.</li>
+    </ul>
+  </div>
+  <div class="panel live">
+    <h3>Live</h3>
+    <ul>
+      <li>Marquee bulbs exist, including a few off bulbs and a flicker. On-brief.</li>
+      <li>Brick still shows around the marquee.</li>
+      <li>Headline has no flourishes. Other sections do.</li>
+      <li>Icons are excellent. Step 3 is a comedy mask only — the mock had both masks.</li>
+    </ul>
+  </div>
+</div>
+<p><span class="pill should">Should-fix</span> Add the same <code>Flourish</code> pair used on other headings. Kill the brick behind this block so the marquee sits on black.</p>
+<p><span class="pill extra">Optional</span> If you want both masks, regenerate <code>icon-get-roast.png</code>. Not required for the page to feel like the mock.</p>
+
+<div class="sec-head" id="s8">8 — Scorecard</div>
+<h2>The scale is 3 peppers. The mock is 5.</h2>
+<div class="compare">
+  <div class="panel mock">
+    <h3>Original</h3>
+    <ul>
+      <li>Parchment. Big red 62 / 100. “Needs better material.”</li>
+      <li>Four rows: Clarity, Offer, Trust, Checkout. Chili scale of five. Some filled, some empty.</li>
+      <li>Right: one large red-bordered ticket. The Punchline, then The Fix. More copy than one sentence each.</li>
+    </ul>
+  </div>
+  <div class="panel live">
+    <h3>Live</h3>
+    <ul>
+      <li>Score, verdict, and punch ticket are the right objects. Punch ticket asset is good.</li>
+      <li>Heat map is <code>[1, 2, 3].map</code> — three peppers, not five. Scores of 1 / 2 / 2 / 3 cannot show “3 of 5.”</li>
+      <li>Whole block sits in the same ornate brown frame as the tickets section.</li>
+      <li>Punch / Fix are one sentence each. Fine for a stub, short of the mock.</li>
+    </ul>
+  </div>
+</div>
+<p><span class="pill must">Must-fix</span> Change the pepper loop to 5. Recast the sample scores so empty peppers are visible (the mock’s point).</p>
+<p><span class="pill should">Should-fix</span> Same gold hairline treatment as the tickets section. Longer punch/fix copy is optional; the ticket shape already carries the idea.</p>
+
+<div class="sec-head" id="s9">9 — Finale</div>
+<h2>Repeat the hero — without the extra bits</h2>
+<div class="compare">
+  <div class="panel mock">
+    <h3>Original</h3>
+    <ul>
+      <li>Black, side curtains at the bottom corners, headline, URL + gold “Roast my funnel.”</li>
+      <li>No second logo. No extra tagline.</li>
+      <li>Footer: wordmark left, nav center, small gold ornament right (audio jack or cigar).</li>
+    </ul>
+  </div>
+  <div class="panel live">
+    <h3>Live</h3>
+    <ul>
+      <li>Swag, footlights, logo-mark, then the headline. Tagline: <em>Good news: it’s fixable.</em></li>
+      <li>Form matches the hero (including the cream wrapper problem).</li>
+      <li>Footer has logo + gold nav links. No right-side ornament. Links are gold; the mock’s footer type is quieter.</li>
+    </ul>
+  </div>
+</div>
+<p><span class="pill must">Must-fix</span> Remove the finale logo-mark and the “Good news” line. Match the hero form fix.</p>
+<p><span class="pill should">Should-fix</span> Put <code>audio-jack.png</code> (already in the kit) on the right of the footer. Cream/white nav, not gold, so the ornament can be the gold moment.</p>
+
+<div class="sec-head" id="s10">10 — Full delta</div>
+<h2>Every difference, in one table</h2>
+<div class="table-wrap">
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Original</th>
+          <th>Live</th>
+          <th>Severity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="--i:0">
+          <td>Stage background</td>
+          <td class="wide">Black + spotlight</td>
+          <td class="wide">Brick + grain + spotlight dust</td>
+          <td><span class="pill must">Must</span></td>
+        </tr>
+        <tr>
+          <td>Curtains</td>
+          <td class="wide">Hero sides + finale corners</td>
+          <td class="wide">Every stage section, including the tape</td>
+          <td><span class="pill must">Must</span></td>
+        </tr>
+        <tr>
+          <td>Swag valance</td>
+          <td class="wide">Not in the mock</td>
+          <td class="wide">Hero and finale</td>
+          <td><span class="pill should">Should</span></td>
+        </tr>
+        <tr>
+          <td>Footlights</td>
+          <td class="wide">Not in the mock</td>
+          <td class="wide">Hero and finale</td>
+          <td><span class="pill should">Should</span></td>
+        </tr>
+        <tr>
+          <td>Hero logo-mark</td>
+          <td class="wide">None. Headline under the light</td>
+          <td class="wide"><code>logo-mark.png</code> above the H1</td>
+          <td><span class="pill must">Must</span></td>
+        </tr>
+        <tr>
+          <td>Hero tagline</td>
+          <td class="wide">Roast the funnel. Not the marketer.</td>
+          <td class="wide">Find the leaks. Make more MONEY.</td>
+          <td><span class="pill must">Must</span></td>
+        </tr>
+        <tr>
+          <td>URL field</td>
+          <td class="wide">Placeholder yourstore.com</td>
+          <td class="wide">Prefilled tonal.com</td>
+          <td><span class="pill must">Must</span></td>
+        </tr>
+        <tr>
+          <td>CTA chrome</td>
+          <td class="wide">Cream field + gold button</td>
+          <td class="wide">Both inside a cream rounded card</td>
+          <td><span class="pill must">Must</span></td>
+        </tr>
+        <tr>
+          <td>Display type</td>
+          <td class="wide">Tall condensed playbill</td>
+          <td class="wide">League Gothic + DM Sans lede</td>
+          <td><span class="pill should">Should</span></td>
+        </tr>
+        <tr>
+          <td>Tickets frame</td>
+          <td class="wide">Thin gold border</td>
+          <td class="wide">Brown box + ornate corners + star + flourishes</td>
+          <td><span class="pill should">Should</span></td>
+        </tr>
+        <tr>
+          <td>Landing ticket icon</td>
+          <td class="wide">Browser, same family as the others</td>
+          <td class="wide">Flat SVG <code>IconBrowser</code></td>
+          <td><span class="pill must">Must</span></td>
+        </tr>
+        <tr>
+          <td>Product ticket icon</td>
+          <td class="wide">Simple price tag</td>
+          <td class="wide">Hang tag with dropper bottle</td>
+          <td><span class="pill extra">Optional</span></td>
+        </tr>
+        <tr>
+          <td>Tape background</td>
+          <td class="wide">Black, no curtains</td>
+          <td class="wide">Brick + curtains</td>
+          <td><span class="pill must">Must</span></td>
+        </tr>
+        <tr>
+          <td>Roast cards</td>
+          <td class="wide">Title + roast. Gold line to the film mark</td>
+          <td class="wide">Punch + fix. Gold arrow PNG, not connected</td>
+          <td><span class="pill must">Must</span></td>
+        </tr>
+        <tr>
+          <td>Film stills</td>
+          <td class="wide">Mobile screens</td>
+          <td class="wide">16:9 desktop-ish stills</td>
+          <td><span class="pill extra">Optional</span></td>
+        </tr>
+        <tr>
+          <td>Marquee heading</td>
+          <td class="wide">Gold flourishes</td>
+          <td class="wide">Plain gold type</td>
+          <td><span class="pill should">Should</span></td>
+        </tr>
+        <tr>
+          <td>Step 3 icon</td>
+          <td class="wide">Comedy and tragedy masks</td>
+          <td class="wide">Comedy mask only</td>
+          <td><span class="pill extra">Optional</span></td>
+        </tr>
+        <tr>
+          <td>Chili scale</td>
+          <td class="wide">Out of 5</td>
+          <td class="wide">Out of 3</td>
+          <td><span class="pill must">Must</span></td>
+        </tr>
+        <tr>
+          <td>Finale extras</td>
+          <td class="wide">Headline + form</td>
+          <td class="wide">Logo-mark + “Good news: it’s fixable.”</td>
+          <td><span class="pill must">Must</span></td>
+        </tr>
+        <tr>
+          <td>Footer ornament</td>
+          <td class="wide">Gold jack or cigar on the right</td>
+          <td class="wide">None. Nav is gold</td>
+          <td><span class="pill should">Should</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="foot">12 must · 9 should · 4 optional · kit assets themselves are mostly fine; the page is over-applying them.</div>
+</div>
+
+<div class="sec-head" id="s11">11 — Fix plan</div>
+<h2>What to change, in order</h2>
+<p>Work in <code>LandingPage.tsx</code> and <code>styles.css</code> first. Only generate a new image for the landing-page icon. Do not rebuild the kit.</p>
+
+<div class="callout plan">
+  Pass 1 is subtractive. Remove brick, extra curtains, logo-marks, and extra lines. The page will look more like the mock before you add anything.
+</div>
+
+<h3>Pass 1 — subtract and restore copy</h3>
+<ol class="fix-list">
+  <li>
+    <strong>Black stages, not brick.</strong> On <code>.stage</code>, drop <code>comedy-club-brick.png</code>. Keep the gold radial spotlight. Optionally keep grain at low opacity.
+    <span class="files">web/src/styles.css · .stage, .how-section</span>
+  </li>
+  <li>
+    <strong>Curtains only where the mock has them.</strong> Hero and finale keep side curtains. Tape section: no <code>StageDressing</code> curtains. Landing hero/finale: turn off <code>swag</code> and <code>footlights</code> if matching the image.
+    <span class="files">web/src/components/LandingPage.tsx · StageDressing props</span>
+  </li>
+  <li>
+    <strong>Delete the extra logos and lines.</strong> Remove <code>.hero-mark</code> from hero and finale. Hero tagline → “Roast the funnel. Not the marketer.” Delete “Good news: it’s fixable.”
+    <span class="files">LandingPage.tsx</span>
+  </li>
+  <li>
+    <strong>Form.</strong> Cream input, gold button, no cream padded wrapper. Default / placeholder <code>https://yourstore.com</code>.
+    <span class="files">LandingPage.tsx · .roast-form in styles.css</span>
+  </li>
+  <li>
+    <strong>Tape cards.</strong> Title + roast only. No fix line on those three cards.
+    <span class="files">LandingPage.tsx · RoastCard</span>
+  </li>
+  <li>
+    <strong>Chili scale to 5.</strong> Map 1–5. Sample scores should leave empty peppers showing.
+    <span class="files">LandingPage.tsx · HEAT + peppers map</span>
+  </li>
+</ol>
+
+<h3>Pass 2 — replace the missing props</h3>
+<ol class="fix-list">
+  <li>
+    <strong>Landing-page ticket icon.</strong> Same engraved gold-on-transparent treatment as <code>icon-ads.png</code>. Wire it through <code>kit.iconLanding</code>.
+    <span class="files">web/public/kit/icons/icon-landing.png · kit.tsx · TICKETS</span>
+  </li>
+  <li>
+    <strong>Parchment frames.</strong> Thin gold border. No ornate corners, no section star on “Every click is material.”
+    <span class="files">styles.css · .ornate-frame · LandingPage.tsx FrameCorners / KitStar</span>
+  </li>
+  <li>
+    <strong>Marquee heading flourishes.</strong> Same <code>Flourish</code> wrap used on the tape heading. Marquee sits on black, not brick.
+    <span class="files">LandingPage.tsx · how-section</span>
+  </li>
+  <li>
+    <strong>Gold connectors</strong> from roast cards to the red film marks. Footer: <code>audio-jack.png</code> on the right, quieter nav color.
+    <span class="files">styles.css · .gold-arrow / new connectors · .site-footer</span>
+  </li>
+  <li>
+    <strong>Type.</strong> Lede and parchment subheads in Libre Baskerville. Keep League Gothic on the giant lines unless a heavier condensed face is chosen later.
+    <span class="files">styles.css · .lede, .subhead</span>
+  </li>
+</ol>
+
+<div class="callout">
+  After pass 1, screenshot the landing page next to the original. If it still feels “clubbier” than the mock, the leftovers are swag, footlights, and the ornate frames. Those are pass 2. Do not regenerate curtains, tickets, or marquee icons unless a specific asset is wrong — most of the kit is already the original’s vocabulary.
+</div>
+
+</div>
+</div>
+
+<script>
+(function() {
+  const toc = document.getElementById('toc');
+  const links = toc.querySelectorAll('a');
+  const sections = [];
+  links.forEach(link => {
+    const id = link.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if (el) sections.push({ id, el, link });
+  });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const match = sections.find(s => s.el === entry.target);
+        if (match) {
+          match.link.classList.add('active');
+          if (window.innerWidth <= 1000) {
+            match.link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          }
+        }
+      }
+    });
+  }, { rootMargin: '-10% 0px -80% 0px' });
+  sections.forEach(s => observer.observe(s.el));
+  links.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const id = link.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', '#' + id);
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

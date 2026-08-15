@@ -48,19 +48,23 @@ export function FrameCorners() {
 export function StageDressing({
   swag = false,
   footlights = false,
+  curtains = true,
 }: {
   swag?: boolean;
   footlights?: boolean;
+  curtains?: boolean;
 }) {
   return (
     <>
       {swag ? (
         <img className="curtain-swag" src={kit.swag} alt="" aria-hidden="true" />
       ) : null}
-      <div className="curtains" aria-hidden="true">
-        <img className="curtain left" src={kit.curtain} alt="" />
-        <img className="curtain right" src={kit.curtain} alt="" />
-      </div>
+      {curtains ? (
+        <div className="curtains" aria-hidden="true">
+          <img className="curtain left" src={kit.curtain} alt="" />
+          <img className="curtain right" src={kit.curtain} alt="" />
+        </div>
+      ) : null}
       <img className="spotlight-dust" src={kit.spotlight} alt="" aria-hidden="true" />
       {footlights ? (
         <img className="footlights" src={kit.footlights} alt="" aria-hidden="true" />

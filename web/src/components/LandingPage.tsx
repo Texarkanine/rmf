@@ -2,6 +2,13 @@ import { FormEvent, useId, useState, type ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import { Grain } from "./Grain";
 import { Flourish, IconBrowser } from "./icons";
+import { scanPath } from "../demoFunnel";
+import {
+  DEFAULT_ROAST_URL,
+  PEPPER_SCALE,
+  SAMPLE_HEAT,
+  TAPE_ROASTS,
+} from "./landingContent";
 import {
   FrameCorners,
   KitStar,
@@ -23,24 +30,17 @@ const TICKETS = [
   { label: "Checkout", src: kit.iconCheckout },
 ];
 
-const HEAT = [
-  { label: "Clarity", score: 1 },
-  { label: "Offer", score: 2 },
-  { label: "Trust", score: 2 },
-  { label: "Checkout", score: 3 },
-];
-
 export function LandingPage() {
   const navigate = useNavigate();
-  const [url, setUrl] = useState("https://yourstore.com");
+  const [url, setUrl] = useState(DEFAULT_ROAST_URL);
 
   function onRoast(event: FormEvent) {
     event.preventDefault();
-    navigate(`/scan?url=${encodeURIComponent(url)}`);
+    navigate(scanPath(url));
   }
 
   return (
-    <div className="page">
+    <div className="page landing">
       <Grain />
       <header className="site-header">
         <a className="brand" href="#top">
@@ -59,11 +59,8 @@ export function LandingPage() {
       </header>
 
       <section className="stage hero" id="top">
-        <StageDressing swag footlights />
+        <StageDressing />
         <div className="stage-inner">
-          <div className="hero-mark">
-            <img src="/assets/logo-mark.png" alt="" />
-          </div>
           <h1>
             <span className="h1-line">Your funnel says it’s fine.</span>
             <span className="h1-line">Let’s hear both sides.</span>
@@ -78,7 +75,7 @@ export function LandingPage() {
             onSubmit={onRoast}
             button="Put my funnel on the grill"
           />
-          <p className="tagline">Find the leaks. Make more MONEY.</p>
+          <p className="tagline">Roast the funnel. Not the marketer.</p>
           <div className="gold-rule" />
         </div>
       </section>
@@ -120,7 +117,7 @@ export function LandingPage() {
       </section>
 
       <section className="stage tape-section">
-        <StageDressing />
+        <StageDressing curtains={false} />
         <div className="stage-inner">
           <h2 className="display light">
             <span className="flourish-wrap">
@@ -135,24 +132,9 @@ export function LandingPage() {
           <div className="tape">
             <FilmStrip />
             <div className="roasts">
-              <RoastCard
-                n={1}
-                title="Ad creative"
-                punch="Great lighting. Still no idea what you sell."
-                fix="Show the product and the benefit in the first second."
-              />
-              <RoastCard
-                n={2}
-                title="Landing page"
-                punch="The offer arrived fashionably late."
-                fix="Move it above the fold."
-              />
-              <RoastCard
-                n={3}
-                title="Checkout"
-                punch="Surprise shipping. Always kills the room."
-                fix="Reveal delivery costs earlier."
-              />
+              {TAPE_ROASTS.map((roast) => (
+                <RoastCard key={roast.n} {...roast} />
+              ))}
             </div>
           </div>
           <img className="audio-jack" src={kit.audioJack} alt="" />
@@ -205,17 +187,19 @@ export function LandingPage() {
                 </p>
               </div>
               <ul className="heat">
-                {HEAT.map((row) => (
+                {SAMPLE_HEAT.map((row) => (
                   <li key={row.label}>
                     <span>{row.label}</span>
                     <span className="peppers">
-                      {[1, 2, 3].map((n) => (
-                        <img
-                          key={n}
-                          src={n <= row.score ? kit.chiliOn : kit.chiliOff}
-                          alt=""
-                        />
-                      ))}
+                      {Array.from({ length: PEPPER_SCALE }, (_, i) => i + 1).map(
+                        (n) => (
+                          <img
+                            key={n}
+                            src={n <= row.score ? kit.chiliOn : kit.chiliOff}
+                            alt=""
+                          />
+                        ),
+                      )}
                     </span>
                   </li>
                 ))}
@@ -238,11 +222,8 @@ export function LandingPage() {
       </section>
 
       <section className="stage finale" id="login">
-        <StageDressing swag footlights />
+        <StageDressing />
         <div className="stage-inner">
-          <div className="hero-mark small">
-            <img src="/assets/logo-mark.png" alt="" />
-          </div>
           <h2 className="display light finale-title">Ready to hear the truth?</h2>
           <RoastForm
             url={url}
@@ -250,7 +231,6 @@ export function LandingPage() {
             onSubmit={onRoast}
             button="Roast my funnel"
           />
-          <p className="tagline italic">Good news: it’s fixable.</p>
         </div>
       </section>
 
@@ -294,7 +274,7 @@ function RoastForm({
         required
         value={url}
         onChange={(e) => onUrl(e.target.value)}
-        placeholder="https://yourstore.com"
+        placeholder="https://tonal.com/"
       />
       <button type="submit">{button}</button>
     </form>
@@ -305,24 +285,37 @@ function RoastCard({
   n,
   title,
   punch,
-  fix,
+  note,
 }: {
   n: number;
   title: string;
   punch: string;
-  fix: string;
+  note: string;
 }) {
   return (
-    <article className="roast-card">
-      <img className="gold-arrow" src={kit.goldArrow} alt="" />
-      <span className="badge">{n}</span>
-      <h3>{title}</h3>
-      <div className="card-star">
-        <KitStar />
-      </div>
-      <p className="punch">{punch}</p>
-      <p className="fix">{fix}</p>
-    </article>
+    <div className="roast-item">
+      <svg className="tape-lead" viewBox="0 0 72 24" aria-hidden="true">
+        <path
+          d="M70 16 C 42 16 24 6 8 8"
+          fill="none"
+          stroke="#c4922a"
+          strokeWidth="1.7"
+          strokeLinecap="round"
+        />
+        <path d="M0 8 L11 3.5 L11 12.5 Z" fill="#c4922a" />
+      </svg>
+      <article className="roast-card">
+        <div className="roast-card-face">
+          <span className="badge">{n}</span>
+          <h3>{title}</h3>
+          <div className="card-star">
+            <KitStar />
+          </div>
+          <p className="punch">{punch}</p>
+          <p className="fix">{note}</p>
+        </div>
+      </article>
+    </div>
   );
 }
 
