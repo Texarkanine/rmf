@@ -75,3 +75,15 @@ Build a `start-the-funnel` entrypoint that calls an orchestrator. The orchestrat
 * Insights
     - Judged, did not fix, per QA phase rules; Build must rerun to add the missing recording clause and reconcile the 4c wording.
 
+## 2026-08-15 - QA - COMPLETE (PASS)
+
+* Work completed
+    - Re-evaluated all six deliverables following the build rework on `skills/funnel-walk-orchestrator/SKILL.md`.
+    - Verified the `ads_present` recording instruction in Step 4b and the four-signal reference in Step 4c.
+    - Conducted full semantic audit against KISS, DRY, YAGNI, Completeness, Regression, Integrity, and Documentation.
+* Decisions made
+    - QA status: PASS. All acceptance criteria and constraints satisfied.
+* Insights
+    - The JSONL contract now matches both the schema reference documentation and the runtime walk loop instructions.
+
+

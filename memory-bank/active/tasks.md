@@ -180,9 +180,17 @@ No new technology — validation not required. No new npm packages. No test runn
 - [x] Pre-Mortem complete
 - [x] Preflight
 - [x] Build
-- [x] QA — FAIL
+- [x] QA — PASS
 
 ## QA Findings
 
-- **FAIL — `ads_present` signal never wired to a recording instruction.** `references/walk-jsonl.md` lists `ads_present` as an allowed `signals` value and shows it in the example line, and Step 2 of `SKILL.md` computes it ("Use its `ads` array for `ads_present`"). But the only steps that say "Record `X` when `Y`" are 4a (`overlay`) and 4b (`account_wall`, `priced_offer`); neither mentions `ads_present`. Step 4c also says selection uses "the signals from 4a–4b," which by construction cannot include `ads_present`. Net effect: a literal walk produces `walk.jsonl` lines that never carry `ads_present`, contradicting the schema's own example. `ad-creative` skill *selection* still works (it checks `funnel.json.ads` directly), so this is a documentation/schema-completeness gap, not a broken walk. Needs a rebuild fix: add an explicit "record `ads_present` on the destination hop when `funnel.json` has a non-empty `ads` array" clause (likely in 4b) and reconcile 4c's "signals from 4a–4b" phrasing.
-- Advisory (non-blocking): none beyond the above; conventions, invariants, and memory-bank reconciliation all match the plan.
+- **PASS**: All 6 plan deliverables (`walk-jsonl.md`, `skill-map.md`, `funnel-walk-orchestrator/SKILL.md`, `start-the-funnel/SKILL.md`, `README.md`, `systemPatterns.md` / `productContext.md`) meet requirements and conform to established patterns.
+- **Rework verification**: The prior blocking issue is resolved. `skills/funnel-walk-orchestrator/SKILL.md` Step 4b now explicitly instructs recording `ads_present` on destination hops when `<workdir>/funnel.json` has a non-empty `ads` array, and Step 4c explicitly specifies all four signals (`overlay`, `account_wall`, `priced_offer`, `ads_present`).
+- **Semantic evaluation**:
+    - **KISS**: Clear separation between workdir resolution (`start-the-funnel`) and browser walk loop (`funnel-walk-orchestrator`).
+    - **DRY**: Reuses workdir setup, writable probe, and timestamp format conventions from `start-the-roast`.
+    - **YAGNI**: Scoped to the 5 allowlisted marketingskills; no extraneous tooling, packages, or unneeded abstractions.
+    - **Completeness**: All acceptance criteria and edge cases addressed (halt conditions, stop-before-PII/payment, fallback for missing URLs, subagent error handling).
+    - **Regression**: Existing Playwright capture CLI and bundle scorer contracts remain untouched.
+    - **Integrity**: No placeholder strings, mock data, or debug debris left.
+    - **Documentation**: README and persistent memory bank files reconciled accurately.
