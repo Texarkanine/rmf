@@ -116,6 +116,25 @@ export interface ScorecardColumn {
   keyFinding: string;
 }
 
+export interface AdFrame {
+  label: string;
+  src: string;
+  overlay?: string;
+}
+
+export interface CapturedAd {
+  libraryId: string;
+  libraryUrl: string;
+  primaryText: string;
+  headline: string;
+  description: string;
+  cta: string;
+  displayUrl: string;
+  destinationUrl: string;
+  started: string;
+  frames: AdFrame[];
+}
+
 export interface RoastReport {
   storeName: string;
   storeUrl: string;
@@ -129,6 +148,7 @@ export interface RoastReport {
   overallScore: number;
   overallLabel: string;
   categories: CategoryScore[];
+  ad: CapturedAd;
   funnel: FunnelNode[];
   mismatches: Mismatch[];
   findings: Finding[];

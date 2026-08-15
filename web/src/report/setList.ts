@@ -5,6 +5,7 @@ import {
 } from "./labels";
 import type {
   Finding,
+  HotspotKind,
   RoastReport,
   SetListCategory,
   SetListState,
@@ -158,6 +159,56 @@ export function chiliCount(score: number): 1 | 2 | 3 {
   if (score >= 70) return 3;
   if (score >= 40) return 2;
   return 1;
+}
+
+export function triageCards(
+  report: RoastReport,
+): Array<{ title: string; note: string }> {
+  const fallback = [
+    "High-impact quick wins.",
+    "Validate before you invest.",
+    "Not hurting. Ship it.",
+  ];
+  const titles = ["Fix now", "Test next", "Leave alone"] as const;
+  return titles.map((title, index) => ({
+    title,
+    note: report.firstActions[index] ?? fallback[index] ?? "",
+  }));
+}
+
+export function tapeShots(report: RoastReport): Array<{
+  src: string;
+  alt: string;
+  mark: HotspotKind;
+}> {
+  const adFrame =
+    report.ad.frames.find((frame) => frame.label === "3s") ??
+    report.ad.frames[0];
+  const landing = report.funnel.find((node) => node.stage === "landing");
+  const checkout = report.funnel.find((node) => node.stage === "checkout");
+  const shots: Array<{ src: string; alt: string; mark: HotspotKind }> = [];
+  if (adFrame?.src) {
+    shots.push({
+      src: adFrame.src,
+      alt: "Meta ad at 3 seconds",
+      mark: "circle",
+    });
+  }
+  if (landing?.screenshot) {
+    shots.push({
+      src: landing.screenshot,
+      alt: `${report.storeName} homepage`,
+      mark: "underline",
+    });
+  }
+  if (checkout?.screenshot) {
+    shots.push({
+      src: checkout.screenshot,
+      alt: `${report.storeName} checkout`,
+      mark: "shipping",
+    });
+  }
+  return shots;
 }
 
 /**

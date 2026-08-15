@@ -8,6 +8,7 @@ import {
   StageDressing,
   kit,
 } from "../kit";
+import { scanPath, toFunnelUrl } from "../demoFunnel";
 import { mockReport } from "../report/mockReport";
 import {
   INTENSITY_LABELS,
@@ -21,10 +22,13 @@ import {
   markFixed,
   reopenTask,
   seedSetList,
+  tapeShots,
   tasksIn,
+  triageCards,
   withStoreUrl,
 } from "../report/setList";
 import type {
+  CapturedAd,
   Finding,
   FunnelNode,
   Intensity,
@@ -35,16 +39,16 @@ import type {
   SetListState,
 } from "../report/types";
 
-const TAPE_FINDING_IDS = ["f-promise", "f-proof", "f-membership"] as const;
+const TAPE_FINDING_IDS = ["f-promise", "f-accessories", "f-membership"] as const;
 
 export function ResultsPage() {
   const [params] = useSearchParams();
   const report = useMemo(
-    () => withStoreUrl(mockReport, params.get("url")),
+    () => withStoreUrl(mockReport, toFunnelUrl(params.get("url"))),
     [params],
   );
   const host = displayHost(report.storeUrl);
-  const scanUrl = `/scan?url=${encodeURIComponent(report.storeUrl)}`;
+  const scanUrl = scanPath(report.storeUrl);
   const [setList, setSetList] = useState(() => seedSetList(report.findings));
   const [toast, setToast] = useState<string | null>(null);
 
@@ -102,6 +106,7 @@ export function ResultsPage() {
       </header>
 
       <Verdict report={report} />
+      <AdReel ad={report.ad} />
       <Funnel report={report} />
       <CrowdKillers report={report} />
       <Tape report={report} />
@@ -163,11 +168,13 @@ function Verdict({ report }: { report: RoastReport }) {
           </article>
         </div>
         <div className="rv-triage">
-          <TriageCard title="Fix now" note="High-impact quick wins." />
-          <TriageCard title="Test next" note="Validate before you invest." />
-          <TriageCard title="Leave alone" note="Not hurting. Ship it." />
+          {triageCards(report).map((card) => (
+            <TriageCard key={card.title} title={card.title} note={card.note} />
+          ))}
         </div>
-        <p className="rv-badge">High confidence · 5/5 stages inspected</p>
+        <p className="rv-badge">
+          High confidence · {report.funnel.length}/{report.funnel.length} stages inspected
+        </p>
       </div>
     </section>
   );
@@ -188,28 +195,41 @@ function Funnel({ report }: { report: RoastReport }) {
       <div className="ornate-frame">
         <FrameCorners />
         <SectionTitle>The funnel we found</SectionTitle>
-        <p className="subhead">Facebook Ad → homepage → Tonal 2 → cart → checkout. We stop before payment.</p>
+        <p className="subhead">
+          Facebook Ad → homepage → Tonal 2 → cart → checkout. We stop before payment.
+        </p>
         <ol className="funnel-row">
-          {report.funnel.map((node, index) => (
-            <li key={node.id} className="funnel-step">
-              {index === 1 ? (
-                <p className="funnel-break" aria-hidden="true">
-                  <span>✗</span> Promise mismatch
-                </p>
-              ) : null}
-              <FunnelNodeCard node={node} />
-            </li>
-          ))}
+          {report.funnel.map((node, index) => {
+            const mismatch = report.mismatches.find(
+              (row) => row.to === node.label,
+            );
+            return (
+              <li key={node.id} className="funnel-step">
+                {mismatch ? (
+                  <p className="funnel-break" aria-hidden="true">
+                    <span>✗</span> {mismatch.summary}
+                  </p>
+                ) : null}
+                <FunnelNodeCard node={node} portrait={index === 0} />
+              </li>
+            );
+          })}
         </ol>
       </div>
     </section>
   );
 }
 
-function FunnelNodeCard({ node }: { node: FunnelNode }) {
+function FunnelNodeCard({
+  node,
+  portrait = false,
+}: {
+  node: FunnelNode;
+  portrait?: boolean;
+}) {
   return (
     <article className="funnel-node">
-      <div className="funnel-thumb">
+      <div className={`funnel-thumb${portrait ? " is-portrait" : ""}`}>
         {node.screenshot ? (
           <img src={node.screenshot} alt="" />
         ) : (
@@ -260,39 +280,107 @@ function Tag({ intensity, suffix }: { intensity: Intensity; suffix: string }) {
   );
 }
 
+function AdReel({ ad }: { ad: CapturedAd }) {
+  return (
+    <section className="parchment report-block" id="ads">
+      <div className="ornate-frame">
+        <FrameCorners />
+        <SectionTitle>The ad we captured</SectionTitle>
+        <p className="subhead">
+          <a href={ad.libraryUrl} target="_blank" rel="noreferrer">
+            Library {ad.libraryId}
+          </a>
+          {" · "}Started {ad.started} · {ad.displayUrl}
+        </p>
+        <ol className="ad-reel">
+          {ad.frames.map((frame) => (
+            <li key={frame.label}>
+              <figure className="ad-frame">
+                <img src={frame.src} alt={`Ad frame at ${frame.label}`} />
+                <figcaption>
+                  <span>{frame.label}</span>
+                  {frame.overlay ? <b>{frame.overlay}</b> : <b>No overlay</b>}
+                </figcaption>
+              </figure>
+            </li>
+          ))}
+        </ol>
+        <dl className="ad-copy">
+          <div>
+            <dt>Primary text</dt>
+            <dd>{ad.primaryText}</dd>
+          </div>
+          <div>
+            <dt>Headline</dt>
+            <dd>{ad.headline}</dd>
+          </div>
+          <div>
+            <dt>Description</dt>
+            <dd>{ad.description}</dd>
+          </div>
+          <div>
+            <dt>CTA</dt>
+            <dd>
+              {ad.cta} → {ad.destinationUrl}
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+  );
+}
+
 function Tape({ report }: { report: RoastReport }) {
   const cards = TAPE_FINDING_IDS.map((id) => findingById(report, id)).filter(
     (row): row is Finding => Boolean(row),
   );
+  const shots = tapeShots(report);
+  const tapeLabels = ["Ad to landing", "The bundle", "Checkout"];
   return (
     <section className="stage tape-section" id="tape">
-      <StageDressing />
+      <StageDressing curtains={false} />
       <div className="stage-inner">
         <SectionTitle light>Let’s review the tape</SectionTitle>
         <p className="subhead light">Your funnel. Our commentary.</p>
         <div className="tape">
           <div className="film">
             <div className="film-shots">
-              <FilmShot src="/assets/tape-ad.png" alt="Tonal Meta ad" mark="circle" />
-              <FilmShot src="/assets/tape-landing.png" alt="tonal.com homepage" mark="underline" />
-              <FilmShot src="/assets/tape-checkout.png" alt="Tonal checkout" mark="shipping" />
+              {shots.map((shot) => (
+                <FilmShot
+                  key={shot.src}
+                  src={shot.src}
+                  alt={shot.alt}
+                  mark={shot.mark}
+                />
+              ))}
             </div>
             <img className="film-overlay" src={kit.film} alt="" />
           </div>
           <div className="roasts">
             {cards.map((finding, index) => (
-              <article className="roast-card" key={finding.id}>
-                <img className="gold-arrow" src={kit.goldArrow} alt="" />
-                <span className="badge">{index + 1}</span>
-                <h3>
-                  {["Ad to landing", "Proof", "Checkout"][index] ?? finding.title}
-                </h3>
-                <div className="card-star">
-                  <KitStar />
-                </div>
-                <p className="punch">{finding.punchline}</p>
-                <p className="fix">Fix: {finding.fix}</p>
-              </article>
+              <div className="roast-item" key={finding.id}>
+                <svg className="tape-lead" viewBox="0 0 72 24" aria-hidden="true">
+                  <path
+                    d="M70 16 C 42 16 24 6 8 8"
+                    fill="none"
+                    stroke="#c4922a"
+                    strokeWidth="1.7"
+                    strokeLinecap="round"
+                  />
+                  <path d="M0 8 L11 3.5 L11 12.5 Z" fill="#c4922a" />
+                </svg>
+                <article className="roast-card">
+                  <div className="roast-card-face">
+                    <span className="badge">{index + 1}</span>
+                    <h3>{tapeLabels[index] ?? finding.title}</h3>
+                    <div className="card-star">
+                      <KitStar />
+                    </div>
+                    <p className="punch">{finding.punchline}</p>
+                    <p className="fix">Fix: {finding.fix}</p>
+                  </div>
+                </article>
+              </div>
             ))}
           </div>
         </div>
@@ -469,8 +557,9 @@ function Writers({
           <div className="writers-fix">
             <p className="rv-kicker">The fix</p>
             <p>
-              Keep the ad’s line in the hero. Say the membership out loud. Do not
-              make paid traffic tour the brand museum first.
+              Keep the 3s overlay in the hero. Sell the complete system the ad
+              showed. Put membership next to the $5,215 total. Do not make paid
+              traffic tour the brand museum first.
             </p>
             <button className="scan-cta writers-cta" type="button" onClick={onCopy}>
               Copy implementation brief
