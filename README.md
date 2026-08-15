@@ -10,7 +10,7 @@ Screenshots land in `runs/<id>/artifacts/`. Chromium opens so you can watch it. 
 
 ## Walk a funnel
 
-`/walk-the-funnel` runs Playwright against a live URL (`HEADLESS=1 npm run capture -- <url>`), writes `runs/<id>/steps.json`, and prints that hop list. It does not score or roast.
+`/walk-the-funnel` runs Playwright against a live URL (`HEADLESS=1 npm run capture -- <url>`), writes `runs/<id>/steps.json`, and prints that hop list. It does not score or roast. A hop that is not the real page (bot wall, challenge, leftover chrome) fails the walk even when the CLI exits 0; the roast stops rather than scoring it.
 
 ## Start a roast
 

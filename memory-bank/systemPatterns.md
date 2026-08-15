@@ -32,6 +32,10 @@ Playwright records pages, frames, copy, and artifacts. It does not assign scores
 
 Scoring treats the bundle and its screenshots as the only facts. Findings must cite artifacts that exist. Do not invent pages, CTAs, or errors that are not in the evidence.
 
+## A hop that is not the page is a walk failure
+
+A 0-exit CLI and a `steps.json` on disk are not a successful walk. If a hop screenshot is a bot wall, challenge, interstitial, blank chrome, or leftover previous page, the walk failed. The roast agent may recover or bail. Telling the operator that analysis cannot be completed is better than judging the wrong page. Detecting “this is not the page” is capture integrity, not a CRO score.
+
 ## Stop before payment
 
 Checkout is page-load only. No email, address, phone, or card. Do not submit payment. Do not invent a card. Reaching a payment-complete or thank-you page is a capture failure.
