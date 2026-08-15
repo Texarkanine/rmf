@@ -1,0 +1,15 @@
+{
+  "name": "rmf",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture": "tsx src/cli.ts capture",
+    "score": "tsx src/cli.ts score"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "@types/node": "^24.3.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.2"
+  }
+}
