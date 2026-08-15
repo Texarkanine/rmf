@@ -37,3 +37,12 @@ Tighten `/start-the-roast` so a Meta Ad Library URL with `?id=` collects only th
     - Accept as-is. Two advisories (repeated extract field list; stay-on-URL sentence gated on HTTP-blocked) do not require a rebuild.
 * Insights
     - The load-bearing helper-spawn restatement is present. Set-mode behavior is unchanged.
+
+## 2026-08-15 - RECONCILE - COMPLETE
+
+* Work completed
+    - Scanned persistent memory-bank files after QA PASS.
+* Decisions made
+    - productContext: skip — ads-are-operator-provided / no auto-discover is already the product constraint; this task made the skill honor it.
+    - systemPatterns: skip — pin-on-`id` is a skill-internal rule; "ads are inputs, not discoveries" already covers the briefing altitude.
+    - techContext: skip — no stack, tool, or test-process change.

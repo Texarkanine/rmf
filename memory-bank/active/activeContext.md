@@ -10,4 +10,4 @@
 - Set URLs (no `id`) still extract every ad the page yields.
 
 ## Next Step
-- `/niko-qa` with Grok.
+- Level 1 wrap-up. No archive phase. Operator deletes `memory-bank/active/` when satisfied.
