@@ -15,3 +15,13 @@ Teach the walk and roast skills that a hop which is not the real page is a walk 
 * Insights
     - Today's walker already fails on missing cart URL or checkout-still-landing; it does not fail when `/cart` is a bot wall
     - `start-the-roast` already stops on CLI failure or missing `steps.json`; it does not inspect whether a recorded hop is the real page
+
+## 2026-08-15 - PLAN - COMPLETE
+
+* Work completed
+    - Wrote the Level 2 plan: inspect-and-stop in `walk-the-funnel` and `start-the-roast`, rewrite hop-skills so a failed page is not graded, one README sentence
+* Decisions made
+    - No `src/capture` changes this task — handling stays with the agent
+    - No new tests — prose and policy only
+* Insights
+    - `hop-skills.md` “Do not skip the hop” is the line that licensed roasting the Cloudflare cart
