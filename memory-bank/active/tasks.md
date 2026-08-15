@@ -130,4 +130,18 @@ No new technology - validation not required
 - [x] Pre-Mortem complete
 - [x] Preflight
 - [x] Build
-- [ ] QA
+- [x] QA
+
+## QA Results (2026-08-15)
+
+**Verdict:** PASS
+
+### Findings
+
+- **Completeness:** All five implementation-plan items landed (`hop-skills.md`, `write-the-roast`, extended `start-the-roast` steps 6–11, README + `systemPatterns`, `report-layout.md`). Full sequence matches the creative flowchart (creative invert → walk → per-hop analysis → LP mock → report).
+- **Pattern alignment:** Walker/judge split preserved. Sibling execution handoffs to `get-meta-ad`, `walk-the-funnel`, and `write-the-roast`. No `npm run score`. Product skills stay under `skills/`. Disk paths and hard stops match the plan.
+- **Integrity:** Consistent deliverable contract — workdir + `report.html`. Walk lands at `<workdir>/walk/` via `--out` / `--run-id walk`. Hop names align with `walk-the-funnel/references/steps-json.md`.
+- **Regression:** Intake steps 1–5 unchanged. No capture/score code touched. Leftover intake-only frontmatter removed.
+- **Preflight advisory:** `report-layout.md` added; `write-the-roast` cites PRD layout instead of improvising structure.
+- **Documentation (advisory):** Test-plan bullets in this file still say walk immediately after `funnel.json`; the mermaid, creative doc, and implementation correctly place creative invert before the walk. Update bullets when archiving — does not block acceptance.
+- **Documentation (advisory):** README four-stage summary rolls walk + per-hop analysis into one line; accurate at operator altitude. Creative invert before walk is implicit, not spelled out.

@@ -67,3 +67,15 @@ Expand `/start-the-roast` so it sequences gather → Meta ad fetch → Playwrigh
     - No capture or score code changes
 * Insights
     - Leftover intake-only frontmatter was the main stop-the-pipeline risk; it is gone
+
+## 2026-08-15 - QA - COMPLETE (PASS)
+
+* Work completed
+    - Semantic review of build output against plan, creative doc, and acceptance criteria
+    - Wrote `.qa-validation-status`: PASS
+    - Recorded findings in `tasks.md`
+* Decisions made
+    - Implementation acceptable as-is; two documentation advisories, no build rework
+* Insights
+    - Implementation matches creative sequence (creative before walk), not the stale test-plan bullet that skips straight to walk after `funnel.json`
+    - `--out <workdir> --run-id walk` produces `<workdir>/walk/steps.json` per `src/cli.ts`; orchestrator disk reads are correct
