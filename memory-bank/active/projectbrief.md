@@ -31,6 +31,7 @@ When ad media cannot be retrieved, the skill still writes `funnel.json` with the
 1. Work happens on a branch off `main`.
 2. Follow slobac's run-directory pattern; do not invent a different persistence model.
 3. Do not build the rest of the roast pipeline in this task.
+4. Prose only: write the skill and its reference docs. No unit tests and no retrieval library in this task.
 
 ## Acceptance Criteria
 

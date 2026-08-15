@@ -1,11 +1,12 @@
 # Active Context
 
 ## Current Task: start-the-roast
-**Phase:** COMPLEXITY-ANALYSIS - COMPLETE
+**Phase:** PLAN - COMPLETE
 
 ## What Was Done
-- Operator approved the intent restatement.
-- Classified as Level 3: new entrypoint skill plus run-folder and `funnel.json` contracts; retrieval and schema need design before coding. Not Level 4 because this task is one skill, not the whole roast system.
+- Operator constraint recorded: prose only, no unit tests, no retrieval library.
+- Planned a skill-only deliverable: `skills/start-the-roast/SKILL.md` + `references/funnel-json.md`, slobac-style `.rmf/<timestamp>/` runs, gitignored.
+- Retrieval is agent fetch of the deeplink, best-effort media, no Marketing API.
 
 ## Next Step
-- Load the Level 3 workflow and execute the plan phase.
+- Preflight the plan, then wait for `/niko-build`.
