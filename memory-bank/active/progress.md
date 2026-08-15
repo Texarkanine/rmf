@@ -16,3 +16,17 @@ Build a `start-the-funnel` entrypoint that calls an orchestrator. The orchestrat
 * Insights
     - `origin/main` already has `/start-the-roast`, which writes `.rmf/<timestamp>/funnel.json` and explicitly does not start later steps. This task is the next step that walk can call.
     - The standing walker/judge split in `systemPatterns.md` is Playwright-walk / Grok-offline. This task asks for Grok-walk with judgements in subagents. That is an intentional second path, not a silent replacement of `npm run capture`.
+
+## 2026-08-15 - PLAN - COMPLETE
+
+* Work completed
+    - Component analysis, TDD carve-out, implementation steps, challenges, pre-mortem.
+    - No open questions left for a creative loop.
+* Decisions made
+    - Entrypoint skill calls a separate orchestrator skill.
+    - Prose only. Fetch marketingskills at judgement time. Do not vendor the catalog.
+    - Do not edit `/start-the-roast`. Do not replace Playwright capture.
+    - JSONL artifact is `walk.jsonl` in the run directory.
+* Insights
+    - Parent-walks / subagents-judge keeps a split even though Grok is in the browser.
+    - A closed five-skill allowlist is the only way the "select the correct set" requirement stays implementable.

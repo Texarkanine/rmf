@@ -1,12 +1,13 @@
 # Active Context
 
 ## Current Task: start-the-funnel
-**Phase:** COMPLEXITY-ANALYSIS - COMPLETE
+**Phase:** PLAN - COMPLETE
 
 ## What Was Done
-- Fresh `/niko` on a branch off `origin/main` (`cursor/start-the-funnel-orchestrator-7086`).
-- Persistent memory bank present. No in-flight ephemeral state.
-- Classified as Level 3: a complete pipeline stage (entrypoint skill, orchestrator, page→skill map, subagent protocol, JSONL schema) with design choices, not a system rewrite.
+- Level 3 plan written. No creative phase: approach follows `start-the-roast` (prose product skills, disk handoff) plus the operator's walk + subagent-judge + JSONL spec.
+- Two skills: `start-the-funnel` (resolve inputs, invoke) and `funnel-walk-orchestrator` (walk, select, judge, append).
+- Closed skill allowlist: `cro`, `ad-creative`, `popups`, `offers`, `signup`.
+- Playwright CLI and offline `score` stay. This is a second walker.
 
 ## Next Step
-- Load the Level 3 workflow and execute the Plan phase.
+- Preflight phase to validate the plan.
