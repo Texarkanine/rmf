@@ -41,17 +41,17 @@ Prove the Playwright walker can take `https://tonal.com/` from homepage to a che
 
 ## Implementation Plan
 
-1. Lock URL classification and payment-stop contracts
+1. [x] Lock URL classification and payment-stop contracts
    - Files: `package.json`, `src/capture/funnel.test.ts`, `src/capture/resolve.test.ts`, `memory-bank/techContext.md`
    - Tests first: `src/capture/funnel.test.ts` (classifyPage Tonal/Shopify/Shop.app URLs; paid-URL / thank-you guards if extracted or tested via exported helpers); `src/capture/resolve.test.ts` (`PAYMENT_SUBMIT` yes/no cases)
    - Changes: add `"test": "tsx --test src/**/*.test.ts"`; export any guard that must be unit-tested rather than re-implementing regexes in the test file; surgical techContext Testing Process pointer to `npm test`
 
-1b. Add a structured payment-UI evidence signal (accretive to AC1 — makes "checkout shows payment fields" machine-checkable, not just a screenshot a human/Grok must eyeball)
+1b. [x] Add a structured payment-UI evidence signal (accretive to AC1 — makes "checkout shows payment fields" machine-checkable, not just a screenshot a human/Grok must eyeball)
    - Files: `src/types.ts`, `src/capture/evidence.ts`, `src/capture/evidence.test.ts`
    - Tests first: `src/capture/evidence.test.ts` — stub a `Page`-like object whose `frames()` returns objects with `.url()`; assert `detectPaymentUi` returns `true` for a frame URL matching known payment-iframe hosts (`checkout.shopify.com`, `js.stripe.com`, `paypal.com`, `braintreegateway.com`, `adyen.com`) and `false` when no frame matches
    - Changes: add `paymentUiDetected: boolean` to `StageEvidence` in `src/types.ts`; add `detectPaymentUi(page: Page): Promise<boolean>` in `src/capture/evidence.ts` checking `page.frames().some(f => PAYMENT_IFRAME_HOST.test(f.url()))`; wire it into `captureStage`'s returned object. This is evidence collection (like `collectCtas`/`collectForms`), not judging — stays on the walker side of the walker/judge split
 
-2. Install capture toolchain
+2. [x] Install capture toolchain
    - Files: none in git (`node_modules/`, Playwright browsers)
    - Tests first: N/A for prose & policy artifacts
    - Changes: `npm ci` and Playwright Chromium install so the live walk can run

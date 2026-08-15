@@ -45,6 +45,20 @@ export function classifyPage(url: string): PageKind {
   return "other";
 }
 
+/**
+ * True when the URL looks like a payment-complete / paid confirmation page.
+ */
+export function isPaymentCompleteUrl(url: string): boolean {
+  return /\/paid(\.html)?/i.test(url);
+}
+
+/**
+ * True when visible copy shows a post-purchase thank-you.
+ */
+export function isThankYouCopy(copy: string): boolean {
+  return /thank you for your (order|purchase)/i.test(copy);
+}
+
 export async function captureFunnel(
   browser: Browser,
   options: CaptureOptions,
@@ -157,10 +171,10 @@ export async function captureFunnel(
     if (landing && checkout.url === landing.url) {
       throw new Error("Checkout screenshot is still the landing page");
     }
-    if (/\/paid(\.html)?/i.test(checkout.url)) {
+    if (isPaymentCompleteUrl(checkout.url)) {
       throw new Error("Capture reached a payment-complete page");
     }
-    if (/thank you for your (order|purchase)/i.test(checkout.visibleCopy)) {
+    if (isThankYouCopy(checkout.visibleCopy)) {
       throw new Error("Capture submitted payment");
     }
 
