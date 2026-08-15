@@ -187,6 +187,10 @@ export async function captureFunnel(
         await page.goto(new URL("/checkout", page.url()).href, {
           waitUntil: "domcontentloaded",
         });
+        checkoutInteractions.push({
+          intent: "go_to_checkout",
+          durationMs: 0,
+        });
       }
       kind = classifyPage(page.url());
     }
