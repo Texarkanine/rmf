@@ -180,4 +180,9 @@ No new technology — validation not required. No new npm packages. No test runn
 - [x] Pre-Mortem complete
 - [x] Preflight
 - [x] Build
-- [ ] QA
+- [x] QA — FAIL
+
+## QA Findings
+
+- **FAIL — `ads_present` signal never wired to a recording instruction.** `references/walk-jsonl.md` lists `ads_present` as an allowed `signals` value and shows it in the example line, and Step 2 of `SKILL.md` computes it ("Use its `ads` array for `ads_present`"). But the only steps that say "Record `X` when `Y`" are 4a (`overlay`) and 4b (`account_wall`, `priced_offer`); neither mentions `ads_present`. Step 4c also says selection uses "the signals from 4a–4b," which by construction cannot include `ads_present`. Net effect: a literal walk produces `walk.jsonl` lines that never carry `ads_present`, contradicting the schema's own example. `ad-creative` skill *selection* still works (it checks `funnel.json.ads` directly), so this is a documentation/schema-completeness gap, not a broken walk. Needs a rebuild fix: add an explicit "record `ads_present` on the destination hop when `funnel.json` has a non-empty `ads` array" clause (likely in 4b) and reconcile 4c's "signals from 4a–4b" phrasing.
+- Advisory (non-blocking): none beyond the above; conventions, invariants, and memory-bank reconciliation all match the plan.

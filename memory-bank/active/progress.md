@@ -55,3 +55,14 @@ Build a `start-the-funnel` entrypoint that calls an orchestrator. The orchestrat
 * Insights
     - Repeating stop-before-PII on open, click, and checkout is load-bearing; an agent may enter any of those steps in isolation.
 
+## 2026-08-15 - QA - COMPLETE (FAIL)
+
+* Work completed
+    - Semantic review of all six build-phase deliverables against `projectbrief.md`, `tasks.md`, and `systemPatterns.md`.
+    - Confirmed conventions match `start-the-roast` (frontmatter shape, writable-check prose, "print the workdir, don't paste artifacts into chat" pattern), the walker/subagent-judge split is preserved and extended correctly, and the memory-bank reconciliation is surgical and user-facing.
+* Decisions made
+    - One finding blocks acceptance: the `ads_present` signal is computed (Step 2) and documented in the schema/example (`walk-jsonl.md`) but never wired to a "record X when Y" instruction in the orchestrator's hop loop (4a/4b), and 4c's "signals from 4a–4b" phrasing structurally excludes it.
+    - Skill *selection* for `ad-creative` is unaffected (it reads `funnel.json.ads` directly), so the walk still functions; only the JSONL signal-recording contract is incomplete.
+* Insights
+    - Judged, did not fix, per QA phase rules; Build must rerun to add the missing recording clause and reconcile the 4c wording.
+
