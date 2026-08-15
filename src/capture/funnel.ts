@@ -48,6 +48,13 @@ export function classifyPage(url: string): PageKind {
 /**
  * True when the URL is a cart or checkout page, not a PDP leftover.
  */
+/**
+ * Shopify cart lives at /cart on the current origin.
+ */
+export function storeCartUrl(currentUrl: string): string {
+  return new URL("/cart", currentUrl).href;
+}
+
 export function isReachedCart(url: string): boolean {
   const kind = classifyPage(url);
   return kind === "cart" || kind === "checkout";
@@ -148,10 +155,21 @@ export async function captureFunnel(
       kind = classifyPage(page.url());
     }
     if (kind !== "cart" && kind !== "checkout") {
-      cartInteractions.push(
-        await interact("open_cart", "Open the cart page after adding a product"),
+      const opened = await actions.click(
+        "open_cart",
+        "Open the cart page after adding a product",
       );
-      kind = classifyPage(page.url());
+      if (opened) {
+        cartInteractions.push({ intent: "open_cart", durationMs: 0 });
+        kind = classifyPage(page.url());
+      }
+      if (kind !== "cart" && kind !== "checkout") {
+        await page.goto(storeCartUrl(page.url()), {
+          waitUntil: "domcontentloaded",
+        });
+        cartInteractions.push({ intent: "open_cart", durationMs: 0 });
+        kind = classifyPage(page.url());
+      }
     }
     await sleep(delayMs);
     await record("cart", cartInteractions);

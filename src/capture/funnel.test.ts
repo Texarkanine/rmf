@@ -5,6 +5,7 @@ import {
   isPaymentCompleteUrl,
   isReachedCart,
   isThankYouCopy,
+  storeCartUrl,
 } from "./funnel.js";
 
 describe("classifyPage", () => {
@@ -27,6 +28,15 @@ describe("classifyPage", () => {
     assert.equal(
       classifyPage("https://shop.app/checkout/cn/abc"),
       "checkout",
+    );
+  });
+});
+
+describe("storeCartUrl", () => {
+  it("builds /cart on the current origin", () => {
+    assert.equal(
+      storeCartUrl("https://tonal.com/products/tonal-2?variant=1"),
+      "https://tonal.com/cart",
     );
   });
 });
