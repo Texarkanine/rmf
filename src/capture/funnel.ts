@@ -8,6 +8,7 @@ import { attachObservers } from "./observe.js";
 import { dismissOverlays } from "./overlays.js";
 import { CompositeActionLayer, HeuristicActionLayer } from "./resolve.js";
 import { assertUrlAllowed } from "./robots.js";
+import { toSteps } from "./steps.js";
 
 export interface CaptureOptions {
   startUrl: string;
@@ -225,6 +226,7 @@ export async function captureFunnel(
       stoppedBeforePayment: true,
     };
     await writeFile(path.join(runDir, "bundle.json"), JSON.stringify(bundle, null, 2));
+    await writeFile(path.join(runDir, "steps.json"), `${JSON.stringify(toSteps(bundle), null, 2)}\n`);
     return bundle;
   } finally {
     observers.dispose();
