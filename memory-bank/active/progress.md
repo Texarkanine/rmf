@@ -33,3 +33,17 @@ Inspect the Playwright funnel walker and try it against `https://tonal.com/`. Re
     - Tonal 2 PDP is rental-first (Whim) with a secondary "Add to cart"
     - `robots.txt` disallows `/checkout` and `/checkouts/`; click-through is the intended shopper path
     - Card fields will likely sit in Shopify payment iframes after an email wall
+
+## 2026-08-15 - PREFLIGHT - COMPLETE (PASS WITH ADVISORY)
+
+* Work completed
+    - Verified `classifyPage`, `PAYMENT_SUBMIT`, the paid-URL/thank-you guards, and the rent-skip in `HeuristicActionLayer.openProduct` against `src/capture/funnel.ts` and `src/capture/resolve.ts` — all planned test cases match existing behavior
+    - Confirmed no other module constructs a `StageEvidence` literal or imports `classifyPage`/`PAYMENT_SUBMIT`, so the planned changes stay inside `src/capture/`
+    - Confirmed Node 22 (`node --version`), `tsx --test` available, `package-lock.json` present for `npm ci`
+    - Fetched live `https://tonal.com/robots.txt` and `https://tonal.com/products/tonal-2` (200) — matches the plan's stated edge cases
+    - Applied the Radical Innovation finding to the plan: added Step 1b (`detectPaymentUi`) to make "checkout shows payment fields" a structured, TDD-tested evidence field instead of screenshot-only
+* Decisions made
+    - Kept the payment-UI-detection addition capture-only (`src/types.ts`, `src/capture/evidence.ts`); did not wire it into `src/score/prompt.ts` — that crosses into the scoring subsystem, out of this task's Level 2 scope
+* Insights
+    - `robots.txt`'s comment block explicitly asks agents not to script end-to-end checkout completion and to prefer UCP/MCP for buyer-authorized transactions; the plan's stop-before-payment, no-UCP/MCP approach is a page-load recording (not a completion or transaction), which reads as compliant with stated intent even though it disallows crawling those paths outright
+    - No `.fill(`/`.type(` calls exist anywhere in `src/`, so AC3 (no typed PII/payment) is already structurally guaranteed by the current action layer, not just by convention

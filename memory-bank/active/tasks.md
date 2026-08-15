@@ -20,6 +20,7 @@ Prove the Playwright walker can take `https://tonal.com/` from homepage to a che
 - [prefer buy over rent]: `open_product` skips `purchase_type=rent` hrefs (already in `HeuristicActionLayer.openProduct`)
 - [live Tonal walk]: `HEADLESS=1 npm run capture -- https://tonal.com/` → bundle with landing → add_to_cart → cart → checkout, `stoppedBeforePayment: true`, checkout screenshot/copy shows payment UI, no typed PII or card
 - [honest stop]: if card fields are behind an email wall, the run stops on that checkout page and does not type email
+- [detect payment UI]: `detectPaymentUi(page)` returns `true` when a page frame URL matches a known payment-iframe host (Shopify checkout, Stripe, PayPal, Braintree, Adyen), `false` when no frame matches
 
 ### Test Infrastructure
 
@@ -27,7 +28,7 @@ Prove the Playwright walker can take `https://tonal.com/` from homepage to a che
 - Decision: add Node's built-in `node:test` runner via `tsx --test`. No new package. This is the smallest runner that satisfies always-tdd without a parallel framework.
 - Test location: colocated `src/capture/*.test.ts` (tsconfig already `include`s `src`)
 - Conventions: new — `*.test.ts` next to the module under test; run with `npm test`
-- New test files: `src/capture/funnel.test.ts`, `src/capture/resolve.test.ts`
+- New test files: `src/capture/funnel.test.ts`, `src/capture/resolve.test.ts`, `src/capture/evidence.test.ts`
 
 ### Edge Cases
 
@@ -44,6 +45,11 @@ Prove the Playwright walker can take `https://tonal.com/` from homepage to a che
    - Files: `package.json`, `src/capture/funnel.test.ts`, `src/capture/resolve.test.ts`, `memory-bank/techContext.md`
    - Tests first: `src/capture/funnel.test.ts` (classifyPage Tonal/Shopify/Shop.app URLs; paid-URL / thank-you guards if extracted or tested via exported helpers); `src/capture/resolve.test.ts` (`PAYMENT_SUBMIT` yes/no cases)
    - Changes: add `"test": "tsx --test src/**/*.test.ts"`; export any guard that must be unit-tested rather than re-implementing regexes in the test file; surgical techContext Testing Process pointer to `npm test`
+
+1b. Add a structured payment-UI evidence signal (accretive to AC1 — makes "checkout shows payment fields" machine-checkable, not just a screenshot a human/Grok must eyeball)
+   - Files: `src/types.ts`, `src/capture/evidence.ts`, `src/capture/evidence.test.ts`
+   - Tests first: `src/capture/evidence.test.ts` — stub a `Page`-like object whose `frames()` returns objects with `.url()`; assert `detectPaymentUi` returns `true` for a frame URL matching known payment-iframe hosts (`checkout.shopify.com`, `js.stripe.com`, `paypal.com`, `braintreegateway.com`, `adyen.com`) and `false` when no frame matches
+   - Changes: add `paymentUiDetected: boolean` to `StageEvidence` in `src/types.ts`; add `detectPaymentUi(page: Page): Promise<boolean>` in `src/capture/evidence.ts` checking `page.frames().some(f => PAYMENT_IFRAME_HOST.test(f.url()))`; wire it into `captureStage`'s returned object. This is evidence collection (like `collectCtas`/`collectForms`), not judging — stays on the walker side of the walker/judge split
 
 2. Install capture toolchain
    - Files: none in git (`node_modules/`, Playwright browsers)
@@ -68,7 +74,7 @@ Prove the Playwright walker can take `https://tonal.com/` from homepage to a che
 6. Publish the recorded step sequence
    - Files: `docs/visual-explainer/tonal-funnel-walk.html`
    - Tests first: N/A for prose & policy artifacts
-   - Changes: visual explainer of the actual hop sequence (stage, action, URL, what we saw, where we stopped). Facts only from the live bundle/screenshots. Do not overwrite an existing page. Leave `docs/index.html` alone.
+   - Changes: visual explainer of the actual hop sequence (stage, action, URL, what we saw, where we stopped, whether `paymentUiDetected` fired on the checkout stage). Facts only from the live bundle/screenshots. Do not overwrite an existing page. Leave `docs/index.html` alone.
 
 ## Technology Validation
 
@@ -103,6 +109,6 @@ No new runtime technology. `node:test` is in Node 22. Playwright is already in `
 - [x] Implementation plan complete
 - [x] Technology validation complete
 - [x] Pre-Mortem complete
-- [ ] Preflight
+- [x] Preflight (PASS WITH ADVISORY)
 - [ ] Build
 - [ ] QA
