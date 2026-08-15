@@ -79,3 +79,15 @@ Expand `/start-the-roast` so it sequences gather → Meta ad fetch → Playwrigh
 * Insights
     - Implementation matches creative sequence (creative before walk), not the stale test-plan bullet that skips straight to walk after `funnel.json`
     - `--out <workdir> --run-id walk` produces `<workdir>/walk/steps.json` per `src/cli.ts`; orchestrator disk reads are correct
+
+## 2026-08-15 - REFLECT - COMPLETE
+
+* Work completed
+    - Wrote `memory-bank/active/reflection/reflection-start-the-roast-sequence.md`
+    - Reconciled persistent files
+* Decisions made
+    - productContext and techContext left unchanged
+    - systemPatterns already carried the new entrypoint contract from build
+* Insights
+    - Frontmatter that forbids later steps outlives body edits unless you re-derive it
+    - Chat paste from a sibling skill is not a disk handoff

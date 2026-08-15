@@ -1,11 +1,11 @@
 # Active Context
 
 ## Current Task: start-the-roast-sequence
-**Phase:** QA - COMPLETE (PASS)
+**Phase:** REFLECT COMPLETE
 
 ## What Was Done
-- QA semantic review: implementation matches plan, creative doc, and acceptance criteria.
-- `.qa-validation-status`: PASS. Two documentation advisories; no build rework.
+- Reflection written to `memory-bank/active/reflection/reflection-start-the-roast-sequence.md`.
+- Persistent files scanned: productContext skip, systemPatterns already updated in build, techContext skip.
 
 ## Next Step
-- `/niko-reflect`
+- `/niko-archive` to create the archive and clear ephemeral files.
