@@ -30,3 +30,15 @@ Expand `/start-the-roast` so it sequences gather → Meta ad fetch → Playwrigh
 * Insights
     - Interleaving analysis with clicks is the live grading agent the walker/judge split forbids
     - "At each step" means one analysis file per hop, not mid-walk judgment
+
+## 2026-08-15 - PLAN - COMPLETE
+
+* Work completed
+    - Component analysis, hop map, four implementation steps
+    - TDD carve-out: no new tests (operator)
+* Decisions made
+    - `funnel.json` schema unchanged
+    - Walk artifacts land at `<workdir>/walk/` via `--out` / `--run-id walk`
+    - No capture or score code changes
+* Insights
+    - The old score CLI cannot be the report; its rubric is the one the PRD replaced
