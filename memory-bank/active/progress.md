@@ -50,3 +50,14 @@ Teach the walk and roast skills that a hop which is not the real page is a walk 
     - Did not add a `write-the-roast` refuse gate (preflight advisory, not applied)
 * Insights
     - The competing roast line was the one that sent Heart & Soil into cart analysis after a 0-exit walk
+
+## 2026-08-15 - QA - COMPLETE (PASS)
+
+* Work completed
+    - Semantic review of walk-the-funnel Step 4 inspect, start-the-roast pre-Step 8 inspect, hop-skills failed-page stop, and README sentence against the amended plan and acceptance criteria
+    - Wrote `memory-bank/active/.qa-validation-status` as `PASS`
+* Decisions made
+    - `write-the-roast` standalone gap remains advisory only — not a blocking FAIL
+    - Repeated failure definitions across skill files are acceptable for self-contained skills
+* Insights
+    - Dual gates (walk inspect + roast inspect) match the pre-mortem: a README-only change would not have stopped Heart & Soil

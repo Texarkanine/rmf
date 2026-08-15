@@ -97,4 +97,14 @@ No new technology - validation not required
 - [x] Pre-Mortem complete
 - [x] Preflight
 - [x] Build
-- [ ] QA
+- [x] QA
+
+## QA
+
+- Result: `PASS`
+- Reviewed against the amended Level 2 plan and project brief acceptance criteria
+- Findings:
+  - **Advisory (non-blocking):** `write-the-roast` still has no failed-walk gate if invoked standalone. Preflight flagged this; the brief gates the report on `start-the-roast`. Out of plan scope.
+  - **Advisory (non-blocking):** The README failure sentence lives under “Walk a funnel” only; “Start a roast” does not repeat it. One sentence was the plan; the walk section covers both skills.
+  - **Advisory (non-blocking):** The hop failure definition is repeated in three skill files. Intentional self-containment for standalone skill invocation; not DRY debt.
+- No blocking issues. Build changes not required.
