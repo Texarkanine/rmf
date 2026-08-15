@@ -1,12 +1,12 @@
 # Active Context
 
 ## Current Task: start-the-roast-sequence
-**Phase:** PLAN - COMPLETE
+**Phase:** PREFLIGHT - COMPLETE (PASS WITH ADVISORY)
 
 ## What Was Done
-- Level 3 plan written: hop-skills map, `write-the-roast`, extend `start-the-roast`, README + systemPatterns.
-- Creative decision integrated: one-shot walk, local rubric map, no `npm run score`.
-- Operator constraints recorded: no unit tests; preflight and QA use Composer 2.5 Fast.
+- Preflight validated plan against codebase: conventions, dependencies, conflicts, completeness.
+- TDD carve-out confirmed: all four implementation units are prose/policy; no change-detector tests scheduled.
+- Plan amended: explicit walk disk path, `write-the-roast` named in systemPatterns, new `report-layout.md` reference step.
 
 ## Next Step
-- Preflight with Composer 2.5 Fast.
+- `/niko-build` on a feature branch off `main`.

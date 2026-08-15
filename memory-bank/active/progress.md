@@ -42,3 +42,16 @@ Expand `/start-the-roast` so it sequences gather → Meta ad fetch → Playwrigh
     - No capture or score code changes
 * Insights
     - The old score CLI cannot be the report; its rubric is the one the PRD replaced
+
+## 2026-08-15 - PREFLIGHT - COMPLETE
+
+* Work completed
+    - Validated prerequisites, TDD carve-out, conventions, dependencies, conflicts, completeness
+    - Wrote `.preflight-status`: PASS WITH ADVISORY
+    - Amended plan: walk disk path, systemPatterns names `write-the-roast`, added step 5 `report-layout.md`
+* Decisions made
+    - No rearchitect required; build gate open
+    - Advisory: cite PRD layout in a dedicated reference file so `write-the-roast` does not improvise structure
+* Insights
+    - `--out` / `--run-id walk` lands artifacts at `<workdir>/walk/`; screenshot paths in `steps.json` are relative to that directory
+    - `walk-the-funnel` unchanged; orchestrator must read hops from disk, not from chat output

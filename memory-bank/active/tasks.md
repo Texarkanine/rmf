@@ -91,11 +91,15 @@ flowchart LR
 3. Extend `/start-the-roast` past intake
     - Files: `skills/start-the-roast/SKILL.md`
     - Tests first: N/A for prose & policy artifacts
-    - Changes: rewrite frontmatter (this skill now runs the later steps); keep steps 1–5; add numbered steps for creative invert, walk handoff, per-hop analysis, LP mock, `write-the-roast`, print workdir + report path; delete "do not start any later pipeline step"; include the sequence flowchart
+    - Changes: rewrite frontmatter (this skill now runs the later steps); keep steps 1–5; add numbered steps for creative invert, walk handoff, per-hop analysis, LP mock, `write-the-roast`, print workdir + report path; delete "do not start any later pipeline step"; include the sequence flowchart; walk handoff passes `funnel.url` with `--out <workdir> --run-id walk`; read `<workdir>/walk/steps.json` from disk (do not rely on chat paste from `/walk-the-funnel`)
 4. Point docs at the new contract
     - Files: `README.md`, `memory-bank/systemPatterns.md`
     - Tests first: N/A for prose & policy artifacts
-    - Changes: README "Start a roast" lists the four-stage sequence; systemPatterns entrypoint paragraph says the roast skill runs walk + analysis + report
+    - Changes: README "Start a roast" lists the four-stage sequence; systemPatterns entrypoint paragraph says the roast skill runs walk + analysis + report and names `skills/write-the-roast` as the report entrypoint
+5. Add report layout reference *(preflight advisory)*
+    - Files: `skills/write-the-roast/references/report-layout.md`
+    - Tests first: N/A for prose & policy artifacts
+    - Changes: cite PRD write-up sections (ad cluster, journey cluster, four buckets, roast voice, LP mock); list required on-disk inputs and expected output filename under the workdir
 
 ## Technology Validation
 
@@ -124,6 +128,6 @@ No new technology - validation not required
 - [x] Implementation plan complete
 - [x] Technology validation complete
 - [x] Pre-Mortem complete
-- [ ] Preflight
+- [x] Preflight
 - [ ] Build
 - [ ] QA
