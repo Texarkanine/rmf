@@ -1,0 +1,5 @@
+# Disable automatic CodeRabbit PR reviews.
+# https://docs.coderabbit.ai/configuration/auto-review
+reviews:
+  auto_review:
+    enabled: false
