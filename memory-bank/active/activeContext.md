@@ -1,7 +1,7 @@
 # Active Context
 
 ## Current Task: start-the-roast
-**Phase:** PREFLIGHT - COMPLETE (PASS WITH ADVISORY)
+**Phase:** BUILD - IN-PROGRESS
 
 ## What Was Done
 - Operator constraint recorded: prose only, no unit tests, no retrieval library.
